@@ -15,15 +15,32 @@
 
     .content {
         position: absolute;
-        top: 30%;
+        top: 50%;
         left: 10%;
         transform: translate(0%, -50%);
         text-align: center;
+
+        @include max(768px) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @include max(525px) {
+            top: 50%;
+            left: 0%;
+            width: 70%;
+            transform: translate(0%, -50%);
+        }
 
         h1 {
             font-size: 4rem;
             margin-bottom: 0;
             font-weight: 600;
+
+            @include max(525px) {
+                font-size: 3rem;
+            }
         }
 
         h3 {
@@ -82,10 +99,18 @@ section .heading {
     min-height: 400px;
     width: 100%;
 
+    @include max(768px) {
+        min-height: 400px;
+    }
+
     img {
         width: 100%;
         max-height: 400px;
         object-fit: cover;
+
+        @include max(768px) {
+            min-height: 400px;
+        }
     }
 
     .content {
@@ -118,5 +143,16 @@ section .heading {
             border-radius: 5px;
             cursor: pointer;
         }
+    }
+}
+
+.blogs {
+    padding: 5rem 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
     }
 }

@@ -1,0 +1,91 @@
+@mixin max($max-width) {
+    @media screen and (max-width: #{$max-width}) {
+        @content;
+    }
+}
+
+header {
+    @include max(768px) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .navbar {
+        background-color: #d0f4f8;
+
+
+        .nav-item {
+            margin-right: 8px;
+            @include max(768px) {
+                border-bottom: 1px solid #4a4949;
+            }
+
+            a {
+                color: #4a4949;
+
+                &.active,
+                &:hover {
+                    color: orangered;
+                    transition: 0.3s ease;
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        border-bottom: 3px solid orangered;
+                        width: 100%;
+                        margin: auto;
+                        transition: 0.3s ease;
+
+                        @include max(768px) {
+                            display: none;
+                        }
+                    }
+
+                }
+            }
+
+            &.login{
+                background-color: orangered;
+                border-radius: 100px;
+                padding: 0 12px;
+
+                @include max(768px) {
+                    background-color: transparent;
+                    border-radius: 0;
+                    padding: 0;
+                }
+                
+                a{
+                    color: #fff;
+
+                    &.active ::after,
+                    &:hover ::after{
+                        display: none;
+                    }
+               
+                    @include max(768px) {
+                        color: #4a4949;
+                    }
+                }
+            }
+        }
+
+        .navbar-toggler {
+            background-color: orangered;
+            color: #000;
+            transition: 0.3s ease;
+
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+    }
+}

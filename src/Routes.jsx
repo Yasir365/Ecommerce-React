@@ -8,8 +8,8 @@ import ProductDetails from './pages/user/product-details/Product-Details';
 import Cart from './pages/user/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import Users from './pages/admin/users/Users';
-import Login from './pages/auth/login/Login';
-import SignUp from './pages/auth/sign-up/Sign-up';
+import Login from './pages/auth/Login';
+import SignUp from './pages/auth/Sign-up';
 
 const router = createBrowserRouter([
     {

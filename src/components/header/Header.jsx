@@ -7,8 +7,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <header>
+            <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><img src={NavLogo} alt="Nav Logo" /></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation" >
@@ -30,7 +30,7 @@ const Header = () => {
                             </li>
                         </ul>
                         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                            <li className="nav-item login">
                                 <NavLink className="nav-link" aria-current="page" to="/login"> Login </NavLink>
                             </li>
                         </ul>
@@ -38,7 +38,7 @@ const Header = () => {
                 </div>
                 </nav>
 
-        </>
+        </header>
     );
 };
 
