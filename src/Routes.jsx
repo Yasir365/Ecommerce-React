@@ -4,7 +4,7 @@ import AdminLayout from './layouts/admin-layout/Admin-Layout';
 import Home from './pages/user/home/Home';
 import About from './pages/user/about/About';
 import Products from './pages/user/products/Products';
-import ProductDetails from './pages/product-details/Product-Details';
+import ProductDetails from './pages/user/product-details/Product-Details';
 import Cart from './pages/user/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import Users from './pages/admin/users/Users';
