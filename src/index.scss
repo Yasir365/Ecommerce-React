@@ -1,0 +1,33 @@
+@mixin max($max-width) {
+  @media screen and (max-width: #{$max-width}) {
+    @content;
+  }
+}
+
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: rgba(192, 192, 192, 0.623);
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+#root {
+  overflow-x: hidden;
+}
