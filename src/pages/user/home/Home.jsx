@@ -1,4 +1,3 @@
-import React from 'react';
 import './home.scss';
 import heroImage from '../../../../public/hero.png';
 import bannerImage from '../../../../public/banner/b1.jpg';

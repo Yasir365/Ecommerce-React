@@ -1,4 +1,3 @@
-import React from 'react';
 import './header.scss';
 
 import NavLogo from '../../../public/logo.png';
