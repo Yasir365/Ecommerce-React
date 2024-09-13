@@ -9,7 +9,7 @@ const [pageNumber, setPageNumber] = useState(0);
 const [total, setTotal] = useState(0);
 const productsPerPage = 12;
 const pageCount = Math.ceil(total / productsPerPage);
-
+const random = Math.floor(Math.random() * 10000);
     useEffect(() => {
         fetch(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${pageNumber * productsPerPage}&select=`)
         .then((res) => res.json())
@@ -28,7 +28,7 @@ const pageCount = Math.ceil(total / productsPerPage);
         <div className="products mb-5">
             {data.map((item) => (
             <div className="product">
-                <Product key={item.id} {...item} />
+                <Product key={item.id * random} {...item} />
             </div>
             ))}
         </div>

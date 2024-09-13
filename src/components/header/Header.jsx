@@ -46,7 +46,7 @@ const Header = () => {
                         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
                             <li className="nav-item mode">
                                 <button onClick={toggleTheme} className="nav-link">
-                                    {theme === "light" ? <i class="fa-solid fa-moon"></i> : <i class="fa-regular fa-sun"></i>} 
+                                    {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>} 
                                 </button>
                             </li>
                             <li className="nav-item login">

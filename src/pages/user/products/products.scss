@@ -12,6 +12,7 @@ section {
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
+        min-height: calc(100vh - 60px);
 
         .product {
             width: 23%;
