@@ -4,12 +4,15 @@ import ReactPaginate from 'react-paginate';
 import './products.scss';
 
 const Products = () => {
-const [data, setData] = useState([]);
-const [pageNumber, setPageNumber] = useState(0);
-const [total, setTotal] = useState(0);
-const productsPerPage = 12;
-const pageCount = Math.ceil(total / productsPerPage);
-const random = Math.floor(Math.random() * 10000);
+
+    const [data, setData] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [total, setTotal] = useState(0);
+    const productsPerPage = 12;
+    const pageCount = Math.ceil(total / productsPerPage);
+    const random = Math.floor(Math.random() * 10000);
+
+
     useEffect(() => {
         fetch(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${pageNumber * productsPerPage}&select=`)
         .then((res) => res.json())

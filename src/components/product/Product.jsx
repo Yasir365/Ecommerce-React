@@ -2,7 +2,7 @@ import './product.scss';
 import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import defaultImage from '../../assets/skeleton.gif';
-import LazyLoad from 'react-lazyload';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Product = (props) => {
 
@@ -14,9 +14,11 @@ const Product = (props) => {
         <>
             <div className="product-card">
                 <div className="img-wrapper">
-                <LazyLoad height={200} offset={100}>
-                    <img  alt={defaultImage} src={props.images[0]} />
-                </LazyLoad>
+                <LazyLoadImage
+                alt={defaultImage}
+                height={200}
+                src={props.images[0]} 
+                width={200} />
                     {/* <img src={props.images[0]} alt="Toyota Supra" placloading="lazy" placeholder={<DefaultImage />}/> */}
                 </div>
                 <div className="card-body">
