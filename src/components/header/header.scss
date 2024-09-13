@@ -14,27 +14,29 @@ header {
     }
 
     .navbar {
-        background-color: #d0f4f8;
+        background-color: var(--accent);
 
 
         .nav-item {
             margin-right: 8px;
+
             @include max(768px) {
-                border-bottom: 1px solid #4a4949;
+                border-bottom: 1px solid var(--text);
             }
 
             a {
-                color: #4a4949;
+                color: var(--text);
 
                 &.active,
                 &:hover {
-                    color: orangered;
+                    color: var(--primary);
                     transition: 0.3s ease;
 
                     &::after {
                         content: '';
                         display: block;
-                        border-bottom: 3px solid orangered;
+                        border-bottom: 3px solid var(--primary);
+                        ;
                         width: 100%;
                         margin: auto;
                         transition: 0.3s ease;
@@ -47,8 +49,8 @@ header {
                 }
             }
 
-            &.login{
-                background-color: orangered;
+            &.login {
+                background-color: var(--primary);
                 border-radius: 100px;
                 padding: 0 12px;
 
@@ -57,18 +59,29 @@ header {
                     border-radius: 0;
                     padding: 0;
                 }
-                
-                a{
-                    color: #fff;
+
+                a {
+                    color: var(--text2);
 
                     &.active ::after,
-                    &:hover ::after{
+                    &:hover ::after {
                         display: none;
                     }
-               
+
                     @include max(768px) {
                         color: #4a4949;
                     }
+                }
+            }
+
+            &.mode {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i {
+                    font-size: 1.5rem;
+                    color: var(--text);
                 }
             }
         }

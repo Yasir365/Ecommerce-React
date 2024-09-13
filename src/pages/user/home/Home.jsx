@@ -1,6 +1,5 @@
 import './home.scss';
 import heroImage from '../../../../public/hero.png';
-import bannerImage from '../../../../public/banner/b1.jpg';
 import { Link } from 'react-router-dom';
 import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
@@ -10,6 +9,7 @@ const Home = () => {
     const [featuredProduct, setfeaturedProduct] = useState([]);
     const [dealsProduct, setdealsProduct] = useState([]);
     const [bolgData, setBlogData] = useState({});
+    const bannerImage = 'https://www.zilliondesigns.com/blog/wp-content/uploads/Perfect-Ecommerce-Sales-Banner.jpg'
 
     useEffect(() => {
         fetch('https://dummyjson.com/products?limit=4&skip=0&select=')

@@ -2,10 +2,24 @@ import './header.scss';
 
 import NavLogo from '../../../public/logo.png';
 import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 
 
 const Header = () => {
+    // Theme state: 'light' or 'dark'
+    const [theme, setTheme] = useState("light");
+
+    // Effect to add the theme class to the body element
+    useEffect(() => {
+        document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
+    }, [theme]);
+
+    // Function to toggle between light and dark themes
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    };
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg">
@@ -30,6 +44,11 @@ const Header = () => {
                             </li>
                         </ul>
                         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
+                            <li className="nav-item mode">
+                                <button onClick={toggleTheme} className="nav-link">
+                                    {theme === "light" ? <i class="fa-solid fa-moon"></i> : <i class="fa-regular fa-sun"></i>} 
+                                </button>
+                            </li>
                             <li className="nav-item login">
                                 <NavLink className="nav-link" aria-current="page" to="/login"> Login </NavLink>
                             </li>

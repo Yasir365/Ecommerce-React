@@ -5,8 +5,29 @@
 }
 
 
+
+.light-theme {
+  --primary: #C42021;
+  --secondary: #0E2CB0;
+  --background: #FDE3D5;
+  --text: #333333;
+  --text2: #ffffff;
+  --accent: #ffc3c3;
+}
+
+.dark-theme {
+  --primary: #f7f7f7;
+  --secondary: #4d4e57;
+  --background: #363636;
+  --text: #ffffff;
+  --text2: #333333;
+  --accent: #646463;
+}
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
 }
 
 * {
@@ -17,7 +38,7 @@
 }
 
 body {
-  background-color: rgba(192, 192, 192, 0.623);
+  background-color: var(--background);
 }
 
 a {
