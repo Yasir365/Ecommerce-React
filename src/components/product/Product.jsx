@@ -1,18 +1,24 @@
 import './product.scss';
 import { Link } from 'react-router-dom';
+import ReactStars from "react-rating-stars-component";
 
-const Product = () => {
+
+const Product = (props) => {
     return (
         <>
             <div className="product-card">
                 <div className="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1641326201918-3cafc641038e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="Toyota Supra"/>
+                    <img src={props.images[0]} alt="Toyota Supra"/>
                 </div>
-                <div className="card-body text-center">
-                    <h5 className="card-title">TOYOTA SUPRA</h5>
-                    <p className="card-text">Lorem ipsum dolor sit amet, consectetur elit.</p>
+                <div className="card-body">
+                    <div className='d-flex justify-content-end mb-2'>
+                        <span className="price">${props.price}</span>
+                    </div>
+                    <ReactStars count={5} size={24} value={props.rating} edit={false} activeColor="#ccc01f" />
+                    <h5 className="card-title mb-2">{props.title}</h5>
+                    <p className="card-text">{props.description}</p>
                     <div className="button-wrapper">
-                        <Link className="btn outline" to="products/1">Details</Link>
+                        <Link className="btn outline"  to={`/products/${props.id}`}>Details</Link>
                         <Link className="btn fill" to="/cart">Buy Now</Link>
                     </div>
                 </div>

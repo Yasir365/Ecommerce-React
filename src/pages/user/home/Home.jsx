@@ -1,12 +1,30 @@
 import './home.scss';
 import heroImage from '../../../../public/hero.png';
-import bannerImage from '../../../../public/banner/b2.jpg';
+import bannerImage from '../../../../public/banner/b1.jpg';
 import { Link } from 'react-router-dom';
 import Product from '../../../components/product/Product';
-import bolgImage from '../../../../public/banner/b7.jpg';
+import { useEffect, useState } from 'react';
 
 
 const Home = () => {
+    const [featuredProduct, setfeaturedProduct] = useState([]);
+    const [dealsProduct, setdealsProduct] = useState([]);
+    const [bolgData, setBlogData] = useState({});
+
+    useEffect(() => {
+        fetch('https://dummyjson.com/products?limit=4&skip=0&select=')
+            .then((res) => res.json())
+            .then((responseData) => setfeaturedProduct(responseData.products));
+        fetch('https://dummyjson.com/products?limit=4&skip=10&select=')
+            .then((res) => res.json())
+            .then((responseData) => setdealsProduct(responseData.products));
+        fetch('https://dummyjson.com/products/1')
+            .then((res) => res.json())
+            .then((responseData) => setBlogData(responseData));
+            console.log(bolgData);
+            
+    }, []);
+
     return (
         <>
             <div className='hero'>
@@ -21,10 +39,7 @@ const Home = () => {
             <section className='features container'>
                 <h1 className="heading">Featured Products</h1>
                 <div className='products'>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
+                    {featuredProduct.map((item,i) => <div className="product"><Product key={i} {...item}/> </div> )}
                 </div>
             </section>
 
@@ -44,12 +59,13 @@ const Home = () => {
                 <div className="row">
                     <div className="col-md-6">
                         <h3 className="title">Loarem ipsam bolg title</h3>
-                        <p className="description">What makes a good Blog Post Title? There are lots of great blogs out there, but it takes a lot of effort to create headlines that truly resonates with your target audience. The secret here is not just the correct words but also to pay attention to the positioning of them. Here are some examples of great E-Commerce Blog Post Titles to Inspire you.</p>
-                        <p className="description">There are lots of great blogs out there, but it takes a lot of effort to create headlines that truly</p>
-                        <p className="description">What makes a good Blog Post Title? There are lots of great blogs out there, but it takes a lot of effort to create headlines that truly resonates with your target audience. The secret here is not just the correct words but also to pay attention to the positioning of them. Here are some examples of great E-Commerce Blog Post Titles to Inspire you.</p>
+                        <p className="description">{bolgData.description}</p>
+                        <p className="description">{bolgData.description}</p>
+                        <p className="description">{bolgData.description}</p>
+                        <p className="description">{bolgData.description}</p>
                     </div>
                     <div className="col-md-6 image-wrapper">
-                        <img src={bolgImage} alt="" />
+                        <img src={bolgData.images} alt="" />
                     </div>
                 </div>
 
@@ -58,10 +74,7 @@ const Home = () => {
             <section className='features container'>
                 <h1 className="heading">Special Deals</h1>
                 <div className='products'>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
-                    <div className="product"><Product /></div>
+                    {dealsProduct.map((item) => <div className="product"><Product key={item.id} {...item}/> </div> )}
                 </div>
             </section>
         </>

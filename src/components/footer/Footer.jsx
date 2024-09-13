@@ -15,7 +15,7 @@ const Footer = () => {
                     </div>
                     <div className="col-12 col-md-6 text-md-end">
                         <a href="#" className="text-muted me-3">
-                            <i className="fa-brands fa-twitter"></i>
+                            <i className="fa-solid fa-x"></i>
                         </a>
                         <a href="#" className="text-muted me-3">
                             <i className="fa-brands fa-instagram"></i>
