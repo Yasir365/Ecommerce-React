@@ -14,8 +14,14 @@ header {
     }
 
     .navbar {
-        background-color: var(--accent);
+        position: relative;
+        background-color: var(--background);
+        box-shadow: 0 0.5px 10px var(--shadow);
+        z-index: 1000;
 
+        .navbar-brand img{
+            filter: drop-shadow(0 1px 7px var(--shadow));
+        }
 
         .nav-item {
             margin-right: 8px;
@@ -69,7 +75,7 @@ header {
                     }
 
                     @include max(768px) {
-                        color: #4a4949;
+                        color: var(--text);
                     }
                 }
             }
@@ -87,8 +93,8 @@ header {
         }
 
         .navbar-toggler {
-            background-color: orangered;
-            color: #000;
+            background-color: var(--primary);
+            color: var(--text);
             transition: 0.3s ease;
 
             &:focus {
@@ -96,7 +102,7 @@ header {
             }
 
             &:hover {
-                color: #fff;
+                color: #var(--text2);
             }
         }
 

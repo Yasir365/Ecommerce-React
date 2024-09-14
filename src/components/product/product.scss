@@ -1,12 +1,11 @@
 .product-card {
-    border-radius: 16px 16px 0 0;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    border-radius: 16px;
     padding: 16px 16px 25px 16px;
-    background-color: #E3E6F3;
+    background-color: var(--assent);
+    box-shadow: 0px .5px 5px var(--shadow);
 
     &:hover {
         transition: all .3s ease;
-        box-shadow: 1px 0px 15px rgba(255, 68, 0, 0.329);
     }
 
     .img-wrapper {
@@ -26,20 +25,20 @@
 
         .price {
             font-size: 1.2rem;
-            color: rgb(9, 9, 138);
+            color: var(--text);
             font-weight: 500;
         }
 
         .card-title {
             font-size: 1.2rem;
-            color: orangered;
+            color: var(--primary);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
         .card-text {
-            color: black;
+            color: var(--text);
             font-family: 'Lato', sans-serif;
             font-size: 1rem;
             margin-bottom: 16px;
@@ -66,28 +65,32 @@
 
             .outline {
                 background: transparent;
-                color: orangered;
-                border: 1px solid orangered;
+                color: var(--primary);
+                border: 1px solid var(--primary);
                 transition: all 0.3s ease;
             }
 
             .outline:hover {
                 transform: scale(1.1);
-                color: #000;
-                border-color: #000;
+                color: var(--text);
+                border-color: var(--text);
             }
 
             .fill {
-                background: orangered;
-                color: rgba(255, 255, 255, 0.95);
+                background: var(--primary);
+                color: var(--text2);
                 font-weight: bold;
                 transition: all 0.3s ease;
             }
 
             .fill:hover {
                 transform: scale(1.1);
-                filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.125));
+                filter: drop-shadow(0 1px 5px var(--shadow));
             }
+        }
+
+        .react-stars{
+            margin-top: -8px;
         }
 
     }

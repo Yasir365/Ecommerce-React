@@ -6,11 +6,11 @@ import './footer.scss';
 const Footer = () => {
     return (
         <>
-            <footer className="footer py-3 bg-light">
+            <footer className="footer py-3">
                 <div className="container">
                     <div className="row align-items-center">
                     <div className="col-12 col-md-6 d-flex align-items-center mb-2 mb-md-0">
-                        <span className="text-muted">© { new Date().getFullYear() } Company, Inc</span>
+                        <span className="copy">© { new Date().getFullYear() } Company, Inc</span>
                     </div>
                     <div className="col-12 col-md-6 text-md-end">
                         <a href="#" className="text-muted me-3">

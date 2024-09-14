@@ -22,10 +22,10 @@ const Product = (props) => {
                     {/* <img src={props.images[0]} alt="Toyota Supra" placloading="lazy" placeholder={<DefaultImage />}/> */}
                 </div>
                 <div className="card-body">
-                    <div className='d-flex justify-content-end mb-2'>
+                    <div className='d-flex justify-content-between aligns-items-center mb-2'>
                         <span className="price">${props.price}</span>
+                        <ReactStars count={5} size={24} value={props.rating} edit={false} activeColor="orangered" />
                     </div>
-                    <ReactStars count={5} size={24} value={props.rating} edit={false} activeColor="#ccc01f" />
                     <h5 className="card-title mb-2">{props.title}</h5>
                     <p className="card-text">{props.description}</p>
                     <div className="button-wrapper">
