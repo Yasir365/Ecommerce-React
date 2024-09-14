@@ -1,5 +1,5 @@
 import './home.scss';
-import heroImage from '../../../../public/hero.png';
+import heroImage from '../../../assets/hero.jpg';
 import { Link } from 'react-router-dom';
 import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';

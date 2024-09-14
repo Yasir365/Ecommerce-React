@@ -1,5 +1,4 @@
 
-import Logo from '../../../public/logo.png';
 import './footer.scss';
 
 

@@ -1,6 +1,6 @@
 import './header.scss';
 
-import NavLogo from '../../../public/logo.png';
+import NavLogo from '../../assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
 

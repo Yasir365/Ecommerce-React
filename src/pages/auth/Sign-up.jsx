@@ -1,5 +1,5 @@
 import './auth.scss';
-import hero2 from '../../../public/hero2.jpg';
+import hero2 from '../../assets/hero2.jpg';
 import { Link } from 'react-router-dom';
 
 
