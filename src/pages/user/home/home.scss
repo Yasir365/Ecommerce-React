@@ -103,7 +103,7 @@ section .heading {
 
 .offers {
     position: relative;
-    min-height: 400px;
+    min-height: 50vh;
     width: 100%;
     padding: 0;
     background-image: url('https://images.pexels.com/photos/3756345/pexels-photo-3756345.jpeg?auto=compress&cs=tinysrgb&w=600');
@@ -111,21 +111,6 @@ section .heading {
     background-position: center center;
     background-repeat: no-repeat;
     
-
-    @include max(768px) {
-        min-height: 400px;
-    }
-
-    img {
-        width: 100%;
-        max-height: 400px;
-        object-fit: cover;
-
-        @include max(768px) {
-            min-height: 400px;
-        }
-    }
-
     .content {
         position: absolute;
         top: 50%;
@@ -179,7 +164,7 @@ section .heading {
             border-radius: 5px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 1px 7px var(--text);
+            box-shadow: 0 1px 7px var(--shadow);
         }
     }
 }
