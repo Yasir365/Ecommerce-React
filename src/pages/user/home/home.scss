@@ -4,14 +4,6 @@
     }
 }
 
-section .heading {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    font-weight: 800;
-    color: var(--primary);
-}
-
 
 .hero {
     position: relative;
@@ -38,26 +30,30 @@ section .heading {
             @include max(1024px) {
                 font-size: 5rem;
             }
+
             @include max(768px) {
                 font-size: 3.5rem;
             }
+
             @include max(525px) {
                 font-size: 2.5rem;
             }
         }
-        
+
         h3 {
             font-size: 2.1rem;
             margin-bottom: 0;
             font-weight: 700;
             color: var(--text);
-            
+
             @include max(1024px) {
                 font-size: 1.8rem;
             }
+
             @include max(768px) {
                 font-size: 1.6rem;
             }
+
             @include max(525px) {
                 font-size: 1.4rem;
             }
@@ -110,7 +106,7 @@ section .heading {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    
+
     .content {
         position: absolute;
         top: 50%;
@@ -130,9 +126,11 @@ section .heading {
             @include max(1024px) {
                 font-size: 5rem;
             }
+
             @include max(768px) {
                 font-size: 3.5rem;
             }
+
             @include max(525px) {
                 font-size: 2.5rem;
             }
@@ -143,13 +141,15 @@ section .heading {
             margin-bottom: 0;
             font-weight: 700;
             color: var(--text);
-            
+
             @include max(1024px) {
                 font-size: 1.8rem;
             }
+
             @include max(768px) {
                 font-size: 1.6rem;
             }
+
             @include max(525px) {
                 font-size: 1.4rem;
             }
@@ -180,12 +180,12 @@ section .heading {
         box-shadow: 0 1px 5px var(--shadow);
     }
 
-    .content{
+    .content {
         color: var(--text);
 
-        .title{
+        .title {
             font-weight: 600;
         }
     }
-    
+
 }

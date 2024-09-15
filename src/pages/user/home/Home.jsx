@@ -2,6 +2,7 @@ import './home.scss';
 import { Link } from 'react-router-dom';
 import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
+import OurTeam from '../../../components/out-team/Our-Team';
 
 
 const Home = () => {
@@ -75,6 +76,8 @@ const Home = () => {
                     {dealsProduct.map((item) => <div className="product"><Product key={item.id} {...item} /> </div>)}
                 </div>
             </section>
+
+            <OurTeam />
         </>
     );
 };

@@ -15,11 +15,11 @@ const Products = () => {
 
     useEffect(() => {
         fetch(`https://dummyjson.com/products?limit=${productsPerPage}&skip=${pageNumber * productsPerPage}&select=`)
-        .then((res) => res.json())
-        .then((json) => {
-            setData(json.products);
-            setTotal(json.total);
-        });
+            .then((res) => res.json())
+            .then((json) => {
+                setData(json.products);
+                setTotal(json.total);
+            });
     }, [pageNumber]);
 
     const changePage = ({ selected }) => {
@@ -28,27 +28,33 @@ const Products = () => {
 
     return (
         <section className="container">
-        <div className="products mb-5">
-            {data.map((item) => (
-            <div className="product">
-                <Product key={item.id * random} {...item} />
+            <div className="products mb-5">
+                {data.map((item) => (
+                    <div className="product">
+                        <Product key={item.id * random} {...item} />
+                    </div>
+                ))}
             </div>
-            ))}
-        </div>
-        <ReactPaginate
-            previousLabel={<i className="fa-solid fa-chevron-left"></i>}
-            nextLabel={<i className="fa-solid fa-chevron-right"></i>}
-            pageCount={pageCount}
-            onPageChange={changePage}
-            containerClassName={"pagination"}
-            pageClassName={"page-item"}
-            pageLinkClassName={"page-link"}
-            previousClassName={"page-item"}
-            previousLinkClassName={"page-link"}
-            nextClassName={"page-item"}
-            nextLinkClassName={"page-link"}
-            activeClassName={"active"}
-        />
+            <ReactPaginate
+                previousLabel={ <i className="fa-solid fa-chevron-left"></i>}
+                nextLabel={ <i className="fa-solid fa-chevron-right"></i>}
+
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"pagination"}
+                pageClassName={"page-item"}
+                pageLinkClassName={"page-link"}
+                previousClassName={"page-item"}
+                previousLinkClassName={"page-link"}
+                nextClassName={"page-item"}
+                nextLinkClassName={"page-link"}
+                activeClassName={"active"}
+
+                // Custom page range logic
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={1}
+                breakLabel="..."
+            />
         </section>
     );
 };

@@ -1,9 +1,7 @@
+import OurTeam from '../../../components/out-team/Our-Team';
 import './about.scss'; // Create this CSS file
 import { Link } from 'react-router-dom';
-import member1 from '../../../assets/member/1.jpg';
-import member2 from '../../../assets/member/2.jpg';
-import member3 from '../../../assets/member/3.jpg';
-import member4 from '../../../assets/member/4.jpg';
+
 
 const About = () => {
     return (
@@ -19,14 +17,14 @@ const About = () => {
 
             <div className="container about">
                 <div className="company-overview">
-                    <h2>Our Mission</h2>
+                    <h2 className="heading">Our Mission</h2>
                     <p> We are dedicated to providing the best service to our customers with innovation, integrity, and a focus on sustainability. Our goal is to positively impact the lives of millions through our products. </p>
-                    <h2>Our Vision</h2>
+                    <h2 className="heading">Our Vision</h2>
                     <p> Our vision is to become a global leader in our field, setting benchmarks in quality, customer satisfaction, and environmental responsibility. </p>
                 </div>
 
                 <div className="history-section">
-                    <h2>Our Journey</h2>
+                    <h2 className="heading">Our Journey</h2>
                     <div className="timeline">
                         <div className="timeline-item">
                             <h3>2010 - Founded</h3>
@@ -47,31 +45,7 @@ const About = () => {
                     </div>
                 </div>
 
-                <div className="team-section">
-                    <h2>Meet Our Team</h2>
-                    <div className="team-grid">
-                        <div className="team-member">
-                            <img src={member1} alt="Team Member" />
-                            <h3>John Doe</h3>
-                            <p>CEO</p>
-                        </div>
-                        <div className="team-member">
-                            <img src={member2} alt="Team Member" />
-                            <h3>Jane Smith</h3>
-                            <p>CTO</p>
-                        </div>
-                        <div className="team-member">
-                            <img src={member3} alt="Team Member" />
-                            <h3>Michael Johnson</h3>
-                            <p>COO</p>
-                        </div>
-                        <div className="team-member">
-                            <img src={member4} alt="Team Member" />
-                            <h3>Emily Davis</h3>
-                            <p>Head of Marketing</p>
-                        </div>
-                    </div>
-                </div>
+                <OurTeam />
             </div>
         </>
     );
