@@ -13,6 +13,7 @@ import SignUp from './pages/auth/Sign-up';
 import ForgetPassword from './pages/auth/Forget-Password';
 import Otp from './pages/auth/otp';
 import ResetPassword from './pages/auth/Reset-password';
+import NotFound from './pages/not-found/Not-Found';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
                 path: 'cart',
                 element: <Cart />,
             },
+            {
+                path: '*',
+                element: <NotFound />,
+            }
         ],
     },
     {
@@ -76,8 +81,16 @@ const router = createBrowserRouter([
                 path: 'users',
                 element: <Users />,
             },
+            {
+                path: '*',
+                element: <NotFound />,
+            }
         ],
     },
+    {
+        path: '*',
+        element: <NotFound />,
+    }
 ]);
 
 const Routes = () => {
