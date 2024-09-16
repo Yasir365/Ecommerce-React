@@ -1,9 +1,10 @@
 
 import './dashboard.scss';
-
+import userImage from '../../../assets/member/1.jpg';
 
 
 const Dashboard = () => {
+
     return (
         <div className="content">
             {/* Sale & Revenue Start */}
@@ -48,6 +49,8 @@ const Dashboard = () => {
                 </div>
             </div>
             {/* Sale & Revenue End */}
+
+
             {/* Sales Chart Start */}
             <div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
@@ -56,8 +59,8 @@ const Dashboard = () => {
                             <div className="d-flex align-items-center justify-content-between mb-4">
                                 <h6 className="mb-0">Worldwide Sales</h6>
                                 <a href="">Show All</a>
+
                             </div>
-                            <canvas id="worldwide-sales" />
                         </div>
                     </div>
                     <div className="col-sm-12 col-xl-6">
@@ -66,12 +69,14 @@ const Dashboard = () => {
                                 <h6 className="mb-0">Salse &amp; Revenue</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="salse-revenue" />
+
                         </div>
                     </div>
                 </div>
             </div>
             {/* Sales Chart End */}
+
+
             {/* Recent Sales Start */}
             <div className="container-fluid pt-4 px-4">
                 <div className="bg-light text-center rounded p-4">
@@ -176,6 +181,8 @@ const Dashboard = () => {
                 </div>
             </div>
             {/* Recent Sales End */}
+
+
             {/* Widgets Start */}
             <div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
@@ -186,9 +193,19 @@ const Dashboard = () => {
                                 <a href="">Show All</a>
                             </div>
                             <div className="d-flex align-items-center border-bottom py-3">
+                                <img className="rounded-circle flex-shrink-0" src={userImage} alt="" style={{ width: 40, height: 40 }} />
+                                <div className="w-100 ms-3">
+                                    <div className="d-flex w-100 justify-content-between">
+                                        <h6 className="mb-0">Jhon Doe</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div className="d-flex align-items-center border-bottom py-3">
                                 <img
                                     className="rounded-circle flex-shrink-0"
-                                    src="img/user.jpg"
+                                    src={userImage}
                                     alt=""
                                     style={{ width: 40, height: 40 }}
                                 />
@@ -203,22 +220,7 @@ const Dashboard = () => {
                             <div className="d-flex align-items-center border-bottom py-3">
                                 <img
                                     className="rounded-circle flex-shrink-0"
-                                    src="img/user.jpg"
-                                    alt=""
-                                    style={{ width: 40, height: 40 }}
-                                />
-                                <div className="w-100 ms-3">
-                                    <div className="d-flex w-100 justify-content-between">
-                                        <h6 className="mb-0">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div className="d-flex align-items-center border-bottom py-3">
-                                <img
-                                    className="rounded-circle flex-shrink-0"
-                                    src="img/user.jpg"
+                                    src={userImage}
                                     alt=""
                                     style={{ width: 40, height: 40 }}
                                 />
@@ -233,7 +235,7 @@ const Dashboard = () => {
                             <div className="d-flex align-items-center pt-3">
                                 <img
                                     className="rounded-circle flex-shrink-0"
-                                    src="img/user.jpg"
+                                    src={userImage}
                                     alt=""
                                     style={{ width: 40, height: 40 }}
                                 />

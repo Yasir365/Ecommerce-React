@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import UserLayout from './layouts/user-layout/User-Layout';
 import AdminLayout from './layouts/admin-layout/Admin-Layout';
 import Home from './pages/user/home/Home';
@@ -14,6 +14,9 @@ import ForgetPassword from './pages/auth/Forget-Password';
 import Otp from './pages/auth/otp';
 import ResetPassword from './pages/auth/Reset-password';
 import NotFound from './pages/not-found/Not-Found';
+import Orders from './pages/admin/orders/Orders';
+import Messages from './pages/admin/messages/Messages';
+import ManageProducts from './pages/admin/manage-products/Manage-Products';
 
 
 const router = createBrowserRouter([
@@ -75,11 +78,27 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
+                element: <Navigate to="dashboard" replace />,
+            },
+            {
+                path: 'dashboard',
                 element: <Dashboard />,
+            },
+            {
+                path: 'manage-products',
+                element: <ManageProducts />,
+            },
+            {
+                path: 'orders',
+                element: <Orders />,
             },
             {
                 path: 'users',
                 element: <Users />,
+            },
+            {
+                path: 'messages',
+                element: <Messages />,
             },
             {
                 path: '*',

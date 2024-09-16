@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import userImage from '../../assets/member/1.jpg';
 import './admin-sidebar.scss';
@@ -30,14 +30,27 @@ const AdminSidebar = () => {
                         </div>
                     </div>
                     <div className="navbar-nav w-100">
-                        <a className="nav-item nav-link active">
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/dashboard">
                             <i className="fa fa-tachometer-alt me-2" />
                             Dashboard
-                        </a>
-                        <a className="nav-item nav-link">
+                        </NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/manage-products">
                             <i className="fa fa-th me-2" />
-                            Widgets
-                        </a>
+                            Products
+                        </NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/users">
+                            <i className="fa fa-users me-2" />
+                            Users
+                        </NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/orders">
+                            <i className="fa-solid fa-cart-shopping"></i>
+                            Orders
+                        </NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/messages">
+                            <i className="fa-solid fa-comments"></i>
+                            Messages
+                        </NavLink>
+
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
                                 <i className="far fa-file-alt me-2" />
