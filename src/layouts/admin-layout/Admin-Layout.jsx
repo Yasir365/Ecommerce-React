@@ -1,3 +1,4 @@
+import './admin-layout.scss';
 import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import AdminHeader from '../../components/admin-header/Admin-Header';
@@ -44,9 +45,13 @@ const AdminLayout = () => {
     // Render the admin layout if authorized
     return (
         <>
-            <AdminHeader />
-            <Sidebar />
-            <Outlet /> {/* Render child routes */}
+            <div className="sidebar-container">
+                <Sidebar />
+            </div>
+            <div className="outlet-container">
+                <AdminHeader />
+                <Outlet />
+            </div>
         </>
     );
 };

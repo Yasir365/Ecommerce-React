@@ -3,19 +3,8 @@ $primary: #009CFF;
 $light: #F3F6F9;
 $dark: #191C24;
 
-// Sidebar
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 250px;
-    height: 100vh;
-    overflow-y: auto;
-    background: $light;
-    transition: 0.5s;
-    z-index: 999;
-}
+
+
 
 // Navbar
 .sidebar {

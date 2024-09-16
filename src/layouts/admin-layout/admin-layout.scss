@@ -1,0 +1,43 @@
+// Sidebar
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: #F3F6F9;
+    transition: 0.5s;
+    z-index: 999;
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.outlet-container {
+    margin-left: 250px;
+}
+
+body.close-sidebar{
+    .sidebar-container {
+        width: 0;
+    }
+    .outlet-container {
+        margin-left: 0px;
+    }
+} 
+
+
+// For tablets and mobiles
+@media (max-width: 768px) {
+    .sidebar-container {
+        position: absolute;
+        width: 250px;
+    }
+
+    body.close-sidebar .sidebar-container {
+        width: 0;
+    }
+}

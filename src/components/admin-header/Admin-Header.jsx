@@ -1,24 +1,41 @@
 import './admin-header.scss';
 import userImage from '../../assets/member/1.jpg';
+import { useState, useEffect } from "react";
 
 
 
 const AdminHeader = () => {
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+    useEffect(() => {
+        document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+
+    const toggleSidebar = () => {
+        const sidebar = document.querySelector('body');
+        if (sidebar.classList.contains('close-sidebar')) {
+            sidebar.classList.remove('close-sidebar');
+        } else {
+            sidebar.classList.add('close-sidebar');
+        }
+    }
     return (
         <header>
-            <nav
-                style={{ marginLeft: '250px' }}
-                className="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
-            >
-                <a className="navbar-brand d-flex d-lg-none me-4">
-                    <h2 className="text-primary mb-0">
-                        <i className="fa fa-hashtag" />
-                    </h2>
-                </a>
-                <a className="sidebar-toggler flex-shrink-0">
+            <nav className="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0" >
+                <button className="sidebar-toggler btn flex-shrink-0" onClick={toggleSidebar}>
                     <i className="fa fa-bars" />
-                </a>
+                </button>
                 <div className="navbar-nav align-items-center ms-auto">
+                    <div className="nav-item">
+                        <button onClick={toggleTheme} className="nav-link">
+                            {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>}
+                        </button>
+                    </div>
                     <div className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
                             <i className="fa fa-envelope me-lg-2" />
