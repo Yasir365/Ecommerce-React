@@ -3,21 +3,46 @@ import './header.scss';
 import NavLogo from '../../assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import apiService from '../../services/api-service';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Header = () => {
-    // Theme state: 'light' or 'dark'
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const [isLogin, setIsLogin] = useState(false);
+    const navigate = useNavigate();
 
-    // Effect to add the theme class to the body element
     useEffect(() => {
-        document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
+        verifyToken();
+        document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
+        localStorage.setItem('theme', theme);
     }, [theme]);
+    
+    const verifyToken = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setIsLogin(false);
+        } else {
+            const response = await apiService.verifyToken(token)
+            if (response.data.success) {
+                if (response.data.role === 'admin') {
+                    navigate('/admin');
+                }
+                setIsLogin(true);
+            } else {
+                setIsLogin(false);
+            }
+        }
+    };
 
-    // Function to toggle between light and dark themes
     const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setIsLogin(false);
     };
 
     return (
@@ -46,16 +71,17 @@ const Header = () => {
                         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
                             <li className="nav-item mode">
                                 <button onClick={toggleTheme} className="nav-link">
-                                    {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>} 
+                                    {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>}
                                 </button>
                             </li>
                             <li className="nav-item login">
-                                <NavLink className="nav-link" aria-current="page" to="/login"> Login </NavLink>
+                                {!isLogin && <NavLink className="nav-link" aria-current="page" to="/login"> Login </NavLink>}
+                                {isLogin && <NavLink className="nav-link" aria-current="page" to="/login" onClick={logout}> Logout </NavLink>}
                             </li>
                         </ul>
                     </div>
                 </div>
-                </nav>
+            </nav>
 
         </header>
     );

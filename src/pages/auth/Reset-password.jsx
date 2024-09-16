@@ -5,31 +5,35 @@ import { useState } from 'react';
 import apiService from '../../services/api-service';
 import toastrService from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const Login = () => {
-    const [email, setEmail] = useState('');
+
+const ResetPassword = () => {
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
     const [loader, setLoader] = useState(false);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const email = queryParams.get('email');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
         try {
             setLoader(true);
-            const response = await apiService.login({ email, password });
+            const response = await apiService.resetPassword({ email, password });
             setLoader(false);
             if (response.success) {
-                localStorage.setItem('token', response.token);
-                toastrService.success('Login Successful...');
-                if(response.role === 'admin'){
-                    navigate('/admin');
-                }else{
-                    navigate('/products');
-                }
+                toastrService.success('Password Reset Successful...');
+                navigate('/login');
                 setError(null);
-            }else{
+            } else {
                 setError(response.message);
             }
         } catch (error) {
@@ -40,15 +44,8 @@ const Login = () => {
     return (
         <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
             <div className="login-form">
-                <h2>Login</h2>
+                <h2>Reset Password</h2>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
                     <input
                         type="password"
                         placeholder="Password"
@@ -56,14 +53,20 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        required
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Login {loader && <div className="loader"></div>}</button>
-                    <Link to={'/forget-password'} className='forget'>Forget Password</Link>
-                    <p> Don't have an account? <Link to={'/signup'}>Create New Account</Link> </p>
+                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Change Password {loader && <div className="loader"></div>}</button>
+                    <Link to={'/login'} className='forget'>Login</Link>
                 </form>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default ResetPassword;

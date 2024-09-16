@@ -20,7 +20,8 @@ const ForgetPassword = () => {
             const response = await apiService.forgetPassword({ email });
             setLoader(false);
             if (response.success) {
-                navigate('/otp');
+                toastrService.success('Email has been sent to your Gmail...');
+                navigate('/otp?email=' + email);
                 setError(null);
             } else {
                 setError(response.message);
@@ -33,7 +34,7 @@ const ForgetPassword = () => {
     return (
         <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
             <div className="login-form">
-                <h2>Forget Password</h2>
+                <h2>Reset Password</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"

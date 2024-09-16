@@ -11,6 +11,9 @@ import Users from './pages/admin/users/Users';
 import Login from './pages/auth/Login';
 import SignUp from './pages/auth/Sign-up';
 import ForgetPassword from './pages/auth/Forget-Password';
+import Otp from './pages/auth/otp';
+import ResetPassword from './pages/auth/Reset-password';
+
 
 const router = createBrowserRouter([
     {
@@ -52,8 +55,18 @@ const router = createBrowserRouter([
         element: <ForgetPassword />,
     },
     {
+        path: '/otp',
+        element: <Otp />,
+    },
+    {
+        path: '/reset-password',
+        element: <ResetPassword />,
+    },
+    {
         path: '/admin',
-        element: <AdminLayout />,
+        element: (
+            <AdminLayout />
+        ),
         children: [
             {
                 path: '',

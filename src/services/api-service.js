@@ -13,16 +13,26 @@ const apiService = {
         const response = await axios.post(route('/auth/login'), data);
         return response.data;
     },
-    
+
     forgetPassword: async (data) => {
         const response = await axios.post(route('/auth/forget-password'), data);
         return response.data;
     },
 
-    getUsers: async (token) => {
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get(route('/users'), { headers });
+    verifyOtp: async (data) => {
+        const response = await axios.post(route('/auth/verify-otp'), data);
         return response.data;
+    },
+
+    resetPassword: async (data) => {
+        const response = await axios.post(route('/auth/reset-password'), data);
+        return response.data;
+    },
+
+    verifyToken: async (token) => {
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const response = await axios.get(route('/auth/verify-token'), { headers });
+        return response;
     },
 
 };

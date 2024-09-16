@@ -5,14 +5,21 @@ import { useState } from 'react';
 import apiService from '../../services/api-service';
 import toastrService from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
+import OtpInput from 'react-otp-input';
+import { useLocation } from 'react-router-dom';
+
+
 
 const Otp = () => {
-    const [email, setEmail] = useState('');
+    const [otp, setCode] = useState('');
     const [error, setError] = useState(null);
     const [loader, setLoader] = useState(false);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const email = queryParams.get('email');
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const resendOtp = async (e) => {
         e.preventDefault();
 
         try {
@@ -21,7 +28,25 @@ const Otp = () => {
             setLoader(false);
             if (response.success) {
                 toastrService.success('Email has been sent to your Gmail...');
-                // navigate('/products');
+                setError(null);
+            } else {
+                setError(response.message);
+            }
+        } catch (error) {
+            setLoader(false);
+            setError(error.message);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            setLoader(true);
+            const response = await apiService.verifyOtp({ email, otp });
+            setLoader(false);
+            if (response.success) {
+                navigate('/reset-password?email=' + email);
                 setError(null);
             } else {
                 setError(response.message);
@@ -34,18 +59,21 @@ const Otp = () => {
     return (
         <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
             <div className="login-form">
-                <h2>Forget Password</h2>
+                <h2>Verify Otp</h2>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                    <OtpInput
+                        value={otp}
+                        onChange={(e) => setCode(e)}
+                        numInputs={6}
+                        renderSeparator={<span>-</span>}
+                        containerStyle="otp-container"
+                        inputStyle="otp-input"
+                        renderInput={(props) => <input {...props} />}
                     />
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Change Password {loader && <div className="loader"></div>}</button>
-                    <Link to={'/login'} className='forget'>Login</Link>
+                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Verify {loader && <div className="loader"></div>}</button>
+                    <div className='d-flex mt-3'>Don't receive the code? <p className='resend' onClick={resendOtp} disabled={loader}>Resend</p></div>
+                    <Link to={'/login'} className='forget' disabled={loader}>Login</Link>
                 </form>
             </div>
         </div>

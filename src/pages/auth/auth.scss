@@ -68,6 +68,24 @@
             padding-top: 12px;
         }
     }
+
+    .otp-container {
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+
+    .otp-input {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.5rem;
+        border: 1px solid orangered;
+        color: #000;
+    }
+
+    .resend{
+        color: orangered;
+        cursor: pointer;
+    }
 }
 
 @media (max-width: 768px) {
