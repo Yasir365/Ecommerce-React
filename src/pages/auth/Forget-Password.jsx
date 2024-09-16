@@ -6,25 +6,23 @@ import apiService from '../../services/api-service';
 import toastrService from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const ForgetPassword = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             setLoader(true);
-            const response = await apiService.login({ email, password });
+            const response = await apiService.forgetPassword({ email });
             setLoader(false);
             if (response.success) {
-                toastrService.success('Login Successful...');
-                navigate('/products');
+                navigate('/otp');
                 setError(null);
-            }else{
+            } else {
                 setError(response.message);
             }
         } catch (error) {
@@ -35,7 +33,7 @@ const Login = () => {
     return (
         <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
             <div className="login-form">
-                <h2>Login</h2>
+                <h2>Forget Password</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"
@@ -44,21 +42,13 @@ const Login = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Login {loader && <div className="loader"></div>}</button>
-                    <Link to={'/forget-password'} className='forget'>Forget Password</Link>
-                    <p> Don't have an account? <Link to={'/signup'}>Create New Account</Link> </p>
+                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Change Password {loader && <div className="loader"></div>}</button>
+                    <Link to={'/login'} className='forget'>Login</Link>
                 </form>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default ForgetPassword;
