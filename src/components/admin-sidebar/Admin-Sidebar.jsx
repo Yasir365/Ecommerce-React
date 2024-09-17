@@ -9,8 +9,8 @@ import './admin-sidebar.scss';
 const AdminSidebar = () => {
     return (
         <>
-            <div className="sidebar pe-4 pb-3">
-                <nav className="navbar bg-light navbar-light">
+            <div className="sidebar">
+                <nav className="navbar pe-4 pb-3">
                     <Link to="/admin" className="navbar-brand mx-4 mb-3">
                         <img src={logo} alt="Logo" />
                     </Link>

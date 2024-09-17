@@ -1,5 +1,5 @@
 import './admin-layout.scss';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import AdminHeader from '../../components/admin-header/Admin-Header';
 import Sidebar from '../../components/admin-sidebar/Admin-Sidebar';
@@ -25,6 +25,7 @@ const AdminLayout = () => {
                     setIsAuthorized(false);
                 }
             } catch (error) {
+                console.log(error);
                 setIsAuthorized(false);
             }
         };
@@ -32,12 +33,13 @@ const AdminLayout = () => {
         verifyAdmin();
     }, [location]);
 
-    // Show loading state while checking authorization
     if (isAuthorized === null) {
-        return <div>Loading...</div>;
+        return <div className="loader-conatiner">
+            <div className="spinner-border text-primary" role="status">
+            </div>
+        </div>;
     }
 
-    // Redirect to login if not authorized
     if (!isAuthorized) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
@@ -50,7 +52,9 @@ const AdminLayout = () => {
             </div>
             <div className="outlet-container">
                 <AdminHeader />
-                <Outlet />
+                <div className="outlet">
+                    <Outlet />
+                </div>
             </div>
         </>
     );

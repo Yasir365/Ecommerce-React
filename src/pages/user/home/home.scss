@@ -13,7 +13,7 @@
     width: 100%;
     height: calc(100vh - 70px);
 
-    .content {
+    .hero-content {
         position: absolute;
         width: 100%;
         left: 50%;
@@ -107,7 +107,7 @@
     background-position: center center;
     background-repeat: no-repeat;
 
-    .content {
+    .offers-content {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -180,7 +180,7 @@
         box-shadow: 0 1px 5px var(--shadow);
     }
 
-    .content {
+    .blog-content {
         color: var(--text);
 
         .title {

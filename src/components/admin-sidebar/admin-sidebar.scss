@@ -1,32 +1,29 @@
-// Variables
-$primary: #009CFF;
-$light: #F3F6F9;
-$dark: #191C24;
-
-
-
-
-// Navbar
 .sidebar {
+    min-height: 100vh;
+    background: var(--accent);
+    color: var(--text);
+
     .navbar {
+
         .navbar-nav {
             .nav-link {
                 padding: 7px 20px;
-                color: $dark;
+                color: var(--text);
                 font-weight: 500;
-                border-left: 3px solid $light;
                 border-radius: 0 30px 30px 0;
                 outline: none;
+                border-left: 3px solid var(--background);
 
                 &:hover,
                 &.active {
-                    color: $primary;
-                    background: #FFFFFF;
-                    border-color: $primary;
+                    color: var(--primary);
+                    background: var(--text2);
+                    border-left: 3px solid var(--primary);
+                    border-color: var(--primary);
                     cursor: pointer;
 
                     i {
-                        background: $light;
+                        background: var(--text2);
                     }
                 }
 
@@ -36,7 +33,7 @@ $dark: #191C24;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    background: #FFFFFF;
+                    background: var(--text2);
                     border-radius: 40px;
                 }
             }

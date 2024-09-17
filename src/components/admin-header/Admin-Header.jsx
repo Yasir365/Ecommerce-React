@@ -1,11 +1,13 @@
 import './admin-header.scss';
 import userImage from '../../assets/member/1.jpg';
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
 const AdminHeader = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
@@ -24,9 +26,15 @@ const AdminHeader = () => {
             sidebar.classList.add('close-sidebar');
         }
     }
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
         <header>
-            <nav className="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0" >
+            <nav className="navbar navbar-expand px-4 py-0" >
                 <button className="sidebar-toggler btn flex-shrink-0" onClick={toggleSidebar}>
                     <i className="fa fa-bars" />
                 </button>
@@ -106,7 +114,7 @@ const AdminHeader = () => {
                         <div className="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a className="dropdown-item"> My Profile </a>
                             <a className="dropdown-item"> Settings </a>
-                            <a className="dropdown-item"> Log Out </a>
+                            <a className="dropdown-item" onClick={logout}> Log Out </a>
                         </div>
                     </div>
                 </div>
