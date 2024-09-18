@@ -7,23 +7,20 @@ import './admin-sidebar.scss';
 
 
 const AdminSidebar = () => {
+    const closeSidebar = () => {
+        const sidebar = document.querySelector('body');
+        sidebar.classList.add('close-sidebar');
+    }
     return (
         <>
             <div className="sidebar">
                 <nav className="navbar pe-4 pb-3">
-                    <Link to="/admin" className="navbar-brand mx-4 mb-3">
+                    <Link to="/admin" className="navbar-brand mx-4 mb-3 ">
                         <img src={logo} alt="Logo" />
+                        <div className="close-btn" onClick={closeSidebar}><i class="fa-solid fa-xmark"></i></div>
                     </Link>
                     <div className="d-flex align-items-center ms-4 mb-4">
-                        <div className="position-relative">
-                            <img
-                                className="rounded-circle"
-                                src={userImage}
-                                alt=""
-                                style={{ width: 40, height: 40 }}
-                            />
-                            <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1" />
-                        </div>
+                        <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                         <div className="ms-3">
                             <h6 className="mb-0">Jhon Doe</h6>
                             <span>Admin</span>

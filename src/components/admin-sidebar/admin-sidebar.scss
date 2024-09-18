@@ -2,8 +2,21 @@
     min-height: 100vh;
     background: var(--accent);
     color: var(--text);
+    position: relative;
 
     .navbar {
+
+        .navbar-brand .close-btn {
+            display: none;
+            position: absolute;
+            top: 16px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            background-color: var(--background);
+            padding: 4px 6px;
+            border-radius: 50%;
+        }
 
         .navbar-nav {
             .nav-link {
@@ -72,4 +85,13 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar .navbar .navbar-brand .close-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
