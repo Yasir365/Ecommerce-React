@@ -14,9 +14,11 @@
         td {
             background-color: var(--background);
             border-color: var(--accent);
+            color: var(--text);
         }
-
+        
         td a {
+            color: var(--text2);
             background-color: var(--primary);
             border: none;
         }
