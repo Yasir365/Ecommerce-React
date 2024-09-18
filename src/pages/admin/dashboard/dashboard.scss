@@ -28,4 +28,7 @@
         color: var(--primary);
     }
 
+    &.charts{
+        max-height: fit-content;
+    }
 }
