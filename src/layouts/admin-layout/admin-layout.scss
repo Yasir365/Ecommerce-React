@@ -18,21 +18,26 @@
 
 .outlet-container {
     margin-left: 250px;
-    .outlet{
+    min-height: 100vh;
+    color: var(--text);
+
+
+    .outlet {
         padding: 24px;
         position: relative;
         z-index: 998;
     }
 }
 
-body.close-sidebar{
+body.close-sidebar {
     .sidebar-container {
         width: 0;
     }
+
     .outlet-container {
         margin-left: 0px;
     }
-} 
+}
 
 
 // For tablets and mobiles

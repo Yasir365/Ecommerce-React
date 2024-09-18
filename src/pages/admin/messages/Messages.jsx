@@ -3,7 +3,9 @@ import './messages.scss'
 
 const Messages = () => {
   return (
-    <div>Messages</div>
+    <>
+      <h1 className="heading">Manage Messages</h1>
+    </>
   )
 }
 

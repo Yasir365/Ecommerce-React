@@ -43,17 +43,17 @@ const AdminSidebar = () => {
                             Users
                         </NavLink>
                         <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/orders">
-                            <i className="fa-solid fa-cart-shopping"></i>
+                            <i className="fa-solid fa-cart-shopping me-2"></i>
                             Orders
                         </NavLink>
                         <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/messages">
-                            <i className="fa-solid fa-comments"></i>
+                            <i className="fa-solid fa-comments me-2"></i>
                             Messages
                         </NavLink>
 
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
-                            <i class="fa-solid fa-gear me-2"></i>
+                                <i class="fa-solid fa-gear me-2"></i>
                                 Settings
                             </a>
                             <div className="dropdown-menu bg-transparent border-0">

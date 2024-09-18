@@ -1,9 +1,10 @@
 import './orders.scss'
 
-const Orders = ()=> {
+const Orders = () => {
   return (
-    <div>Orders</div>
-  )
+    <>
+      <h1 className="heading">Manage Orders</h1>
+    </>)
 }
 
 export default Orders

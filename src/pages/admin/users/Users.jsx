@@ -5,9 +5,9 @@ import './users.scss';
 
 const Users = () => {
     return (
-        <div>
-        <h1>Users List Page</h1>
-        </div>
+        <>
+            <h1 className="heading">Manage Users</h1>
+        </>
     );
 };
 

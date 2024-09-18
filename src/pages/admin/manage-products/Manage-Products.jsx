@@ -1,8 +1,10 @@
 import React from 'react'
 
-const ManageProducts = ()=> {
+const ManageProducts = () => {
   return (
-    <div>products</div>
+    <>
+      <h1 className="heading">Manage Products</h1>
+    </>
   )
 }
 
