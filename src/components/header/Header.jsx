@@ -18,13 +18,13 @@ const Header = () => {
         document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
         localStorage.setItem('theme', theme);
     }, [theme]);
-    
+
     const verifyToken = async () => {
         const token = localStorage.getItem('token');
         if (!token) {
             setIsLogin(false);
         } else {
-            const response = await apiService.verifyToken(token)
+            const response = await apiService.verifyToken()
             if (response.data.success) {
                 if (response.data.role === 'admin') {
                     navigate('/admin');
@@ -46,7 +46,7 @@ const Header = () => {
     };
 
     return (
-        <header>
+        <header className='user-header'>
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><img src={NavLogo} alt="Nav Logo" /></Link>

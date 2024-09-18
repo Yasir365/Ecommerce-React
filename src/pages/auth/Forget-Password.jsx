@@ -44,7 +44,7 @@ const ForgetPassword = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Change Password {loader && <div className="loader"></div>}</button>
+                    <button type="submit" className='d-flex justify-content-center' disabled={loader}>Verify Email {loader && <div className="loader"></div>}</button>
                     <Link to={'/login'} className='forget'>Login</Link>
                 </form>
             </div>

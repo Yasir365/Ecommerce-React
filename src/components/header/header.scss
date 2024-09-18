@@ -4,7 +4,7 @@
     }
 }
 
-header {
+.user-header {
     @include max(768px) {
         position: absolute;
         top: 0;
@@ -19,7 +19,7 @@ header {
         box-shadow: 0 0.5px 10px var(--shadow);
         z-index: 1000;
 
-        .navbar-brand img{
+        .navbar-brand img {
             filter: drop-shadow(0 1px 7px var(--shadow));
         }
 
@@ -103,7 +103,7 @@ header {
             }
 
             &:hover {
-                color: #var(--text2);
+                color: var(--text2);
             }
         }
 

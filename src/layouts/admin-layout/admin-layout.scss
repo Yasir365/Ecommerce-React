@@ -9,7 +9,7 @@
     overflow-y: auto;
     background: #F3F6F9;
     transition: 0.5s;
-    z-index: 999;
+    z-index: 1000;
 
     .sidebar {
         width: 100%;
@@ -20,6 +20,8 @@
     margin-left: 250px;
     .outlet{
         padding: 24px;
+        position: relative;
+        z-index: 998;
     }
 }
 

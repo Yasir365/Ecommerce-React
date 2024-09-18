@@ -33,9 +33,9 @@ const AdminHeader = () => {
     };
 
     return (
-        <header>
+        <header className='admin-header'>
             <nav className="navbar navbar-expand px-4 py-0" >
-                <button className="sidebar-toggler btn flex-shrink-0" onClick={toggleSidebar}>
+                <button className="sidebar-toggler btn" onClick={toggleSidebar}>
                     <i className="fa fa-bars" />
                 </button>
                 <div className="navbar-nav align-items-center ms-auto">
@@ -49,15 +49,10 @@ const AdminHeader = () => {
                             <i className="fa fa-envelope me-lg-2" />
                             <span className="d-none d-lg-inline-flex"></span>
                         </a>
-                        <div className="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <div className="dropdown-menu dropdown-menu-end rounded m-0">
                             <a className="dropdown-item">
                                 <div className="d-flex align-items-center">
-                                    <img
-                                        className="rounded-circle"
-                                        src="img/user.jpg"
-                                        alt=""
-                                        style={{ width: 40, height: 40 }}
-                                    />
+                                    <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                                     <div className="ms-2">
                                         <h6 className="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -67,12 +62,7 @@ const AdminHeader = () => {
                             <hr className="dropdown-divider" />
                             <a className="dropdown-item">
                                 <div className="d-flex align-items-center">
-                                    <img
-                                        className="rounded-circle"
-                                        src="img/user.jpg"
-                                        alt=""
-                                        style={{ width: 40, height: 40 }}
-                                    />
+                                    <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                                     <div className="ms-2">
                                         <h6 className="fw-normal mb-0">Jhon send you a message</h6>
                                         <small>15 minutes ago</small>
@@ -90,7 +80,7 @@ const AdminHeader = () => {
                             <i className="fa fa-bell me-lg-2" />
                             <span className="d-none d-lg-inline-flex"></span>
                         </a>
-                        <div className="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <div className="dropdown-menu dropdown-menu-end rounded m-0">
                             <a className="dropdown-item">
                                 <h6 className="fw-normal mb-0">Profile updated</h6>
                                 <small>15 minutes ago</small>
@@ -111,7 +101,7 @@ const AdminHeader = () => {
                             <img className="rounded-circle me-lg-2" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                             <span className="d-none d-lg-inline-flex">Yasir</span>
                         </a>
-                        <div className="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <div className="dropdown-menu dropdown-menu-end rounded m-0">
                             <a className="dropdown-item"> My Profile </a>
                             <a className="dropdown-item"> Settings </a>
                             <a className="dropdown-item" onClick={logout}> Log Out </a>

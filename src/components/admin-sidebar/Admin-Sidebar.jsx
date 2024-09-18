@@ -53,12 +53,15 @@ const AdminSidebar = () => {
 
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
-                                <i className="far fa-file-alt me-2" />
-                                Pages
+                            <i class="fa-solid fa-gear me-2"></i>
+                                Settings
                             </a>
                             <div className="dropdown-menu bg-transparent border-0">
                                 <a className="dropdown-item">
-                                    Sign In
+                                    Profile Settings
+                                </a>
+                                <a className="dropdown-item">
+                                    Logout
                                 </a>
                             </div>
                         </div>

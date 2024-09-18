@@ -18,7 +18,7 @@ const AdminLayout = () => {
             }
 
             try {
-                const response = await apiService.verifyToken(token);
+                const response = await apiService.verifyToken();
                 if (response.data.success && response.data.role === 'admin') {
                     setIsAuthorized(true);
                 } else {

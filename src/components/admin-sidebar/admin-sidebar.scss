@@ -14,12 +14,14 @@
                 outline: none;
                 border-left: 3px solid var(--background);
 
-                &:hover,
+                &:hover {
+                    border-left: 3px solid var(--primary);
+                }
+
                 &.active {
                     color: var(--primary);
                     background: var(--text2);
                     border-left: 3px solid var(--primary);
-                    border-color: var(--primary);
                     cursor: pointer;
 
                     i {
@@ -56,8 +58,15 @@
             }
 
             .dropdown-item {
+                margin-left: 25px;
                 padding-left: 25px;
                 border-radius: 0 30px 30px 0;
+                width: 90%;
+                color: var(--text);
+
+                &:hover {
+                    color: var(--text2);
+                }
             }
         }
     }
