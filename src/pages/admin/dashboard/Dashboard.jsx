@@ -3,18 +3,36 @@ import './dashboard.scss';
 import userImage from '../../../assets/member/1.jpg';
 import { Bar, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement);
 
 
 const Dashboard = () => {
+    const [colors, setColors] = useState({});
+    useEffect(() => {
+        let theme = localStorage.getItem('theme');
+        if (theme && theme == 'light') {
+            setColors({
+                color1: 'orangered',
+                color2: 'rgb(179, 48, 0)',
+                color3: '#ffc3c3'
+            })
+        }else{
+            setColors({
+                color1: '#fff',
+                color2: 'gray',
+                color3: '#fff',
+            })
+        }
+    },[])
     const barData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [
             {
                 label: 'Orders',
-                data: [50, 30, 55, 65, 60, 80, 95,50, 30, 55, 65, 60],
-                backgroundColor: 'rgba(0, 156, 255, 0.7)',
+                data: [50, 30, 55, 65, 60, 80, 95, 50, 30, 55, 65, 60],
+                backgroundColor: colors.color1,
             },
         ],
     };
@@ -24,10 +42,15 @@ const Dashboard = () => {
         datasets: [
             {
                 label: 'Users',
-                data: [15, 30, 55, 45, 70, 65,35, 30, 55, 45, 70, 65, 85],
-                borderColor: 'rgba(0, 156, 255, 0.5)',
+                data: [15, 30, 55, 45, 70, 65, 35, 30, 55, 45, 70, 65, 85],
+                borderColor: colors.color1,
+                backgroundColor: colors.color1,
                 fill: true,
-                backgroundColor: 'rgba(0, 156, 255, 0.2)',
+                pointBackgroundColor: colors.color2,
+                pointBorderColor: colors.color2,
+                pointBorderWidth: 3,
+                pointHoverBackgroundColor: colors.color3,
+                pointHoverBorderColor: colors.color3,
             },
         ],
     };
@@ -46,7 +69,7 @@ const Dashboard = () => {
     };
 
 
-    
+
     return (
         <>
             {/* Sale & Revenue Start */}
@@ -63,7 +86,7 @@ const Dashboard = () => {
                     </div>
                     <div className="col-sm-6 col-xl-3">
                         <div className="widget rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa-solid fa-clipboard-check fa-3x"></i>
+                            <i className="fa-solid fa-clipboard-check fa-3x"></i>
                             <div className="ms-3">
                                 <p className="mb-2 title">Completed Orders</p>
                                 <h6 className="mb-0">230</h6>

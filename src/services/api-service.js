@@ -6,8 +6,10 @@ const axiosInstance = axios.create({
     baseURL: BASE_URL,
 });
 
-const token = localStorage.getItem('token');
-axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+const setAuthToken = () => {
+    const token = localStorage.getItem('token');
+    axiosInstance.defaults.headers.common.Authorization = token ? `Bearer ${token}` : '';
+};
 
 const apiService = {
     signup: async (data) => {
@@ -36,6 +38,7 @@ const apiService = {
     },
 
     verifyToken: async () => {
+        setAuthToken();
         const response = await axiosInstance.get('/auth/verify-token');
         return response;
     },

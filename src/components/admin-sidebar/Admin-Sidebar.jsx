@@ -17,7 +17,7 @@ const AdminSidebar = () => {
                 <nav className="navbar pe-4 pb-3">
                     <Link to="/admin" className="navbar-brand mx-4 mb-3 ">
                         <img src={logo} alt="Logo" />
-                        <div className="close-btn" onClick={closeSidebar}><i class="fa-solid fa-xmark"></i></div>
+                        <div className="close-btn" onClick={closeSidebar}><i className="fa-solid fa-xmark"></i></div>
                     </Link>
                     <div className="user-profile d-flex align-items-center ms-4 mb-4">
                         <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
@@ -50,7 +50,7 @@ const AdminSidebar = () => {
 
                         <div className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
-                                <i class="fa-solid fa-gear me-2"></i>
+                                <i className="fa-solid fa-gear me-2"></i>
                                 Settings
                             </a>
                             <div className="dropdown-menu bg-transparent border-0">
