@@ -5,6 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .login-logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        filter: drop-shadow(0 1px 7px var(--shadow));
+    }
 }
 
 .login-form {
@@ -82,7 +89,7 @@
         color: #000;
     }
 
-    .resend{
+    .resend {
         color: orangered;
         cursor: pointer;
     }

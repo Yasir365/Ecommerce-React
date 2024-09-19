@@ -57,24 +57,40 @@ const ManageUsers = () => {
                             </thead>
                             <tbody>
 
-                                {data && data.map((item, index) => (
-                                    <tr key={index}>
-                                        <th scope="row" className='align-middle'>{index + 1 + pageNumber * productsPerPage}</th>
-                                        <td className='align-middle'><LazyLoadImage src={item.images[0] || defaultImage} alt={item.title} /></td>
-                                        <td className='align-middle'>{item.title}</td>
-                                        <td className='align-middle'>{item.description}</td>
-                                        <td className='align-middle'>{item.price}</td>
-                                        <td className='align-middle'>{item.rating}</td>
-                                        <td className='align-middle'>
-                                            <div className='d-flex justify-content-center'>
-                                                <button><i className="fa-solid fa-pen-to-square"></i></button>
-                                                <button className="ms-2"><i className="fa-solid fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                                {loader && <div className='loader-conatiner'><Loader /></div>}
-                                {!loader && data && data.length === 0 && <tr><td colSpan={7} className='text-center'>No Data Found</td></tr>}
+                                {
+                                    data && data.map((item, index) => (
+                                        <tr key={index}>
+                                            <th scope="row" className='align-middle'>{index + 1 + pageNumber * productsPerPage}</th>
+                                            <td className='align-middle'><LazyLoadImage src={item.images[0] || defaultImage} alt={item.title} /></td>
+                                            <td className='align-middle'>{item.title}</td>
+                                            <td className='align-middle'>{item.description}</td>
+                                            <td className='align-middle'>{item.price}</td>
+                                            <td className='align-middle'>{item.rating}</td>
+                                            <td className='align-middle'>
+                                                <div className='d-flex justify-content-center'>
+                                                    <button><i className="fa-solid fa-pen-to-square"></i></button>
+                                                    <button className="ms-2"><i className="fa-solid fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                                {
+                                    loader && (
+                                        <tr>
+                                            <td colSpan={7} className='text-center'>
+                                                <div className='loader-conatiner'><Loader /></div>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                                {
+                                    !loader && data && data.length === 0 && (
+                                        <tr>
+                                            <td colSpan={7} className='text-center'>No Data Found</td>
+                                        </tr>
+                                    )
+                                }
                             </tbody>
                         </table>
                     </div>

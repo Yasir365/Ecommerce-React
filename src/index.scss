@@ -139,6 +139,7 @@ textarea.form-control:focus {
   background-color: var(--background);
   border: 1px solid var(--primary);
   box-shadow: 0 0 10px var(--shadow);
+  z-index: 1000 !important;
 
   .modal-header {
     background: var(--primary);
@@ -176,4 +177,11 @@ textarea.form-control:focus {
     display: flex;
     justify-content: center;
   }
+}
+
+
+.error{
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 0;
 }

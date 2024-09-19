@@ -5,6 +5,8 @@ import { useState } from 'react';
 import apiService from '../../services/api-service';
 import toastrService from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             setLoader(true);
             const response = await apiService.login({ email, password });
@@ -23,13 +25,13 @@ const Login = () => {
             if (response.success) {
                 localStorage.setItem('token', response.token);
                 toastrService.success('Login Successful...');
-                if(response.role === 'admin'){
+                if (response.role === 'admin') {
                     navigate('/admin');
-                }else{
+                } else {
                     navigate('/products');
                 }
                 setError(null);
-            }else{
+            } else {
                 setError(response.message);
             }
         } catch (error) {
@@ -39,6 +41,9 @@ const Login = () => {
     };
     return (
         <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
+            <Link rel="stylesheet" to='/' >
+                <img src={logo} alt="" className='login-logo' />
+            </Link>
             <div className="login-form">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>

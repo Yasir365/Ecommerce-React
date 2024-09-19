@@ -43,6 +43,17 @@ const apiService = {
         return response;
     },
 
+    addProduct: async (data) => {
+        setAuthToken();
+        const response = await axiosInstance.post('/products/add-product', data);
+        return response;
+    },
+    
+    getProducts: async (data) => {
+        const response = await axiosInstance.get(`/products/get-product?currentPage=${data.currentPage}&itemsPerPage=${data.itemsPerPage}&search=${data.search}`);
+        return response;
+    },
+
 };
 
 export default apiService;
