@@ -2,7 +2,7 @@ import './manage-products.scss';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../../components/loader/Loader';
-import defaultImage from '../../../assets/skeleton.gif';
+import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
 import toastrService from '../../../services/toastr-service';
@@ -90,6 +90,7 @@ const ManageProducts = () => {
         setDescription('');
         setImage(null);
         setPreview(defaultImage);
+        document.getElementById('closeAddProductModalBtn').click();
       } else {
         setError(response.data.message);
       }
@@ -137,7 +138,7 @@ const ManageProducts = () => {
                     data && data.map((item, index) => (
                       <tr key={index}>
                         <th scope="row" className='align-middle'>{index + 1 + currentPage * itemsPerPage}</th>
-                        <td className='align-middle'><LazyLoadImage src={'http://localhost:8080/'+item.image || defaultImage} alt={item.title} /></td>
+                        <td className='align-middle'><LazyLoadImage src={'http://localhost:8080/' + item.image || defaultImage} alt={item.title} /></td>
                         <td className='align-middle'>{item.title}</td>
                         <td className='align-middle'>{item.description}</td>
                         <td className='align-middle'><span className='badge bg-success'>{item.status}</span></td>
@@ -204,8 +205,8 @@ const ManageProducts = () => {
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLongTitle">Add Product</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 className="modal-title">Add Product</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id='closeAddProductModalBtn'></button>
             </div>
             <div className="modal-body">
               <form>

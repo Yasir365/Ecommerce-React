@@ -3,7 +3,7 @@ import './manage-users.scss';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../../components/loader/Loader';
-import defaultImage from '../../../assets/skeleton.gif';
+import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 

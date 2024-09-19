@@ -1,15 +1,10 @@
 import './product.scss';
 import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
-import defaultImage from '../../assets/skeleton.gif';
+import defaultImage from '../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Product = (props) => {
-
-    const DefaultImage = () => (
-        <img src={defaultImage} alt="Default Image" />
-    );
-
     return (
         <>
             <div className="product-card">
