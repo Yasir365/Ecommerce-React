@@ -5,6 +5,7 @@ import Loader from '../../../components/loader/Loader';
 import defaultImage from '../../../assets/skeleton.gif';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
+import toastrService from '../../../services/toastr-service';
 
 const ManageProducts = () => {
 
@@ -46,38 +47,58 @@ const ManageProducts = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    setImage(file); // Store the file object directly in the state
     const reader = new FileReader();
     reader.onload = () => {
-      setImage(reader.result);
-      setPreview(reader.result);
+      setPreview(reader.result); // Use the base64 only for preview
     };
     reader.readAsDataURL(file);
   };
 
+
+
   const addProduct = async (event) => {
     event.preventDefault();
+
     if (!title || !price || !description || !image) {
       setError('All fields are required');
       return;
     }
+
     setError(null);
+
     try {
       setSubmitLoader(true);
-      const productData = { title, price, description, image, };
-      const response = await apiService.addProduct(productData);
+
+      // Create a new FormData object
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('price', price);
+      formData.append('description', description);
+      formData.append('image', image); // Use the state variable 'image' directly
+
+      const response = await apiService.addProduct(formData); // Sending FormData instead of a simple object
       setSubmitLoader(false);
-      if (response.success) {
-        toastrService.success('Product Added Successful...');
-        getProducts();
+
+      if (response.data.success) {
+        toastrService.success('Product Added Successfully...');
+        getProducts(); // Refresh the product list
         setError(null);
+        // Clear form after submission
+        setTitle('');
+        setPrice('');
+        setDescription('');
+        setImage(null);
+        setPreview(defaultImage);
       } else {
-        setError(response.message);
+        setError(response.data.message);
       }
     } catch (error) {
       setSubmitLoader(false);
       setError(error.message);
     }
   };
+
 
   const changePage = ({ selected }) => {
     setCurrentPage(selected);
@@ -116,7 +137,7 @@ const ManageProducts = () => {
                     data && data.map((item, index) => (
                       <tr key={index}>
                         <th scope="row" className='align-middle'>{index + 1 + currentPage * itemsPerPage}</th>
-                        <td className='align-middle'><LazyLoadImage src={item.image || defaultImage} alt={item.title} /></td>
+                        <td className='align-middle'><LazyLoadImage src={'http://localhost:8080/'+item.image || defaultImage} alt={item.title} /></td>
                         <td className='align-middle'>{item.title}</td>
                         <td className='align-middle'>{item.description}</td>
                         <td className='align-middle'><span className='badge bg-success'>{item.status}</span></td>
@@ -188,7 +209,7 @@ const ManageProducts = () => {
             </div>
             <div className="modal-body">
               <form>
-                <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleImageChange} />
+                <input type="file" id="fileInput" style={{ display: 'none' }} name="fileInput" onChange={handleImageChange} />
                 <div className='image-container'>
                   <label htmlFor="fileInput">
                     <img src={preview} alt="Image Preview" width={150} height={150} style={{ cursor: 'pointer' }} />
