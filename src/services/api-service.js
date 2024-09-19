@@ -54,6 +54,18 @@ const apiService = {
         return response;
     },
 
+    deleteProduct: async (data) => {
+        setAuthToken();
+        const response = await axiosInstance.post('/products/delete-product', data);
+        return response;
+    },
+    
+    udpateProduct: async (data) => {
+        setAuthToken();
+        const response = await axiosInstance.post('/products/update-product', data);
+        return response;
+    },
+
 };
 
 export default apiService;

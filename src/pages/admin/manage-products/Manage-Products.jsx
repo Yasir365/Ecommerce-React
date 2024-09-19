@@ -101,6 +101,15 @@ const ManageProducts = () => {
   };
 
 
+
+  const editProduct = async (selectedProduct) => {
+    setTitle(selectedProduct.title);
+    setPrice(selectedProduct.price);
+    setDescription(selectedProduct.description);
+    setPreview("http://localhost:5000/uploads/"+selectedProduct.image);
+
+  };
+
   const changePage = ({ selected }) => {
     setCurrentPage(selected);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -146,7 +155,7 @@ const ManageProducts = () => {
                         <td className='align-middle'>{item.rating}</td>
                         <td className='align-middle'>
                           <div className='d-flex justify-content-center'>
-                            <button><i className="fa-solid fa-pen-to-square"></i></button>
+                            <button onClick={() => editProduct(item)} data-bs-toggle="modal" data-bs-target="#addProductModal"><i className="fa-solid fa-pen-to-square"></i></button>
                             <button className="ms-2"><i className="fa-solid fa-trash"></i></button>
                           </div>
                         </td>
