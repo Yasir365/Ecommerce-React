@@ -7,7 +7,7 @@ import Products from './pages/user/products/Products';
 import ProductDetails from './pages/user/product-details/Product-Details';
 import Cart from './pages/user/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
-import Users from './pages/admin/users/Users';
+import ManageUsers from './pages/admin/manage-users/Manage-Users';
 import Login from './pages/auth/Login';
 import SignUp from './pages/auth/Sign-up';
 import ForgetPassword from './pages/auth/Forget-Password';
@@ -93,8 +93,8 @@ const router = createBrowserRouter([
                 element: <Orders />,
             },
             {
-                path: 'users',
-                element: <Users />,
+                path: 'manage-users',
+                element: <ManageUsers />,
             },
             {
                 path: 'messages',

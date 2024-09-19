@@ -118,3 +118,62 @@ li {
     transform: rotate(1turn)
   }
 }
+
+input.form-control:focus,
+textarea.form-control:focus {
+  box-shadow: none;
+}
+
+.form-floating>.form-control:focus~label::after {
+  background-color: var(--background);
+}
+
+.modal-backdrop.show {
+  opacity: 0;
+  display: none;
+}
+
+
+.modal-content {
+  border-radius: 18px;
+  background-color: var(--background);
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 10px var(--shadow);
+
+  .modal-header {
+    background: var(--primary);
+    color: var(--text2);
+    border-radius: 16px 16px 0 0;
+
+    h4 {
+      font-weight: 600;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: var(--text2);
+      font-size: 1rem;
+    }
+  }
+
+  .modal-body {
+
+    .form-floating {
+
+      input,
+      textarea {
+        background-color: var(--background);
+        color: var(--text);
+        border: 1px solid var(--primary);
+      }
+
+    }
+
+  }
+
+  .footer {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+}

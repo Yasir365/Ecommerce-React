@@ -19,7 +19,7 @@ const AdminSidebar = () => {
                         <img src={logo} alt="Logo" />
                         <div className="close-btn" onClick={closeSidebar}><i class="fa-solid fa-xmark"></i></div>
                     </Link>
-                    <div className="d-flex align-items-center ms-4 mb-4">
+                    <div className="user-profile d-flex align-items-center ms-4 mb-4">
                         <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                         <div className="ms-3">
                             <h6 className="mb-0">Jhon Doe</h6>
@@ -33,11 +33,11 @@ const AdminSidebar = () => {
                         </NavLink>
                         <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/manage-products">
                             <i className="fa fa-th me-2" />
-                            Products
+                            Manage Products
                         </NavLink>
-                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/users">
+                        <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/manage-users">
                             <i className="fa fa-users me-2" />
-                            Users
+                            Manage Users
                         </NavLink>
                         <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/orders">
                             <i className="fa-solid fa-cart-shopping me-2"></i>

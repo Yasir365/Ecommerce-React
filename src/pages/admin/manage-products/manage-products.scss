@@ -1,0 +1,81 @@
+.manage-products {
+    .filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            outline: none;
+            background: var(--background);
+            margin-right: 10px;
+            color: var(--text);
+        }
+
+        .add-product {
+            background-color: var(--primary);
+            color: var(--text2);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+
+            &:hover {
+                background-color: var(--secondary);
+                color: var(--text2);
+            }
+        }
+    }
+
+    .table-responsive {
+        padding: 16px;
+        border: 1px solid var(--primary);
+        border-radius: 12px;
+
+        tr {
+            border-color: var(--primary);
+        }
+
+        th {
+            background-color: var(--background);
+            color: var(--primary);
+        }
+
+        td {
+            background-color: var(--background);
+            color: var(--text);
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 1px solid var(--primary);
+            }
+
+            button{
+                border: 1px solid var(--primary);
+                color: var(--text);
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: transparent;
+                color: var(--primary);
+                
+                &:hover {
+                    background-color: var(--primary);
+                    color: var(--text2);
+                }
+            }
+
+        }
+
+        .loader-conatiner{
+            background-color: var(--background);
+            min-height: 40vh;
+        }
+    }
+}

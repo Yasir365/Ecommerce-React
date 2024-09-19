@@ -9,36 +9,39 @@
         border: none !important;
         outline: none !important;
 
-        &:hover{
+        &:hover {
             color: var(--secondary);
         }
 
     }
 
-    .navbar{
-        .nav-item{
+    .navbar {
+        .nav-item {
             cursor: pointer;
         }
-        i{
-            color: var(--text);
+
+        i {
+            color: var(--primary);
             font-size: 1.2rem;
 
-            &:hover{
-                color: var(--primary);
-            }
-        }
-        
-        .dropdown-menu {
-            position: relative;
-            z-index: 1000;
-            border: 1px solid var(--primary);
-            background-color: var(--background);
-            
-            .dropdown-item{
+            &:hover {
                 color: var(--text);
             }
         }
+
+        .dropdown-toggle::after {
+            color: var(--primary);
+        }
     }
 
+    .dropdown-menu {
+        position: relative;
+        z-index: 1000;
+        border: 1px solid var(--primary);
+        background-color: var(--background);
 
+        .dropdown-item {
+            color: var(--text);
+        }
+    }
 }
