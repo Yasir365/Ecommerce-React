@@ -85,7 +85,7 @@ const ManageProducts = () => {
       setSubmitLoader(false);
 
       if (response.data.success) {
-        swalToastr('success ', 'Product Updated Successfully...');
+        swalToastr('success ', 'Product Updated Successfully!');
         getProducts();
         resetModal();
       } else {
@@ -123,7 +123,7 @@ const ManageProducts = () => {
       const response = await apiService.udpateProduct(formData);
       setSubmitLoader(false);
       if (response.data.success) {
-        swalToastr('success', 'Product Updated Successfully...');
+        swalToastr('success', 'Product Updated Successfully!');
         getProducts();
         resetModal();
       } else {
@@ -163,10 +163,10 @@ const ManageProducts = () => {
       if (result.isConfirmed) {
         await apiService.deleteProduct(id).then((response) => {
           if (response.data.success) {
-            swalToastr('success','Product Deleted Successfully...');
+            swalToastr('success', 'Product Deleted Successfully!');
             getProducts();
           } else {
-            swalToastr('error',response.data.message);
+            swalToastr('error', response.data.message);
           }
         });
       }
