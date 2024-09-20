@@ -14,7 +14,7 @@ const ITEMS_PER_PAGE = 10;
 // Helper Functions
 const getInitialFormData = () => ({
   title: '',
-  price: '',
+  price: 0,
   description: '',
   image: null,
   preview: defaultImage,
