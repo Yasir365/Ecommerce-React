@@ -44,6 +44,8 @@ const ManageProducts = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(defaultImage)
   const [submitLoader, setSubmitLoader] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  const [modalState, setModalState] = useState('add');
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -75,22 +77,15 @@ const ManageProducts = () => {
       formData.append('title', title);
       formData.append('price', price);
       formData.append('description', description);
-      formData.append('image', image); // Use the state variable 'image' directly
+      formData.append('image', image)
 
-      const response = await apiService.addProduct(formData); // Sending FormData instead of a simple object
+      const response = await apiService.addProduct(formData);
       setSubmitLoader(false);
 
       if (response.data.success) {
         toastrService.success('Product Added Successfully...');
-        getProducts(); // Refresh the product list
-        setError(null);
-        // Clear form after submission
-        setTitle('');
-        setPrice('');
-        setDescription('');
-        setImage(null);
-        setPreview(defaultImage);
-        document.getElementById('closeAddProductModalBtn').click();
+        getProducts();
+        resetModal();
       } else {
         setError(response.data.message);
       }
@@ -106,9 +101,48 @@ const ManageProducts = () => {
     setTitle(selectedProduct.title);
     setPrice(selectedProduct.price);
     setDescription(selectedProduct.description);
-    setPreview("http://localhost:5000/uploads/"+selectedProduct.image);
-
+    setPreview("http://localhost:8080/" + selectedProduct.image);
+    setSelectedProduct(selectedProduct);
+    setModalState('edit');
   };
+
+  const updateProduct = async (event) => {
+    event.preventDefault();
+    try {
+      setSubmitLoader(true);
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('price', +price);
+      formData.append('description', description);
+      formData.append('productId', selectedProduct._id);
+      if (image) {
+        formData.append('image', image);
+      }
+      const response = await apiService.udpateProduct(formData);
+      setSubmitLoader(false);
+      if (response.data.success) {
+        toastrService.success('Product Updated Successfully...');
+        getProducts();
+        resetModal();
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      setSubmitLoader(false);
+      setError(error.message);
+    }
+  }
+
+  const resetModal = () => {
+    setError(null);
+    setTitle('');
+    setPrice('');
+    setDescription('');
+    setImage(null);
+    setPreview(defaultImage);
+    const modalId = document.getElementById('closeAddProductModalBtn')
+    modalId?.click();
+  }
 
   const changePage = ({ selected }) => {
     setCurrentPage(selected);
@@ -123,7 +157,7 @@ const ManageProducts = () => {
             <input type="text" placeholder='Search...' value={search} onChange={(e) => setSearch(e.target.value)} />
             {loader && <div className="loader"></div>}
           </div>
-          <button className='btn add-product' data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</button>
+          <button className='btn add-product' data-bs-toggle="modal" data-bs-target="#addProductModal" onClick={() => setModalState('add')}>Add Product</button>
         </div>
         <div className="products mb-3">
           <div className="rounded h-100 ">
@@ -214,7 +248,7 @@ const ManageProducts = () => {
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Add Product</h5>
+              <h5 className="modal-title">{modalState === 'add' ? 'Add' : 'Edit'} Product</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" id='closeAddProductModalBtn'></button>
             </div>
             <div className="modal-body">
@@ -245,7 +279,12 @@ const ManageProducts = () => {
               </form>
             </div>
             <div className="footer">
-              <button type="button" className="submit-btn" onClick={addProduct} disabled={submitLoader}>Save</button>
+              {
+                modalState === 'add' ?
+                  <button type="button" className="submit-btn" onClick={addProduct} disabled={submitLoader}>Save</button>
+                  : <button type="button" className="submit-btn" onClick={updateProduct} disabled={submitLoader}>Update</button>
+              }
+
             </div>
           </div>
         </div>
