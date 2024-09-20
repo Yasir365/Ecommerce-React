@@ -12,9 +12,8 @@ const Product = (props) => {
                 <LazyLoadImage
                 alt={defaultImage}
                 height={200}
-                src={props.images[0]} 
+                src={props.image ? `http://localhost:8080/${props.image}` : defaultImage}
                 width={200} />
-                    {/* <img src={props.images[0]} alt="Toyota Supra" placloading="lazy" placeholder={<DefaultImage />}/> */}
                 </div>
                 <div className="card-body">
                     <div className='d-flex justify-content-between aligns-items-center mb-2'>

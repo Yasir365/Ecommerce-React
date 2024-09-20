@@ -3,83 +3,127 @@ import { Link } from 'react-router-dom';
 import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
 import OurTeam from '../../../components/out-team/Our-Team';
-
+import apiService from '../../../services/api-service';
+import defaultImage from '../../../assets/default_no_image.jpg';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Home = () => {
-    const [featuredProduct, setfeaturedProduct] = useState([]);
-    const [dealsProduct, setdealsProduct] = useState([]);
-    const [bolgData, setBlogData] = useState({});
+    const [featuredProducts, setFeaturedProducts] = useState([]);
+    const [dealsProducts, setDealsProducts] = useState([]);
+    const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products?limit=4&skip=0&select=')
-            .then((res) => res.json())
-            .then((responseData) => setfeaturedProduct(responseData.products));
-        fetch('https://dummyjson.com/products?limit=4&skip=10&select=')
-            .then((res) => res.json())
-            .then((responseData) => setdealsProduct(responseData.products));
-        fetch('https://dummyjson.com/products/2')
-            .then((res) => res.json())
-            .then((responseData) => setBlogData(responseData));
-        console.log(bolgData);
-
+        fetchProducts(1, 4, setFeaturedProducts);
+        fetchProducts(2, 4, setDealsProducts);
+        fetchProducts(1, 1, setBlogData);
     }, []);
+
+    // Fetch products based on page, perPage, and set the response to the provided state setter
+    const fetchProducts = async (page, itemsPerPage, setState) => {
+        const payload = { currentPage: page, itemsPerPage, search: '' };
+        try {
+            const response = await apiService.getProducts(payload);
+            if (response.data.success) {
+                setState(response.data.data);
+            }
+        } catch (error) {
+            console.error(`Error fetching products for page ${page}:`, error);
+        }
+    };
 
     return (
         <>
-            <div className='hero'>
-                <div className="overlay"></div>
-                <div className='hero-content'>
-                    <h1>Super Deals</h1>
-                    <h3>Best Deals On Best Price</h3>
-                    <Link to='/products'><button>Shop Now</button></Link>
-                </div>
-            </div>
+            <HeroSection />
 
-            <section className='features container'>
-                <h1 className="heading">Featured Products</h1>
-                <div className='products'>
-                    {featuredProduct.map((item) => <div className="product" key={item.id}><Product {...item} /> </div>)}
-                </div>
-            </section>
+            <ProductsSection
+                title="Featured Products"
+                products={featuredProducts}
+            />
 
+            <OffersSection />
 
-            <section className='offers'>
-                <div className="overlay"></div>
-                <div className="offers-content">
-                    <h1>Super Deals</h1>
-                    <h3 className='mb-4'>Best Deals On Best Price</h3>
-                    <Link to='/products'>Shop Now</Link>
-                </div>
-            </section>
+            <BlogSection blogData={blogData} />
 
-
-            <section className='container blogs'>
-                <h1 className="heading">Blog</h1>
-                <div className="row">
-                    <div className="col-md-6 blog-content">
-                        <h3 className="title">Vibrant Makeup Palette</h3>
-                        <p className="description">{bolgData.description}</p>
-                        <p className="description">This elegant makeup palette offers a versatile range of 12 vibrant shades, perfect for creating both subtle and bold looks. The carefully selected hues range from warm earthy tones to rich, deep shades, ensuring a seamless blend for any occasion.</p>
-                        <p className="description">With a sleek, modern design, the palette comes equipped with a high-quality built-in mirror. This makes it ideal for on-the-go touch-ups or creating flawless looks in any setting, ensuring you always look your best.</p>
-                        <p className="description">Each shade is highly pigmented and long-lasting, providing exceptional coverage with minimal product use. The smooth, blendable formula ensures effortless application, whether you are a beginner or a pro in the makeup game.</p>
-                    </div>
-                    <div className="col-md-6 image-wrapper">
-                        <img src={bolgData.images} alt="" />
-                    </div>
-                </div>
-
-            </section>
-
-            <section className='features container'>
-                <h1 className="heading">Special Deals</h1>
-                <div className='products'>
-                    {dealsProduct.map((item) => <div className="product" key={item.id}><Product {...item} /> </div>)}
-                </div>
-            </section>
+            <ProductsSection
+                title="Special Deals"
+                products={dealsProducts}
+            />
 
             <OurTeam />
         </>
     );
 };
+
+// Hero Section Component
+const HeroSection = () => (
+    <div className='hero'>
+        <div className="overlay"></div>
+        <div className='hero-content'>
+            <h1>Super Deals</h1>
+            <h3>Best Deals On Best Price</h3>
+            <Link to='/products'>
+                <button>Shop Now</button>
+            </Link>
+        </div>
+    </div>
+);
+
+// Products Section Component
+const ProductsSection = ({ title, products }) => (
+    <section className='features container'>
+        <h1 className="heading">{title}</h1>
+        <div className='products'>
+            {products.length === 0 ? (
+                <p>No products available</p>
+            ) : (
+                products.map((item) => (
+                    <div className="product" key={item._id}>
+                        <Product {...item} />
+                    </div>
+                ))
+            )}
+        </div>
+    </section>
+);
+
+// Offers Section Component
+const OffersSection = () => (
+    <section className='offers'>
+        <div className="overlay"></div>
+        <div className="offers-content">
+            <h1>Super Deals</h1>
+            <h3 className='mb-4'>Best Deals On Best Price</h3>
+            <Link to='/products'>Shop Now</Link>
+        </div>
+    </section>
+);
+
+// Blog Section Component
+const BlogSection = ({ blogData }) => (
+    <section className='container blogs'>
+        <h1 className="heading">Blog</h1>
+        {blogData && blogData.length > 0 ? (
+            <div className="row">
+                <div className="col-md-6 blog-content">
+                    <h3 className="title">{blogData[0].title || 'No Title'}</h3>
+                    <p className="description">{blogData[0].description || 'No Description'}</p>
+                    <p className="description">{blogData[0].description || 'No Description'}</p>
+                    <p className="description">{blogData[0].description || 'No Description'}</p>
+                    <p className="description">{blogData[0].description || 'No Description'}</p>
+                </div>
+                <div className="col-md-6 image-wrapper">
+                    <LazyLoadImage
+                        alt="Blog Image"
+                        height={200}
+                        src={blogData[0].image ? `http://localhost:8080/${blogData[0].image}` : defaultImage}
+                        width={200}
+                    />
+                </div>
+            </div>
+        ) : (
+            <p>No blog data available</p>
+        )}
+    </section>
+);
 
 export default Home;

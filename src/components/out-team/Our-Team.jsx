@@ -6,7 +6,7 @@ import './our-team.scss';
 
 export default function OurTeam() {
     return (
-        <div className="team-section">
+        <div className="container team-section">
             <h2 className="heading">Meet Our Team</h2>
             <div className="team-grid">
                 <div className="team-member">
