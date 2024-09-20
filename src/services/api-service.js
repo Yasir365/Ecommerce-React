@@ -48,18 +48,18 @@ const apiService = {
         const response = await axiosInstance.post('/products/add-product', data);
         return response;
     },
-    
+
     getProducts: async (data) => {
         const response = await axiosInstance.get(`/products/get-product?currentPage=${data.currentPage}&itemsPerPage=${data.itemsPerPage}&search=${data.search}`);
         return response;
     },
 
-    deleteProduct: async (data) => {
+    deleteProduct: async (id) => {
         setAuthToken();
-        const response = await axiosInstance.post('/products/delete-product', data);
+        const response = await axiosInstance.delete('/products/delete-product?productId=' + id);
         return response;
     },
-    
+
     udpateProduct: async (data) => {
         setAuthToken();
         const response = await axiosInstance.post('/products/update-product', data);

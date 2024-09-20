@@ -6,6 +6,7 @@ import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
 import toastrService from '../../../services/toastr-service';
+import Swal from 'sweetalert2';
 
 const ManageProducts = () => {
 
@@ -149,6 +150,29 @@ const ManageProducts = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const deleteProduct = async (id) => {
+    Swal.fire({
+      title: 'Are you sure!',
+      text: 'You want to delete this product?',
+      icon: 'warning',
+      confirmButtonText: 'OK',
+      cancelButtonText: 'No',
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await apiService.deleteProduct(id).then((response) => {
+          if (response.data.success) {
+            toastrService.success('Product Deleted Successfully...');
+            getProducts();
+          } else {
+            toastrService.error(response.data.message);
+          }
+        });
+      }
+    });
+
+  }
+
   return (
     <>
       <div className='manage-products'>
@@ -190,7 +214,7 @@ const ManageProducts = () => {
                         <td className='align-middle'>
                           <div className='d-flex justify-content-center'>
                             <button onClick={() => editProduct(item)} data-bs-toggle="modal" data-bs-target="#addProductModal"><i className="fa-solid fa-pen-to-square"></i></button>
-                            <button className="ms-2"><i className="fa-solid fa-trash"></i></button>
+                            <button className="ms-2" onClick={() => deleteProduct(item._id)}><i className="fa-solid fa-trash"></i></button>
                           </div>
                         </td>
                       </tr>
@@ -243,7 +267,7 @@ const ManageProducts = () => {
       </div>
 
 
-      {/* Modal Section */}
+      {/* ADD/Edit Modal */}
       <div className="modal fade" data-bs-backdrop="static" id="addProductModal" tabIndex="-1" role="dialog" aria-labelledby="addProductModalTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -253,7 +277,7 @@ const ManageProducts = () => {
             </div>
             <div className="modal-body">
               <form>
-                <input type="file" id="fileInput" style={{ display: 'none' }} name="fileInput" onChange={handleImageChange} />
+                <input type="file" id="fileInput" style={{ display: 'none' }} name="fileInput" onChange={handleImageChange} required />
                 <div className='image-container'>
                   <label htmlFor="fileInput">
                     <img src={preview} alt="Image Preview" width={150} height={150} style={{ cursor: 'pointer' }} />
@@ -262,17 +286,17 @@ const ManageProducts = () => {
                 </div>
 
                 <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="title" placeholder="" value={title} onChange={(event) => setTitle(event.target.value)} />
+                  <input type="text" className="form-control" id="title" placeholder="" value={title} onChange={(event) => setTitle(event.target.value)} required />
                   <label htmlFor="title">Title</label>
                 </div>
 
                 <div className="form-floating mb-3">
-                  <input type="number" className="form-control" id="price" placeholder="" value={price} onChange={(event) => setPrice(event.target.value)} />
+                  <input type="number" className="form-control" id="price" placeholder="" value={price} onChange={(event) => setPrice(event.target.value)} required />
                   <label htmlFor="price">Price</label>
                 </div>
 
                 <div className="form-floating">
-                  <textarea className="form-control" id="description" style={{ height: '150px' }} placeholder="" value={description} onChange={(event) => setDescription(event.target.value)} />
+                  <textarea className="form-control" id="description" style={{ height: '150px' }} placeholder="" value={description} onChange={(event) => setDescription(event.target.value)} required />
                   <label htmlFor="description">Description</label>
                 </div>
                 <p className='error'>{error}</p>
