@@ -14,9 +14,9 @@ import ForgetPassword from './pages/auth/Forget-Password';
 import Otp from './pages/auth/otp';
 import ResetPassword from './pages/auth/Reset-password';
 import NotFound from './pages/not-found/Not-Found';
-import Orders from './pages/admin/orders/Orders';
-import Messages from './pages/admin/messages/Messages';
 import ManageProducts from './pages/admin/manage-products/Manage-Products';
+import ManageQueries from './pages/admin/manage-queries/Manage-Queries';
+import ManageOrders from './pages/admin/manage-orders/Manage-Orders';
 
 
 const router = createBrowserRouter([
@@ -89,16 +89,16 @@ const router = createBrowserRouter([
                 element: <ManageProducts />,
             },
             {
-                path: 'orders',
-                element: <Orders />,
+                path: 'manage-orders',
+                element: <ManageOrders />,
             },
             {
                 path: 'manage-users',
                 element: <ManageUsers />,
             },
             {
-                path: 'messages',
-                element: <Messages />,
+                path: 'manage-queries',
+                element: <ManageQueries />,
             },
             {
                 path: '*',

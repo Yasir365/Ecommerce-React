@@ -1,4 +1,3 @@
-import './manage-users.scss';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../../components/loader/Loader';

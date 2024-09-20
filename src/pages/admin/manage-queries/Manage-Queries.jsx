@@ -1,7 +1,5 @@
-import './messages.scss'
 
-
-const Messages = () => {
+const ManageQueries = () => {
   return (
     <>
       <h1 className="heading">Manage Messages</h1>
@@ -9,4 +7,4 @@ const Messages = () => {
   )
 }
 
-export default Messages
+export default ManageQueries

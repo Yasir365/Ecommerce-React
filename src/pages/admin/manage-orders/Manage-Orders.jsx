@@ -1,10 +1,9 @@
-import './orders.scss'
 
-const Orders = () => {
+const ManageOrders = () => {
   return (
     <>
       <h1 className="heading">Manage Orders</h1>
     </>)
 }
 
-export default Orders
+export default ManageOrders
