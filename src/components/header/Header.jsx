@@ -69,11 +69,11 @@ const Header = () => {
                             </li>
                         </ul>
                         <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-                            <li className="nav-item mode">
+                            {/* <li className="nav-item mode">
                                 <button onClick={toggleTheme} className="nav-link">
                                     {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>}
                                 </button>
-                            </li>
+                            </li> */}
                             <li className="nav-item login">
                                 {!isLogin && <NavLink className="nav-link" aria-current="page" to="/login"> Login </NavLink>}
                                 {isLogin && <NavLink className="nav-link" aria-current="page" to="/login" onClick={logout}> Logout </NavLink>}

@@ -40,11 +40,11 @@ const AdminHeader = () => {
                     <i className="fa fa-bars" />
                 </button>
                 <div className="navbar-nav align-items-center ms-auto">
-                    <div className="nav-item">
+                    {/* <div className="nav-item">
                         <button onClick={toggleTheme} className="nav-link">
                             {theme === "light" ? <i className="fa-solid fa-moon"></i> : <i className="fa-regular fa-sun"></i>}
                         </button>
-                    </div>
+                    </div> */}
                     <div className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
                             <i className="fa fa-envelope me-lg-2" />
