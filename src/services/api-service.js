@@ -50,7 +50,7 @@ const apiService = {
     },
 
     getProducts: async (data) => {
-        const response = await axiosInstance.get(`/products/get-product?currentPage=${data.currentPage}&itemsPerPage=${data.itemsPerPage}&search=${data.search}`);
+        const response = await axiosInstance.post(`/products/get-product`, data);
         return response;
     },
 

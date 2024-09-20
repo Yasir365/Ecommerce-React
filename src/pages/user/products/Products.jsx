@@ -28,7 +28,6 @@ const Products = () => {
         const payload = {
             currentPage: currentPage + 1,
             itemsPerPage: ITEMS_PER_PAGE,
-            search: ''
         };
         try {
             const response = await apiService.getProducts(payload);

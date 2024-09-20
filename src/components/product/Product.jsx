@@ -23,7 +23,7 @@ const Product = (props) => {
                     <h5 className="card-title mb-2">{props.title}</h5>
                     <p className="card-text">{props.description}</p>
                     <div className="button-wrapper">
-                        <Link className="btn outline"  to={`/products/${props.id}`}>Details</Link>
+                        <Link className="btn outline"  to={`/products/${props._id}`}>Details</Link>
                         <Link className="btn fill" to="/cart">Buy Now</Link>
                     </div>
                 </div>

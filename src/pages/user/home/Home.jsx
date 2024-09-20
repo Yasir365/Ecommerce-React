@@ -13,23 +13,35 @@ const Home = () => {
     const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-        fetchProducts(1, 4, setFeaturedProducts);
-        fetchProducts(2, 4, setDealsProducts);
-        fetchProducts(1, 1, setBlogData);
+        fetchProducts(1, 4, '', '', setFeaturedProducts); 
+        fetchProducts(2, 4, '', '', setDealsProducts); 
+        fetchProducts(undefined, undefined, '', '66ed279156beb12e3564c64d', setBlogData);
     }, []);
 
-    // Fetch products based on page, perPage, and set the response to the provided state setter
-    const fetchProducts = async (page, itemsPerPage, setState) => {
-        const payload = { currentPage: page, itemsPerPage, search: '' };
+    const fetchProducts = async (page, itemsPerPage, search = '', productId = '', setState) => {
+        const payload = {};
+
+        if (page !== undefined && itemsPerPage !== undefined) {
+            payload.currentPage = page;
+            payload.itemsPerPage = itemsPerPage;
+        }
+
+        if(search){
+            payload.search = search;
+        }else if(productId){
+            payload.productId = productId;
+        }
+
         try {
             const response = await apiService.getProducts(payload);
             if (response.data.success) {
                 setState(response.data.data);
             }
         } catch (error) {
-            console.error(`Error fetching products for page ${page}:`, error);
+            console.error(`Error fetching products:`, error);
         }
     };
+
 
     return (
         <>

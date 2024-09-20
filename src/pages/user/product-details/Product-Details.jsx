@@ -1,36 +1,57 @@
-
 import { useEffect, useState } from 'react';
 import './product-details.scss';
 import { useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
-
-
+import apiService from '../../../services/api-service';
+import defaultImage from '../../../assets/default_no_image.jpg';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products/' + id)
-            .then((res) => res.json())
-            .then((responseData) => setProduct(responseData));
-    }, []);
+        fetchProduct(id);
+    }, [id]);
 
+    const fetchProduct = async (productId) => {
+        try {
+            const response = await apiService.getProducts({ productId });
+            if (response.data.success) {
+                setProduct(response.data.data[0]);
+            } else {
+                setError('Failed to fetch product details');
+            }
+        } catch (error) {
+            console.error(`Error fetching product:`, error);
+            setError('Error fetching product details');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    const ratingBreakdown = {
-        5: 5,
-        4: 2,
-        3: 0,
-        2: 0,
-        1: 2,
+    if (loading) {
+        return <div className="loading">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="error">{error}</div>;
     }
 
     return (
         <div className="product-detail-page container">
             <div className="product-main">
                 <div className="product-image">
-                    <img src={product.thumbnail} alt={product.title} />
+                    <LazyLoadImage
+                        alt={product.title}
+                        height={200}
+                        src={product.image ? `http://localhost:8080/${product.image}` : defaultImage}
+                        width={200}
+                    />
                 </div>
 
                 <div className="product-info">
@@ -39,59 +60,19 @@ const ProductDetails = () => {
                     <div className="product-price">${product.price}</div>
 
                     <div className="overall-rating">
-                        <h2>Overall Rating</h2>
                         <div className="rating-score">
-                            <span className="rating-number">{product.rating}</span>/5
                             <ReactStars
                                 count={5}
                                 size={30}
-                                value={4}
+                                value={product.rating}
                                 edit={false}
                                 activeColor="#ffd700"
                             />
                         </div>
-                        <p>{product && product.reviews ? product.reviews.length : 0} reviews</p>
                     </div>
 
-                    <button className="add-to-cart">Add to Cart</button>
-
-                    <div className="rating-breakdown">
-                        <h3>Rating Breakdown</h3>
-                        {Object.keys(ratingBreakdown).map(star => (
-                            <div className="rating-bar" key={star}>
-                                <span>{star} stars</span>
-                                <div className="bar">
-                                    <div className="fill" style={{ width: `${(ratingBreakdown[star] / 5) * 100}%` }}></div>
-                                </div>
-                                <span>{ratingBreakdown[star]}</span>
-                            </div>
-                        ))}
-                    </div>
+                    <button className="add-to-cart"><Link to="/cart">Add to Cart</Link></button>
                 </div>
-            </div>
-
-            <div className="reviews-section">
-                <h2>Most Helpful Reviews</h2>
-                {product && product.reviews ? product.reviews.map((review) => (
-                    <div className="review-card" key={review.id}>
-                        <div className="review-header">
-                            <span className="reviewer-name">{review.reviewerName}</span>
-                            <span className="review-date">{review.date}</span>
-                        </div>
-                        <ReactStars
-                            count={5}
-                            size={20}
-                            value={review.rating}
-                            edit={false}
-                            activeColor="#ffd700"
-                        />
-                        <p>{review.comment}</p>
-                    </div>
-                )) : ' NO REVIEWS '}
-            </div>
-
-            <div className="load-more-container">
-                <button className="load-more-btn">Load more</button>
             </div>
         </div>
     );
