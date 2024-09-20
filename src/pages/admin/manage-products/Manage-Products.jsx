@@ -224,7 +224,7 @@ const ManageProducts = () => {
                   {
                     loader && (
                       <tr>
-                        <td colSpan={7} className='text-center'>
+                        <td colSpan={8} className='text-center'>
                           <div className='loader-conatiner'><Loader /></div>
                         </td>
                       </tr>
@@ -233,7 +233,7 @@ const ManageProducts = () => {
                   {
                     !loader && data && data.length === 0 && (
                       <tr>
-                        <td colSpan={7} className='text-center'>No Data Found</td>
+                        <td colSpan={8} className='text-center'>No Data Found</td>
                       </tr>
                     )
                   }
