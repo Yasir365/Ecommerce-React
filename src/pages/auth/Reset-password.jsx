@@ -3,7 +3,7 @@ import hero2 from '../../assets/hero2.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
-import toastrService from '../../services/toastr-service';
+import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const ResetPassword = () => {
             const response = await apiService.resetPassword({ email, password });
             setLoader(false);
             if (response.success) {
-                toastrService.success('Password Reset Successful...');
+                swalToastr('success', 'Password Reset Successful...');
                 navigate('/login');
                 setError(null);
             } else {

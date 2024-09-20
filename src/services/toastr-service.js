@@ -1,18 +1,14 @@
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
-const toastrService = {
-    success: (message) => {
-        toast.success(message);
-    },
-    error: (message) => {
-        toast.error(message);
-    },
-    info: (message) => {
-        toast.info(message);
-    },
-    warn: (message) => {
-        toast.warn(message);
-    },
-}
+const swalToastr = (icon, title) => {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: icon,
+        title: title,
+        showConfirmButton: false,
+        timer: 3000,
+    });
+};
 
-export default toastrService
+export default swalToastr;

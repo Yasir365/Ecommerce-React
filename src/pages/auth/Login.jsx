@@ -3,7 +3,7 @@ import hero2 from '../../assets/hero2.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
-import toastrService from '../../services/toastr-service';
+import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
@@ -24,7 +24,7 @@ const Login = () => {
             setLoader(false);
             if (response.success) {
                 localStorage.setItem('token', response.token);
-                toastrService.success('Login Successful...');
+                swalToastr('success', 'Login Successful...');
                 if (response.role === 'admin') {
                     navigate('/admin');
                 } else {

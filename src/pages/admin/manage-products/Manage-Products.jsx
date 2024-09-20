@@ -5,7 +5,8 @@ import Loader from '../../../components/loader/Loader';
 import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
-import toastrService from '../../../services/toastr-service';
+import swalToastr from '../../../services/toastr-service';
+
 import Swal from 'sweetalert2';
 
 const ManageProducts = () => {
@@ -84,7 +85,7 @@ const ManageProducts = () => {
       setSubmitLoader(false);
 
       if (response.data.success) {
-        toastrService.success('Product Added Successfully...');
+        swalToastr('success ', 'Product Updated Successfully...');
         getProducts();
         resetModal();
       } else {
@@ -122,7 +123,7 @@ const ManageProducts = () => {
       const response = await apiService.udpateProduct(formData);
       setSubmitLoader(false);
       if (response.data.success) {
-        toastrService.success('Product Updated Successfully...');
+        swalToastr('success', 'Product Updated Successfully...');
         getProducts();
         resetModal();
       } else {
@@ -162,10 +163,10 @@ const ManageProducts = () => {
       if (result.isConfirmed) {
         await apiService.deleteProduct(id).then((response) => {
           if (response.data.success) {
-            toastrService.success('Product Deleted Successfully...');
+            swalToastr('success','Product Deleted Successfully...');
             getProducts();
           } else {
-            toastrService.error(response.data.message);
+            swalToastr('error',response.data.message);
           }
         });
       }

@@ -3,7 +3,7 @@ import hero2 from '../../assets/hero2.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
-import toastrService from '../../services/toastr-service';
+import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
 import OtpInput from 'react-otp-input';
 import { useLocation } from 'react-router-dom';
@@ -27,7 +27,7 @@ const Otp = () => {
             const response = await apiService.forgetPassword({ email });
             setLoader(false);
             if (response.success) {
-                toastrService.success('Email has been sent to your Gmail...');
+                swalToastr('success', 'Email has been sent to your Gmail...');
                 setError(null);
             } else {
                 setError(response.message);

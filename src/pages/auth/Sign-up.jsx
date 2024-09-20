@@ -3,7 +3,7 @@ import hero2 from '../../assets/hero2.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
-import toastrService from '../../services/toastr-service';
+import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -30,10 +30,10 @@ const SignUp = () => {
             const response = await apiService.signup({ name, email, phone, password });
             setLoader(false);
             if (response.success) {
-                toastrService.success('Sign up Successful...');
+                swalToastr('success', 'Sign up Successful...');
                 navigate('/login');
                 setError(null);
-            }else{
+            } else {
                 setError(response.message);
             }
         } catch (error) {
