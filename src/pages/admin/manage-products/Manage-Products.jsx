@@ -85,7 +85,7 @@ const ManageProducts = () => {
       setSubmitLoader(false);
 
       if (response.data.success) {
-        swalToastr('success ', 'Product Updated Successfully!');
+        swalToastr('success', 'Product Updated Successfully!');
         getProducts();
         resetModal();
       } else {
