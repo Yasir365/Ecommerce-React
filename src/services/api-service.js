@@ -54,6 +54,18 @@ const apiService = {
         return response;
     },
 
+    toggleUserStatus: async (id) => {
+        setAuthToken();
+        const response = await axiosInstance.get('/users/toggle-user-status?userId=' + id);
+        return response;
+    },
+
+    getUsers: async (data) => {
+        setAuthToken();
+        const response = await axiosInstance.post('/users/list', data);
+        return response;
+    },
+
     deleteProduct: async (id) => {
         setAuthToken();
         const response = await axiosInstance.delete('/products/delete-product?productId=' + id);
