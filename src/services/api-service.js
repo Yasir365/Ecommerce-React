@@ -60,7 +60,7 @@ const apiService = {
         return response;
     },
 
-    udpateProduct: async (data) => {
+    updateProduct: async (data) => {
         setAuthToken();
         const response = await axiosInstance.post('/products/update-product', data);
         return response;
