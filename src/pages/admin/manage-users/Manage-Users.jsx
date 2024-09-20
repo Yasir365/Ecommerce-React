@@ -157,9 +157,13 @@ const UserTable = ({ data, loader, currentPage, itemsPerPage, toggleStatus }) =>
                                 </td>
                                 <td className='align-middle'>
                                     <div className='d-flex justify-content-center'>
-                                        <button className='ms-2' onClick={() => toggleStatus(item)}>
-                                            {item.status === 'ACTIVE' ? 'Deactivate' : 'Activate'}
-                                        </button>
+                                        {
+                                        item.role != 'admin' &&
+                                            <button className='ms-2' onClick={() => toggleStatus(item)}>
+                                                {item.status === 'ACTIVE' ? 'Deactivate' : 'Activate'}
+                                            </button>
+                                        }
+                                        {item.role=='admin' && '--'}
                                     </div>
                                 </td>
                             </tr>
