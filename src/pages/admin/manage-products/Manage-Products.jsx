@@ -16,8 +16,9 @@ const getInitialFormData = () => ({
   title: '',
   price: 0,
   description: '',
-  image: null,
-  preview: defaultImage,
+  images: [],
+  preview: '', // For thumbnail preview
+  imagePreviews: [] // For other images previews
 });
 
 const ManageProducts = () => {
@@ -67,20 +68,42 @@ const ManageProducts = () => {
   };
 
   const handleImageChange = (event) => {
+    const { name } = event.target;
     const file = event.target.files[0];
+
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => setFormData({ ...formData, image: file, preview: reader.result });
+
+      reader.onload = () => {
+        if (name === 'thumbnail') {
+          setFormData({ ...formData, thumbnail: file, preview: reader.result });
+        } else {
+          const imageIndex = parseInt(name.replace('image', ''), 10) - 1; // Get index from image1, image2, etc.
+          const updatedImages = [...formData.images];
+          const updatedImagePreviews = [...formData.imagePreviews];
+
+          updatedImages[imageIndex] = file;
+          updatedImagePreviews[imageIndex] = reader.result;
+
+          setFormData({
+            ...formData,
+            images: updatedImages,
+            imagePreviews: updatedImagePreviews,
+          });
+        }
+      };
+
       reader.readAsDataURL(file);
     }
   };
 
-  // Add or update product
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { title, price, description, image } = formData;
+    const { title, price, description, thumbnail, images } = formData;
 
-    if (!title || !price || !description || (!image && modalState === 'add')) {
+    // Check for required fields
+    if (!title || !price || !description || (!thumbnail && modalState === 'add')) {
       setError('All fields are required');
       return;
     }
@@ -91,10 +114,16 @@ const ManageProducts = () => {
       payload.append('title', title);
       payload.append('price', price);
       payload.append('description', description);
-      if (image) payload.append('image', image);
+
+      if (thumbnail) payload.append('thumbnail', thumbnail);
+      images.forEach((image, index) => {
+        if (image) payload.append(`images`, image);
+      });
+
       if (modalState === 'edit') {
-        payload.append('productId', formData._id); 
+        payload.append('productId', formData._id);
       }
+
       const response =
         modalState === 'add'
           ? await apiService.addProduct(payload)
@@ -114,11 +143,14 @@ const ManageProducts = () => {
     }
   };
 
+
   // Edit product
   const editProduct = (product) => {
     setFormData({
       ...product,
-      preview: `http://localhost:8080/${product.image}`,
+      preview: `http://localhost:8080/${product.thumbnail}`, // Set the thumbnail preview
+      images: product.images || [], // Ensure images array is set
+      imagePreviews: product.images.map(img => `http://localhost:8080/${img}`) // Set previews for images
     });
     setModalState('edit');
   };
@@ -239,7 +271,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                 </th>
                 <td className='align-middle'>
                   <LazyLoadImage
-                    src={item.image ? `http://localhost:8080/${item.image}` : defaultImage}
+                    src={item.thumbnail ? `http://localhost:8080/${item.thumbnail}` : defaultImage}
                     alt='Image'
                   />
                 </td>
@@ -252,11 +284,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                 <td className='align-middle'>{item.rating}</td>
                 <td className='align-middle'>
                   <div className='d-flex justify-content-center'>
-                    <button
-                      onClick={() => editProduct(item)}
-                      data-bs-toggle='modal'
-                      data-bs-target='#addProductModal'
-                    >
+                    <button onClick={() => editProduct(item)} data-bs-toggle='modal' data-bs-target='#addProductModal' >
                       <i className='fa-solid fa-pen-to-square'></i>
                     </button>
                     <button className='ms-2' onClick={() => deleteProduct(item._id)}>
@@ -309,50 +337,64 @@ const Pagination = ({ pageCount, currentPage, onPageChange }) => (
 );
 
 const ProductModal = ({ formData, error, modalState, submitLoader, handleInputChange, handleImageChange, handleSubmit, }) => (
-  <div
-    className='modal fade'
-    data-bs-backdrop='static'
-    id='addProductModal'
-    tabIndex='-1'
-    role='dialog'
-    aria-labelledby='addProductModalTitle'
-    aria-hidden='true'
-  >
-    <div className='modal-dialog modal-dialog-centered' role='document'>
+  <div className='modal fade' data-bs-backdrop='static' id='addProductModal' tabIndex='-1' role='dialog' aria-labelledby='addProductModalTitle' aria-hidden='true' >
+    <div className='modal-dialog modal-dialog-centered modal-lg' role='document'>
       <div className='modal-content'>
         <div className='modal-header'>
           <h5 className='modal-title'>
             {modalState === 'add' ? 'Add' : 'Edit'} Product
           </h5>
-          <button
-            type='button'
-            className='btn-close'
-            data-bs-dismiss='modal'
-            aria-label='Close'
-            id='closeAddProductModalBtn'
-          ></button>
+          <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close' id='closeAddProductModalBtn' ></button>
         </div>
         <div className='modal-body'>
           <form onSubmit={handleSubmit}>
+            {/* Thumbnail Upload */}
             <input
               type='file'
-              id='fileInput'
+              id='thumbnailFile'
               style={{ display: 'none' }}
-              name='fileInput'
+              name='thumbnail'
               onChange={handleImageChange}
             />
             <div className='image-container'>
-              <label htmlFor='fileInput'>
+              <label htmlFor='thumbnailFile'>
                 <img
-                  src={formData.preview}
-                  alt='Image Preview'
+                  src={formData.preview || defaultImage}
+                  alt='Thumbnail Preview'
                   width={150}
                   height={150}
                   style={{ cursor: 'pointer' }}
                 />
+                Thumbnail
               </label>
             </div>
 
+            {/* Additional Images Upload */}
+            <div className='d-flex justify-content-between'>
+              {[1, 2, 3].map((index) => (
+                <div key={index} className='image-container'>
+                  <input
+                    type='file'
+                    id={`image${index}`}
+                    style={{ display: 'none' }}
+                    name={`image${index}`}
+                    onChange={handleImageChange}
+                  />
+                  <label htmlFor={`image${index}`}>
+                    <img
+                      src={formData.imagePreviews[index - 1] || defaultImage}
+                      alt={`Image ${index} Preview`}
+                      width={150}
+                      height={150}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    Image {index}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            {/* Other Form Fields */}
             <div className='form-floating mb-3'>
               <input
                 type='text'
@@ -398,12 +440,7 @@ const ProductModal = ({ formData, error, modalState, submitLoader, handleInputCh
           </form>
         </div>
         <div className='footer'>
-          <button
-            type='button'
-            className='submit-btn'
-            onClick={handleSubmit}
-            disabled={submitLoader}
-          >
+          <button type='button' className='submit-btn' onClick={handleSubmit} disabled={submitLoader} >
             {modalState === 'add' ? 'Save' : 'Update'}
           </button>
         </div>

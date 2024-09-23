@@ -12,7 +12,7 @@ const Product = (props) => {
                 <LazyLoadImage
                 alt={defaultImage}
                 height={200}
-                src={props.image ? `http://localhost:8080/${props.image}` : defaultImage}
+                src={props.thumbnail ? `http://localhost:8080/${props.thumbnail}` : defaultImage}
                 width={200} />
                 </div>
                 <div className="card-body">

@@ -13,8 +13,8 @@ const Home = () => {
     const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-        fetchProducts(1, 4, '', '', setFeaturedProducts); 
-        fetchProducts(2, 4, '', '', setDealsProducts); 
+        fetchProducts(1, 4, '', '', setFeaturedProducts);
+        fetchProducts(2, 4, '', '', setDealsProducts);
         fetchProducts(undefined, undefined, '', '66ed279156beb12e3564c64d', setBlogData);
     }, []);
 
@@ -26,9 +26,9 @@ const Home = () => {
             payload.itemsPerPage = itemsPerPage;
         }
 
-        if(search){
+        if (search) {
             payload.search = search;
-        }else if(productId){
+        } else if (productId) {
             payload.productId = productId;
         }
 
@@ -127,7 +127,7 @@ const BlogSection = ({ blogData }) => (
                     <LazyLoadImage
                         alt="Blog Image"
                         height={200}
-                        src={blogData[0].image ? `http://localhost:8080/${blogData[0].image}` : defaultImage}
+                        src={blogData[0].thumbnail ? `http://localhost:8080/${blogData[0].thumbnail}` : defaultImage}
                         width={200}
                     />
                 </div>

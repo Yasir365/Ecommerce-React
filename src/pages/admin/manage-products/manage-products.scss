@@ -92,6 +92,13 @@
     }
 }
 
+.image-container label{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 600;
+    color: var(--primary);
+}
 .submit-btn {
     background-color: var(--primary);
     color: var(--text2);
