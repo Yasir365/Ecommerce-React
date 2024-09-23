@@ -50,7 +50,7 @@ const ProductDetails = () => {
                     <LazyLoadImage
                         alt="Product Image"
                         height={200}
-                        src={product.image ? BaseImageURl + `${product.thumbnail}` : defaultImage}
+                        src={product.thumbnail ? BaseImageURl + `${product.thumbnail}` : defaultImage}
                         width={200}
                     />
                 </div>
