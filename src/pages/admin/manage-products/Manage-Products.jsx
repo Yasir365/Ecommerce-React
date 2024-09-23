@@ -353,45 +353,21 @@ const ProductModal = ({ formData, error, modalState, submitLoader, handleInputCh
         <div className='modal-body'>
           <form onSubmit={handleSubmit}>
             {/* Thumbnail Upload */}
-            <input
-              type='file'
-              id='thumbnailFile'
-              style={{ display: 'none' }}
-              name='thumbnail'
-              onChange={handleImageChange}
-            />
+            <input type='file' id='thumbnailFile' style={{ display: 'none' }} name='thumbnail' onChange={handleImageChange} />
             <div className='image-container'>
               <label htmlFor='thumbnailFile'>
-                <img
-                  src={formData.preview || defaultImage}
-                  alt='Thumbnail Preview'
-                  width={150}
-                  height={150}
-                  style={{ cursor: 'pointer' }}
-                />
+                <img src={formData.preview || defaultImage} alt='Thumbnail Preview' width={150} height={150} style={{ cursor: 'pointer' }} />
                 Thumbnail
               </label>
             </div>
 
             {/* Additional Images Upload */}
             <div className='d-flex justify-content-between'>
-              {[1, 2, 3].map((index) => (
+              {[1, 2, 3, 4].map((index) => (
                 <div key={index} className='image-container'>
-                  <input
-                    type='file'
-                    id={`image${index}`}
-                    style={{ display: 'none' }}
-                    name={`image${index}`}
-                    onChange={handleImageChange}
-                  />
+                  <input type='file' id={`image${index}`} style={{ display: 'none' }} name={`image${index}`} onChange={handleImageChange} />
                   <label htmlFor={`image${index}`}>
-                    <img
-                      src={formData.imagePreviews[index - 1] || defaultImage}
-                      alt={`Image ${index} Preview`}
-                      width={150}
-                      height={150}
-                      style={{ cursor: 'pointer' }}
-                    />
+                    <img src={formData.imagePreviews[index - 1] || defaultImage} alt={`Image ${index} Preview`} width={150} height={150} style={{ cursor: 'pointer' }} />
                     Image {index}
                   </label>
                 </div>
@@ -400,44 +376,17 @@ const ProductModal = ({ formData, error, modalState, submitLoader, handleInputCh
 
             {/* Other Form Fields */}
             <div className='form-floating mb-3'>
-              <input
-                type='text'
-                className='form-control'
-                id='title'
-                placeholder=''
-                name='title'
-                value={formData.title}
-                onChange={handleInputChange}
-                required
-              />
+              <input type='text' className='form-control' id='title' placeholder='' name='title' value={formData.title} onChange={handleInputChange} required />
               <label htmlFor='title'>Title</label>
             </div>
 
             <div className='form-floating mb-3'>
-              <input
-                type='number'
-                className='form-control'
-                id='price'
-                placeholder=''
-                name='price'
-                value={formData.price}
-                onChange={handleInputChange}
-                required
-              />
+              <input type='number' className='form-control' id='price' placeholder='' name='price' value={formData.price} onChange={handleInputChange} required />
               <label htmlFor='price'>Price</label>
             </div>
 
             <div className='form-floating'>
-              <textarea
-                className='form-control'
-                id='description'
-                style={{ height: '150px' }}
-                placeholder=''
-                name='description'
-                value={formData.description}
-                onChange={handleInputChange}
-                required
-              />
+              <textarea className='form-control' id='description' style={{ height: '150px' }} placeholder='' name='description' value={formData.description} onChange={handleInputChange} required />
               <label htmlFor='description'>Description</label>
             </div>
             {error && <p className='error'>{error}</p>}
