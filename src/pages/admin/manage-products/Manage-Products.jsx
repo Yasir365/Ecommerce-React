@@ -14,11 +14,11 @@ const ITEMS_PER_PAGE = 10;
 
 // Helper Functions
 const getInitialFormData = () => ({
-  title: null,
-  price: null,
-  description: null,
+  title: '',
+  price: '',
+  description: '',
   images: [],
-  preview: null, // For thumbnail preview
+  preview: '', // For thumbnail preview
   imagePreviews: [] // For other images previews
 });
 
