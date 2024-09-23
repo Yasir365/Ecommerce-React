@@ -6,6 +6,7 @@ import apiService from '../../../services/api-service';
 import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
+const BaseImageURl = 'http://localhost:8080/uploads/';
 
 
 const ProductDetails = () => {
@@ -47,9 +48,9 @@ const ProductDetails = () => {
             <div className="product-main">
                 <div className="product-image">
                     <LazyLoadImage
-                        alt={product.title}
+                        alt="Product Image"
                         height={200}
-                        src={product.image ? `http://localhost:8080/${product.image}` : defaultImage}
+                        src={product.image ? BaseImageURl + `${product.thumbnail}` : defaultImage}
                         width={200}
                     />
                 </div>

@@ -7,17 +7,18 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
 import swalToastr from '../../../services/toastr-service';
 import Swal from 'sweetalert2';
+const BaseImageURl = 'http://localhost:8080/uploads/';
 
 // Constants
 const ITEMS_PER_PAGE = 10;
 
 // Helper Functions
 const getInitialFormData = () => ({
-  title: '',
-  price: 0,
-  description: '',
+  title: null,
+  price: null,
+  description: null,
   images: [],
-  preview: '', // For thumbnail preview
+  preview: null, // For thumbnail preview
   imagePreviews: [] // For other images previews
 });
 
@@ -148,11 +149,11 @@ const ManageProducts = () => {
   const editProduct = (product) => {
     setFormData({
       ...product,
-      preview: `http://localhost:8080/${product.thumbnail}`, // Set the thumbnail preview
+      preview: BaseImageURl+`${product.thumbnail}`, // Set the thumbnail preview
       images: product.images || [], // Ensure images array is set
       imagePreviews: product.images.map((img, index) => {
         const key = Object.keys(img)[0]; // Get the image key (image1, image2, etc.)
-        return `http://localhost:8080/uploads/${img[key]}`;
+        return BaseImageURl+`${img[key]}`;
       }) // Set previews for images
     });
     setModalState('edit');
@@ -274,7 +275,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                 </th>
                 <td className='align-middle'>
                   <LazyLoadImage
-                    src={item.thumbnail ? `http://localhost:8080/${item.thumbnail}` : defaultImage}
+                    src={item.thumbnail ? BaseImageURl+`${item.thumbnail}` : defaultImage}
                     alt='Image'
                   />
                 </td>

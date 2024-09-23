@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import defaultImage from '../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+const BaseImageURl = 'http://localhost:8080/uploads/';
 
 const Product = (props) => {
     return (
@@ -12,7 +13,7 @@ const Product = (props) => {
                 <LazyLoadImage
                 alt={defaultImage}
                 height={200}
-                src={props.thumbnail ? `http://localhost:8080/${props.thumbnail}` : defaultImage}
+                src={props.thumbnail ? BaseImageURl+`${props.thumbnail}` : defaultImage}
                 width={200} />
                 </div>
                 <div className="card-body">
