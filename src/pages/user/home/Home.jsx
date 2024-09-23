@@ -16,7 +16,7 @@ const Home = () => {
     useEffect(() => {
         fetchProducts(1, 4, '', '', setFeaturedProducts);
         fetchProducts(2, 4, '', '', setDealsProducts);
-        fetchProducts(undefined, undefined, '', '66f1597c94dfa84f0701d9a3', setBlogData);
+        fetchProducts(10, 1, '', '', setBlogData);
     }, []);
 
     const fetchProducts = async (page, itemsPerPage, search = '', productId = '', setState) => {
