@@ -117,7 +117,7 @@ const ManageProducts = () => {
 
       if (thumbnail) payload.append('thumbnail', thumbnail);
       images.forEach((image, index) => {
-        if (image) payload.append(`images`, image);
+        if (image) payload.append(`image${index + 1}`, image);
       });
 
       if (modalState === 'edit') {
@@ -150,7 +150,10 @@ const ManageProducts = () => {
       ...product,
       preview: `http://localhost:8080/${product.thumbnail}`, // Set the thumbnail preview
       images: product.images || [], // Ensure images array is set
-      imagePreviews: product.images.map(img => `http://localhost:8080/${img}`) // Set previews for images
+      imagePreviews: product.images.map((img, index) => {
+        const key = Object.keys(img)[0]; // Get the image key (image1, image2, etc.)
+        return `http://localhost:8080/uploads/${img[key]}`;
+      }) // Set previews for images
     });
     setModalState('edit');
   };
