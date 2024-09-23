@@ -46,13 +46,32 @@ const ProductDetails = () => {
     return (
         <div className="product-detail-page container">
             <div className="product-main">
-                <div className="product-image">
-                    <LazyLoadImage
-                        alt="Product Image"
-                        height={200}
-                        src={product.thumbnail ? BaseImageURl + `${product.thumbnail}` : defaultImage}
-                        width={200}
-                    />
+                <div className="product-images">
+                    <div className="thumbnail">
+                        <LazyLoadImage
+                            alt="Product Image"
+                            height={200}
+                            src={product.thumbnail ? BaseImageURl + `${product.thumbnail}` : defaultImage}
+                            width={200}
+                        />
+                    </div>
+
+                    <div className="additional-images">
+                        {product.images && product.images.length > 0 ? (
+                            product.images.map((image, index) => (
+                                <div key={index} className="additional-image">
+                                    <LazyLoadImage
+                                        alt={`Image ${index + 1}`}
+                                        height={80}
+                                        src={BaseImageURl + Object.values(image)[0]}
+                                        width={80}
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <p>No additional images available</p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="product-info">
