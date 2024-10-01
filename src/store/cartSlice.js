@@ -17,10 +17,12 @@ const cartSlice = createSlice({
         removeItem(state, action) {
             const itemId = action.payload;
             state.items = state.items.filter((item) => item._id !== itemId);
+            swalToastr('success', 'Item removed from cart!');
             localStorage.setItem('cart', JSON.stringify(state.items));
         },
         clearCart(state) {
             state.items = [];
+            swalToastr('success', 'Cart cleared!');
             localStorage.setItem('cart', JSON.stringify(state.items));
         },
     },
