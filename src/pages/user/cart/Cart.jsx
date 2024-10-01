@@ -2,7 +2,6 @@ import './cart.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, clearCart } from '../../../store/cartSlice';
 import { Link } from 'react-router-dom';
-const BaseImageURl = 'http://localhost:8080/uploads/';
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const Cart = () => {
                     <ul className='product-container'>
                         {cartItems.map((item) => (
                             <li key={item._id} className='item'>
-                                <img src={BaseImageURl + `${item.thumbnail}`} alt="" />
+                                <img src={`${item.thumbnail.path}`} alt="" />
                                 <h3>{item.title}</h3>
                                 <p className='description'>{item.description}</p>
                                 <div className='right'>
