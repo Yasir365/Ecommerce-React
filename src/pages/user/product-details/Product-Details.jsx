@@ -3,7 +3,7 @@ import './product-details.scss';
 import { useParams, Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import apiService from '../../../services/api-service';
-import defaultImage from '../../../assets/default_no_image.jpg';
+import defaultImage from '/public/images/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../store/cartSlice';

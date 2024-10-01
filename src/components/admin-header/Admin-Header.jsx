@@ -1,5 +1,5 @@
 import './admin-header.scss';
-import userImage from '../../assets/member/1.jpg';
+import userImage from '/public/images/member/1.jpg';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 

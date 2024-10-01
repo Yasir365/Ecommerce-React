@@ -1,7 +1,7 @@
 
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import userImage from '../../assets/member/1.jpg';
+import logo from '/public/images/logo.png';
+import userImage from '/public/images/member/1.jpg';
 import './admin-sidebar.scss';
 
 

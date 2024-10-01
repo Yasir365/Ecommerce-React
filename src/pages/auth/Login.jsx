@@ -1,11 +1,11 @@
 import './auth.scss';
-import hero2 from '../../assets/hero2.jpg';
+import hero2 from '/public/images/hero2.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
 import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import logo from '/public/images/logo.png';
 
 
 const Login = () => {

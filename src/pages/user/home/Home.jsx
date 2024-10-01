@@ -4,7 +4,7 @@ import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
 import OurTeam from '../../../components/out-team/Our-Team';
 import apiService from '../../../services/api-service';
-import defaultImage from '../../../assets/default_no_image.jpg';
+import defaultImage from '/public/images/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const BaseImageURl = 'http://localhost:8080/uploads/';
 
