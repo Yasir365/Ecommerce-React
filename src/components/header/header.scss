@@ -25,6 +25,7 @@
 
         .nav-item {
             margin-right: 8px;
+            position: relative;
 
             @include max(768px) {
                 border-bottom: 1px solid var(--text);
@@ -90,6 +91,18 @@
                     font-size: 1.5rem;
                     color: var(--text);
                 }
+            }
+
+            .count {
+                position: absolute;
+                top: -5px;
+                right: -7px;
+                background-color: var(--primary);
+                color: var(--text2);
+                font-size: 0.8rem;
+                font-weight: 600;
+                border-radius: 50%;
+                padding: 0px 5px;
             }
         }
 

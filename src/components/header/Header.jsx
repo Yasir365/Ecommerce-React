@@ -5,10 +5,15 @@ import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import apiService from '../../services/api-service';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 const Header = () => {
+    const cartItemsCount = useSelector((state) => state.cart.items.length);
+    console.log("Count ", cartItemsCount);
+    
+
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
@@ -65,6 +70,7 @@ const Header = () => {
                                 <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/about"> About </NavLink>
                             </li>
                             <li className="nav-item">
+                                <span className='count'>{cartItemsCount}</span>
                                 <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/cart"> <i className="fa-solid fa-cart-shopping"></i> </NavLink>
                             </li>
                         </ul>
