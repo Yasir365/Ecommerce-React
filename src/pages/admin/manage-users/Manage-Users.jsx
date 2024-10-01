@@ -81,7 +81,7 @@ const ManageUsers = () => {
     };
 
     return (
-        <div className='manage-products'>
+        <div className='page'>
             <div className='filter mb-4'>
                 <div>
                     <input

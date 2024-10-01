@@ -7,7 +7,7 @@ const swalToastr = (icon, title) => {
         icon: icon,
         title: title,
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2500,
     });
 };
 

@@ -24,10 +24,10 @@ const Login = () => {
             setLoader(false);
             if (response.success) {
                 localStorage.setItem('token', response.token);
-                swalToastr('success', 'Login Successful...');
                 if (response.role === 'admin') {
                     navigate('/admin');
                 } else {
+                    swalToastr('success', 'Login Successful...');
                     navigate('/products');
                 }
                 setError(null);

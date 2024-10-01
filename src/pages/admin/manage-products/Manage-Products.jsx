@@ -1,4 +1,4 @@
-import './manage-products.scss';
+import '../admin-pages.scss';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../../components/loader/Loader';
@@ -149,11 +149,11 @@ const ManageProducts = () => {
   const editProduct = (product) => {
     setFormData({
       ...product,
-      preview: BaseImageURl+`${product.thumbnail}`, // Set the thumbnail preview
+      preview: BaseImageURl + `${product.thumbnail}`, // Set the thumbnail preview
       images: product.images || [], // Ensure images array is set
       imagePreviews: product.images.map((img, index) => {
         const key = Object.keys(img)[0]; // Get the image key (image1, image2, etc.)
-        return BaseImageURl+`${img[key]}`;
+        return BaseImageURl + `${img[key]}`;
       }) // Set previews for images
     });
     setModalState('edit');
@@ -199,7 +199,7 @@ const ManageProducts = () => {
   };
 
   return (
-    <div className='manage-products'>
+    <div className='page'>
       <div className='filter mb-4'>
         <div>
           <input
@@ -275,7 +275,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                 </th>
                 <td className='align-middle'>
                   <LazyLoadImage
-                    src={item.thumbnail ? BaseImageURl+`${item.thumbnail}` : defaultImage}
+                    src={item.thumbnail ? BaseImageURl + `${item.thumbnail}` : defaultImage}
                     alt='Image'
                   />
                 </td>
@@ -301,9 +301,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
             {loader && (
               <tr>
                 <td colSpan={8} className='text-center'>
-                  <div className='loader-container'>
-                    <Loader />
-                  </div>
+                  <Loader />
                 </td>
               </tr>
             )}
