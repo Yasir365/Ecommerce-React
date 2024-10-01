@@ -19,10 +19,10 @@ const AdminSidebar = () => {
     return (
         <div className="sidebar">
             <nav className="navbar pe-4 pb-3">
-                <Link to="/admin" className="navbar-brand mx-4 mb-3 ">
+                <div  className="navbar-brand mx-4 mb-3 ">
                     <img src={logo} alt="Logo" />
                     <div className="close-btn" onClick={closeSidebar}><i className="fa-solid fa-xmark"></i></div>
-                </Link>
+                </div>
                 <div className="user-profile d-flex align-items-center ms-4 mb-4">
                     <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                     <div className="ms-3">

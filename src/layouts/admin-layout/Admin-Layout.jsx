@@ -46,7 +46,7 @@ const AdminLayout = () => {
 
     // Render the admin layout if authorized
     return (
-        <div >
+        <div className="admin-layout">
             <div className="sidebar-container">
                 <Sidebar />
             </div>
