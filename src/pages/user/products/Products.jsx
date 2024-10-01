@@ -5,7 +5,7 @@ import './products.scss';
 import Loader from '../../../components/loader/Loader';
 import apiService from '../../../services/api-service';
 
-// Constants
+
 const ITEMS_PER_PAGE = 12;
 
 const Products = () => {
@@ -14,15 +14,12 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
-    // Fetch products whenever currentPage changes
     useEffect(() => {
         fetchProducts();
     }, [currentPage]);
 
-    // Calculate page count
     const pageCount = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
-    // Fetch products from API
     const fetchProducts = async () => {
         setLoading(true);
         const payload = {
@@ -44,7 +41,6 @@ const Products = () => {
         }
     };
 
-    // Handle page change
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
     };
@@ -69,7 +65,6 @@ const Products = () => {
     );
 };
 
-// Component for rendering list of products
 const ProductList = ({ products }) => (
     <div className='products mb-5'>
         {products.length === 0 ? (
@@ -84,7 +79,6 @@ const ProductList = ({ products }) => (
     </div>
 );
 
-// Component for rendering pagination controls
 const PaginationControls = ({ pageCount, currentPage, onPageChange }) => (
     <ReactPaginate
         previousLabel={<i className='fa-solid fa-chevron-left'></i>}

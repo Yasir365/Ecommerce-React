@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
 import './product-details.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import apiService from '../../../services/api-service';
 import defaultImage from '../../../assets/default_no_image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link } from 'react-router-dom';
-const BaseImageURl = 'http://localhost:8080/uploads/';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../../store/cartSlice';
 
+const BaseImageURl = 'http://localhost:8080/uploads/';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+
+    const handleAddItem = () => {
+        dispatch(addItem(product));
+    };
 
     useEffect(() => {
         fetchProduct(id);
@@ -91,7 +97,9 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    <button className="add-to-cart"><Link to="/cart">Add to Cart</Link></button>
+                    <button className="add-to-cart" onClick={handleAddItem}>
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
