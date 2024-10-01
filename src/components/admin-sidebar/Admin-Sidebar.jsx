@@ -1,7 +1,7 @@
 
 import { Link, NavLink } from 'react-router-dom';
 import logo from '/public/images/logo.png';
-import userImage from '/public/images/member/1.jpg';
+import userImage from '/public/images/member/1.webp';
 import './admin-sidebar.scss';
 
 
@@ -19,7 +19,7 @@ const AdminSidebar = () => {
     return (
         <div className="sidebar">
             <nav className="navbar pe-4 pb-3">
-                <div  className="navbar-brand mx-4 mb-3 ">
+                <div className="navbar-brand mx-4 mb-3 ">
                     <img src={logo} alt="Logo" />
                     <div className="close-btn" onClick={closeSidebar}><i className="fa-solid fa-xmark"></i></div>
                 </div>

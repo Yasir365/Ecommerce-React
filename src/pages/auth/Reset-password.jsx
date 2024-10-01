@@ -1,5 +1,5 @@
 import './auth.scss';
-import hero2 from '/public/images/hero2.jpg';
+import hero2 from '/public/images/hero2.webp';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';

@@ -1,7 +1,7 @@
-import member1 from '/public/images/member/1.jpg';
-import member2 from '/public/images/member/2.jpg';
-import member3 from '/public/images/member/3.jpg';
-import member4 from '/public/images/member/4.jpg';
+import member1 from '/public/images/member/1.webp';
+import member2 from '/public/images/member/2.webp';
+import member3 from '/public/images/member/3.webp';
+import member4 from '/public/images/member/4.webp';
 import './our-team.scss';
 
 export default function OurTeam() {

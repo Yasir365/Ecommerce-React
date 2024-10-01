@@ -4,7 +4,7 @@ import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
 import OurTeam from '../../../components/out-team/Our-Team';
 import apiService from '../../../services/api-service';
-import defaultImage from '/public/images/default_no_image.jpg';
+import defaultImage from '/public/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const BaseImageURl = 'http://localhost:8080/uploads/';
 
@@ -128,7 +128,7 @@ const BlogSection = ({ blogData }) => (
                     <LazyLoadImage
                         alt="Blog Image"
                         height={200}
-                        src={blogData[0].thumbnail ? BaseImageURl+`${blogData[0].thumbnail}` : defaultImage}
+                        src={blogData[0].thumbnail ? BaseImageURl + `${blogData[0].thumbnail}` : defaultImage}
                         width={200}
                     />
                 </div>
