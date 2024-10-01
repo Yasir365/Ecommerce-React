@@ -6,7 +6,6 @@ import OurTeam from '../../../components/out-team/Our-Team';
 import apiService from '../../../services/api-service';
 import defaultImage from '/public/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-const BaseImageURl = 'http://localhost:8080/uploads/';
 
 const Home = () => {
     const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -16,7 +15,7 @@ const Home = () => {
     useEffect(() => {
         fetchProducts(1, 4, '', '', setFeaturedProducts);
         fetchProducts(2, 4, '', '', setDealsProducts);
-        fetchProducts(10, 1, '', '', setBlogData);
+        fetchProducts(1, 1, '', '', setBlogData);
     }, []);
 
     const fetchProducts = async (page, itemsPerPage, search = '', productId = '', setState) => {
@@ -128,7 +127,7 @@ const BlogSection = ({ blogData }) => (
                     <LazyLoadImage
                         alt="Blog Image"
                         height={200}
-                        src={blogData[0].thumbnail ? BaseImageURl + `${blogData[0].thumbnail}` : defaultImage}
+                        src={blogData[0].thumbnail ? `${blogData[0].thumbnail.path}` : defaultImage}
                         width={200}
                     />
                 </div>

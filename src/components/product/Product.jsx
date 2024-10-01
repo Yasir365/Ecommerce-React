@@ -5,7 +5,6 @@ import defaultImage from '/public/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/cartSlice';
-const BaseImageURl = 'http://localhost:8080/uploads/';
 
 const Product = (props) => {
     const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const Product = (props) => {
                     <LazyLoadImage
                         alt={defaultImage}
                         height={200}
-                        src={props.thumbnail ? BaseImageURl + `${props.thumbnail}` : defaultImage}
+                        src={props.thumbnail ? `${props.thumbnail.path}` : defaultImage}
                         width={200} />
                 </div>
                 <div className="card-body">

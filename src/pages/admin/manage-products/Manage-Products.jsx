@@ -7,7 +7,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
 import swalToastr from '../../../services/toastr-service';
 import Swal from 'sweetalert2';
-const BaseImageURl = 'http://localhost:8080/uploads/';
 
 // Constants
 const ITEMS_PER_PAGE = 10;
@@ -275,7 +274,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                 </th>
                 <td className='align-middle'>
                   <LazyLoadImage
-                    src={item.thumbnail ? BaseImageURl + `${item.thumbnail}` : defaultImage}
+                    src={item.thumbnail ? `${item.thumbnail.path}` : defaultImage}
                     alt='Image'
                   />
                 </td>

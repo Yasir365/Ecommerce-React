@@ -8,8 +8,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../store/cartSlice';
 
-const BaseImageURl = 'http://localhost:8080/uploads/';
-
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
@@ -57,7 +55,7 @@ const ProductDetails = () => {
                         <LazyLoadImage
                             alt="Product Image"
                             height={200}
-                            src={product.thumbnail ? BaseImageURl + `${product.thumbnail}` : defaultImage}
+                            src={product.thumbnail ? `${product.thumbnail.path}` : defaultImage}
                             width={200}
                         />
                     </div>
@@ -69,7 +67,7 @@ const ProductDetails = () => {
                                     <LazyLoadImage
                                         alt={`Image ${index + 1}`}
                                         height={80}
-                                        src={BaseImageURl + Object.values(image)[0]}
+                                        src={image.path}
                                         width={80}
                                     />
                                 </div>
