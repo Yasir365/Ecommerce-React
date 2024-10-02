@@ -148,11 +148,10 @@ const ManageProducts = () => {
   const editProduct = (product) => {
     setFormData({
       ...product,
-      preview: BaseImageURl + `${product.thumbnail}`, // Set the thumbnail preview
-      images: product.images || [], // Ensure images array is set
+      preview: `${product.thumbnail.path}`,
+      images: product.images || [],
       imagePreviews: product.images.map((img, index) => {
-        const key = Object.keys(img)[0]; // Get the image key (image1, image2, etc.)
-        return BaseImageURl + `${img[key]}`;
+        return `${img.path}`;
       }) // Set previews for images
     });
     setModalState('edit');
