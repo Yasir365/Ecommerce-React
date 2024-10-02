@@ -12,34 +12,16 @@ import { useSelector } from 'react-redux';
 const Header = () => {
     const cartItemsCount = useSelector((state) => state.cart.items.length);
     console.log("Count ", cartItemsCount);
-    
+
 
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        verifyToken();
         document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
         localStorage.setItem('theme', theme);
     }, [theme]);
-
-    const verifyToken = async () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            setIsLogin(false);
-        } else {
-            const response = await apiService.verifyToken()
-            if (response.data.success) {
-                if (response.data.role === 'admin') {
-                    navigate('/admin');
-                }
-                setIsLogin(true);
-            } else {
-                setIsLogin(false);
-            }
-        }
-    };
 
     const toggleTheme = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));

@@ -7,31 +7,31 @@ import apiService from '../../services/api-service';
 
 const AdminLayout = () => {
     const location = useLocation();
-    const [isAuthorized, setIsAuthorized] = useState(null); // null indicates loading state
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
-        const verifyAdmin = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                setIsAuthorized(false);
-                return;
-            }
-
-            try {
-                const response = await apiService.verifyToken();
-                if (response.data.success && response.data.role === 'admin') {
-                    setIsAuthorized(true);
-                } else {
-                    setIsAuthorized(false);
-                }
-            } catch (error) {
-                console.log(error);
-                setIsAuthorized(false);
-            }
-        };
-
         verifyAdmin();
     }, [location]);
+
+    const verifyAdmin = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            setIsAuthorized(false);
+            return;
+        }
+
+        try {
+            const response = await apiService.verifyToken();
+            if (response.data.success && response.data.role === 'admin') {
+                setIsAuthorized(true);
+            } else {
+                setIsAuthorized(false);
+            }
+        } catch (error) {
+            console.log(error);
+            setIsAuthorized(false);
+        }
+    };
 
     if (isAuthorized === null) {
         return <div className="loader-conatiner">
