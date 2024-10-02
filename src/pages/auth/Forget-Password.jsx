@@ -1,5 +1,5 @@
 import './auth.scss';
-import hero2 from '/public/images/hero2.webp';
+
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import apiService from '../../services/api-service';
@@ -33,7 +33,7 @@ const ForgetPassword = () => {
         }
     };
     return (
-        <div className="wrapper" style={{ backgroundImage: `url(${hero2})` }}>
+        <div className="wrapper">
             <div className="login-form">
                 <h2>Reset Password</h2>
                 <form onSubmit={handleSubmit}>
