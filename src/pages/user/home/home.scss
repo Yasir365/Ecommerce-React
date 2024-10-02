@@ -7,9 +7,9 @@
 
 .hero {
     position: relative;
-    background: url(/public/images/hero3.jpg) no-repeat;
-    background-size: cover;
-    background-position: center center;
+    background: url(/public/images/file.png) no-repeat;
+    background-size: contain;
+    background-position: right;
     width: 100%;
     height: calc(100vh - 70px);
 

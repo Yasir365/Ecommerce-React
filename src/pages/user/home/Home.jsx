@@ -69,7 +69,7 @@ const Home = () => {
 // Hero Section Component
 const HeroSection = () => (
     <div className='hero'>
-        <div className="overlay"></div>
+        {/* <div className="overlay"></div> */}
         <div className='hero-content'>
             <h1>Super Deals</h1>
             <h3>Best Deals On Best Price</h3>
