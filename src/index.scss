@@ -7,25 +7,25 @@
 
 
 .light-theme {
-  --primary: orangered;
-  --secondary: rgb(179, 48, 0);
-  --background: #FDE3D5;
-  --text: #333333;
+  --primary: #a4133c;
+  --secondary: #c9184a;
+  --background: #fff0f3af;
+  --text: #c9184a;
   --text2: #ffffff;
-  --accent: #ffc3c3;
-  --shadow: rgba(255, 68, 0, 0.451);
-  --overlay: #fde3d5aa;
+  --accent: #ffccd5;
+  --shadow: #ffb3c1;
+  --overlay: #ffccd5;
 }
 
 .dark-theme {
-  --primary: #f7f7f7;
-  --secondary: #4d4e57;
-  --background: #4f4d4d;
+  --primary: #ffffff;
+  --secondary: #ffffff;
+  --background: #000000ea;
   --text: #ffffff;
-  --text2: #333333;
-  --accent: #646463;
-  --shadow: rgba(255, 255, 255, 0.573);
-  --overlay: #6d6d6daa;
+  --text2: #000000;
+  --accent: #ffffff;
+  --shadow: #ffffff;
+  --overlay: #ffffff;
 }
 
 
