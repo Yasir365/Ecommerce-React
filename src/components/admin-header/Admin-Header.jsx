@@ -1,14 +1,13 @@
 import './admin-header.scss';
 import userImage from '/public/images/member/1.webp';
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/adminAuthSlice';
 
 
 const AdminHeader = () => {
+    const dispatch = useDispatch();
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-    const navigate = useNavigate();
 
     useEffect(() => {
         document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
@@ -28,9 +27,9 @@ const AdminHeader = () => {
         }
     }
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
+
+    const handleLogout = () => {
+        dispatch(logout());
     };
 
     return (
@@ -105,7 +104,7 @@ const AdminHeader = () => {
                         <div className="dropdown-menu dropdown-menu-end rounded m-0">
                             <a className="dropdown-item"> My Profile </a>
                             <a className="dropdown-item"> Settings </a>
-                            <a className="dropdown-item" onClick={logout}> Log Out </a>
+                            <a className="dropdown-item" onClick={handleLogout}> Log Out </a>
                         </div>
                     </div>
                 </div>

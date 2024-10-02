@@ -17,6 +17,7 @@ import NotFound from './pages/not-found/Not-Found';
 import ManageProducts from './pages/admin/manage-products/Manage-Products';
 import ManageQueries from './pages/admin/manage-queries/Manage-Queries';
 import ManageOrders from './pages/admin/manage-orders/Manage-Orders';
+import AdminGuard from './components/admin-gaurd/Admin-Gaurd';
 
 
 const router = createBrowserRouter([
@@ -73,7 +74,9 @@ const router = createBrowserRouter([
     {
         path: '/admin',
         element: (
-            <AdminLayout />
+            <AdminGuard>
+                <AdminLayout />
+            </AdminGuard>
         ),
         children: [
             {

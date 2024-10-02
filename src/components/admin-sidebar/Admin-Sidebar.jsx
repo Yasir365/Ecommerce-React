@@ -1,19 +1,23 @@
 
+import './admin-sidebar.scss';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '/public/images/logo.png';
 import userImage from '/public/images/member/1.webp';
-import './admin-sidebar.scss';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/adminAuthSlice';
 
 
 
 const AdminSidebar = () => {
+    const dispatch = useDispatch();
     const closeSidebar = () => {
         const sidebar = document.querySelector('body');
         sidebar.classList.add('close-sidebar');
     }
 
-    const logout = () => {
-        localStorage.removeItem('token');
+
+    const handleLogout = () => {
+        dispatch(logout());
     };
 
     return (
@@ -61,7 +65,7 @@ const AdminSidebar = () => {
                             <a className="dropdown-item">
                                 Profile Settings
                             </a>
-                            <Link to="/login" className="dropdown-item" onClick={logout}>
+                            <Link to="/login" className="dropdown-item" onClick={handleLogout}>
                                 Logout
                             </Link>
                         </div>
