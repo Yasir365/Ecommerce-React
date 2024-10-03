@@ -99,7 +99,7 @@ const AdminHeader = () => {
                     <div className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
                             <img className="rounded-circle me-lg-2" src={userImage} alt="" style={{ width: 40, height: 40 }} />
-                            <span className="d-none d-lg-inline-flex">Yasir</span>
+                            <span className="d-none d-lg-inline-flex username">Yasir</span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-end rounded m-0">
                             <a className="dropdown-item"> My Profile </a>

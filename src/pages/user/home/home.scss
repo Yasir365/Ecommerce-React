@@ -68,7 +68,6 @@
             border-radius: 5px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 1px 7px var(--text);
         }
     }
 }
@@ -164,7 +163,10 @@
             border-radius: 5px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 1px 7px var(--shadow);
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
     }
 }
@@ -174,10 +176,10 @@
 
     img {
         width: 100%;
-        height: 400px;
-        object-fit: cover;
+        height: 450px;
+        object-fit: fit;
         border-radius: 12px;
-        box-shadow: 0 1px 5px var(--shadow);
+        box-shadow: 0px 0px 3px var(--primary);
     }
 
     .blog-content {

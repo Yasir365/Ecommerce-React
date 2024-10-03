@@ -8,12 +8,10 @@
 
 .light-theme {
   --primary: #a4133c;
-  --secondary: #c9184a;
-  --background: #fff0f3af;
+  --secondary: #f8bac5;
+  --background: #fff0f381;
   --text: #c9184a;
   --text2: #ffffff;
-  --accent: #ffccd5;
-  --shadow: #ffb3c1;
   --overlay: rgba(0, 0, 0, 0.3);
 }
 
@@ -23,9 +21,7 @@
   --background: #000000ea;
   --text: #ffffff;
   --text2: #000000;
-  --accent: #ffffff;
   --shadow: #ffffff;
-  --overlay: #ffffff;
 }
 
 
@@ -67,7 +63,7 @@ li {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--accent);
+  background: var(--secondary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -136,10 +132,11 @@ textarea.form-control:focus {
 
 .modal-content {
   border-radius: 18px;
-  background-color: var(--background);
+  background-color: var(--secondary);
   border: 1px solid var(--primary);
-  box-shadow: 0 0 10px var(--shadow);
-  z-index: 1000 !important;
+  box-shadow: 0 0px 3px var(--primary);
+  position: relative;
+  z-index: 1100 !important;
 
   .modal-header {
     background: var(--primary);
@@ -151,7 +148,7 @@ textarea.form-control:focus {
     }
 
     button {
-      background-color: var(--accent);
+      background-color: var(--secondary);
       color: var(--text2);
       font-size: 1rem;
     }

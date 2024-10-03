@@ -28,13 +28,13 @@ const AdminSidebar = () => {
                     <img src={logo} alt="Logo" />
                     <div className="close-btn" onClick={closeSidebar}><i className="fa-solid fa-xmark"></i></div>
                 </div>
-                <div className="user-profile d-flex align-items-center ms-4 mb-4">
+                {/* <div className="user-profile d-flex align-items-center ms-4 mb-4">
                     <img className="rounded-circle" src={userImage} alt="" style={{ width: 40, height: 40 }} />
                     <div className="ms-3">
                         <h6 className="mb-0">Jhon Doe</h6>
                         <span>Admin</span>
                     </div>
-                </div>
+                </div> */}
                 <div className="navbar-nav w-100">
                     <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} aria-current="page" to="/admin/dashboard">
                         <i className="fa fa-tachometer-alt me-2" />

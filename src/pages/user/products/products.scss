@@ -50,14 +50,13 @@ section {
             a {
                 padding: 0.42rem 16px;
                 background-color: var(--background);
-                box-shadow: 0 0.5px 10px var(--shadow);
+                box-shadow: 0 0 3px var(--primary);
                 color: var(--text);
                 border-radius: 50%;
                 text-align: center;
 
                 &:hover {
-                    background-color: var(--secondary);
-                    color: var(--text2);
+                    transform: scale(1.1);
                 }
             }
 

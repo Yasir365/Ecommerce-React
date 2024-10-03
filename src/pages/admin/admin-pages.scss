@@ -1,5 +1,6 @@
 .page {
     min-height: 80vh;
+
     .filter {
         display: flex;
         justify-content: space-between;
@@ -26,37 +27,37 @@
             font-weight: bold;
 
             &:hover {
-                background-color: var(--secondary);
+                transform: scale(1.1);
                 color: var(--text2);
             }
         }
     }
-    
+
     .table-responsive {
         padding: 16px;
         border: 1px solid var(--primary);
         border-radius: 12px;
-    
+
         tr {
             border-color: var(--primary);
         }
-    
+
         th {
             background-color: var(--background);
             color: var(--primary);
         }
-    
+
         td {
             background-color: var(--background);
             color: var(--text);
-    
+
             img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
                 border: 1px solid var(--primary);
             }
-    
+
             button {
                 border: 1px solid var(--primary);
                 color: var(--text);
@@ -65,15 +66,15 @@
                 cursor: pointer;
                 background-color: transparent;
                 color: var(--primary);
-    
+
                 &:hover {
                     background-color: var(--primary);
                     color: var(--text2);
                 }
             }
-    
+
         }
-    
+
         .loader-conatiner {
             background-color: var(--background);
             min-height: 40vh;
@@ -93,13 +94,14 @@
     }
 }
 
-.image-container label{
+.image-container label {
     display: flex;
     align-items: center;
     flex-direction: column;
     font-weight: 600;
     color: var(--primary);
 }
+
 .submit-btn {
     background-color: var(--primary);
     color: var(--text2);
@@ -111,7 +113,7 @@
 
     &:hover,
     &:disabled {
-        background-color: var(--secondary);
+        transform: scale(1.1);
         color: var(--text2);
     }
 }
