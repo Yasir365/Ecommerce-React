@@ -43,18 +43,62 @@ const Home = () => {
     };
 
 
+
+
+
+
+
     return (
         <>
-            <HeroSection />
+            <div className='hero'>
+                <div className='hero-content'>
+                    <h1>Exclusive Savings</h1>
+                    <h4>Style for Every Season, Deals for Every Budget</h4>
+                    <p>Upgrade your wardrobe with our must-have collections at unbeatable prices. <br /> From family favorites to seasonal trends, find everything you need without breaking the bank!.</p>
+                    <Link to='/products'>
+                        <button>Shop Now</button>
+                    </Link>
+                </div>
+            </div>
 
             <ProductsSection
                 title="Featured Products"
                 products={featuredProducts}
             />
 
-            <OffersSection />
+            <section className='offers'>
+                <div className="overlay"></div>
+                <div className="offers-content">
+                    <h1>Super Deals</h1>
+                    <h3 className='mb-4'>Best Deals On Best Price</h3>
+                    <Link to='/products'>Shop Now</Link>
+                </div>
+            </section>
 
-            <BlogSection blogData={blogData} />
+            <section className='container blogs'>
+                <h1 className="heading">Blog</h1>
+                {blogData && blogData.length > 0 ? (
+                    <div className="row">
+                        <div className="col-md-6 blog-content">
+                            <h3 className="title">{blogData[0].title || 'No Title'}</h3>
+                            <p className="description">{blogData[0].description || 'No Description'}</p>
+                            <p className="description">{blogData[0].description || 'No Description'}</p>
+                            <p className="description">{blogData[0].description || 'No Description'}</p>
+                            <p className="description">{blogData[0].description || 'No Description'}</p>
+                        </div>
+                        <div className="col-md-6 image-wrapper">
+                            <LazyLoadImage
+                                alt="Blog Image"
+                                height={200}
+                                src={blogData[0].thumbnail ? `${blogData[0].thumbnail.path}` : defaultImage}
+                                width={200}
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <p>No blog data available</p>
+                )}
+            </section>
 
             <ProductsSection
                 title="Special Deals"
@@ -65,20 +109,6 @@ const Home = () => {
         </>
     );
 };
-
-// Hero Section Component
-const HeroSection = () => (
-    <div className='hero'>
-        {/* <div className="overlay"></div> */}
-        <div className='hero-content'>
-            <h1>Super Deals</h1>
-            <h3>Best Deals On Best Price</h3>
-            <Link to='/products'>
-                <button>Shop Now</button>
-            </Link>
-        </div>
-    </div>
-);
 
 // Products Section Component
 const ProductsSection = ({ title, products }) => (
@@ -98,44 +128,5 @@ const ProductsSection = ({ title, products }) => (
     </section>
 );
 
-// Offers Section Component
-const OffersSection = () => (
-    <section className='offers'>
-        <div className="overlay"></div>
-        <div className="offers-content">
-            <h1>Super Deals</h1>
-            <h3 className='mb-4'>Best Deals On Best Price</h3>
-            <Link to='/products'>Shop Now</Link>
-        </div>
-    </section>
-);
-
-// Blog Section Component
-const BlogSection = ({ blogData }) => (
-    <section className='container blogs'>
-        <h1 className="heading">Blog</h1>
-        {blogData && blogData.length > 0 ? (
-            <div className="row">
-                <div className="col-md-6 blog-content">
-                    <h3 className="title">{blogData[0].title || 'No Title'}</h3>
-                    <p className="description">{blogData[0].description || 'No Description'}</p>
-                    <p className="description">{blogData[0].description || 'No Description'}</p>
-                    <p className="description">{blogData[0].description || 'No Description'}</p>
-                    <p className="description">{blogData[0].description || 'No Description'}</p>
-                </div>
-                <div className="col-md-6 image-wrapper">
-                    <LazyLoadImage
-                        alt="Blog Image"
-                        height={200}
-                        src={blogData[0].thumbnail ? `${blogData[0].thumbnail.path}` : defaultImage}
-                        width={200}
-                    />
-                </div>
-            </div>
-        ) : (
-            <p>No blog data available</p>
-        )}
-    </section>
-);
 
 export default Home;
