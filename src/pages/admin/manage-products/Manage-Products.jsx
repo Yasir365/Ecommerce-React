@@ -255,10 +255,10 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
         <table className='table'>
           <thead>
             <tr>
-              <th scope='col'>#</th>
+              <th scope='col' style={{ width: '10px' }}>#</th>
               <th scope='col'>Image</th>
               <th scope='col'>Title</th>
-              <th scope='col' style={{ width: '40%' }}>Description</th>
+              <th scope='col' style={{ width: '35%' }}>Description</th>
               <th scope='col'>Status</th>
               <th scope='col'>Price</th>
               <th scope='col'>Rating</th>
@@ -278,7 +278,7 @@ const ProductTable = ({ data, loader, currentPage, itemsPerPage, editProduct, de
                   />
                 </td>
                 <td className='align-middle'>{item.title}</td>
-                <td className='align-middle'>{item.description}</td>
+                <td className='align-middle description'>{item.description}</td>
                 <td className='align-middle'>
                   <span className='badge bg-success'>{item.status}</span>
                 </td>

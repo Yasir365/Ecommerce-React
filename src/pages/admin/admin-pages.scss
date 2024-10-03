@@ -38,24 +38,20 @@
         border: 1px solid var(--primary);
         border-radius: 12px;
 
-        tr {
-            border-color: var(--primary);
-        }
-
         th {
-            background-color: var(--background);
+            background: local;
             color: var(--primary);
         }
 
         td {
-            background-color: var(--background);
+            background: local;
             color: var(--text);
 
             img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                border: 1px solid var(--primary);
+                box-shadow: 0px 0px 3px var(--primary);
             }
 
             button {
@@ -73,6 +69,26 @@
                 }
             }
 
+            .bg-success{
+                background-color: var(--primary) !important;
+                padding: 4px 8px;
+            }
+
+        }
+
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 2;
+
+            &:hover {
+                -webkit-line-clamp: unset;
+                line-height: 1;
+                cursor: zoom-in;
+            }
         }
 
         .loader-conatiner {
