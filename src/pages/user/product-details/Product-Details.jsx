@@ -86,7 +86,7 @@ const ProductDetails = () => {
 
                     <div className="overall-rating">
                         <div className="rating-score">
-                            <Rating initialValue={product.rating} />
+                            <Rating initialValue={product.rating} readonly={true} size={20} />
                         </div>
                     </div>
 
