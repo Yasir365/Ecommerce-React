@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
 import './product-details.scss';
-import { useParams, Link } from 'react-router-dom';
-import ReactStars from "react-rating-stars-component";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Rating } from 'react-simple-star-rating'
 import apiService from '../../../services/api-service';
-import defaultImage from '/public/images/default_no_image.webp';
+import defaultImage from '/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../store/cartSlice';
+import Loader from '../../../components/loader/Loader'
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -40,7 +41,7 @@ const ProductDetails = () => {
     };
 
     if (loading) {
-        return <div className="loading">Loading...</div>;
+        return <div className="loading"><Loader /> </div>;
     }
 
     if (error) {
@@ -85,13 +86,7 @@ const ProductDetails = () => {
 
                     <div className="overall-rating">
                         <div className="rating-score">
-                            <ReactStars
-                                count={5}
-                                size={30}
-                                value={product.rating}
-                                edit={false}
-                                activeColor="#ffd700"
-                            />
+                            <Rating initialValue={product.rating} />
                         </div>
                     </div>
 

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import apiService from '../../services/api-service';
 import swalToastr from '../../services/toastr-service';
 import { useNavigate } from 'react-router-dom';
-import logo from '/public/images/logo.png';
+import logo from '/images/logo.png';
 
 
 const Login = () => {

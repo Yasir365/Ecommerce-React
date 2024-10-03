@@ -1,7 +1,7 @@
 import './product.scss';
 import { Link } from 'react-router-dom';
-import ReactStars from "react-rating-stars-component";
-import defaultImage from '/public/images/default_no_image.webp';
+import { Rating } from 'react-simple-star-rating'
+import defaultImage from '/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../store/cartSlice';
@@ -25,7 +25,7 @@ const Product = (props) => {
                 <div className="card-body">
                     <div className='d-flex justify-content-between aligns-items-center mb-2'>
                         <span className="price">${props.price}</span>
-                        <ReactStars count={5} size={24} value={props.rating} edit={false} activeColor="orangered" />
+                        <Rating initialValue={props.rating} />
                     </div>
                     <h5 className="card-title mb-2">{props.title}</h5>
                     <p className="card-text">{props.description}</p>

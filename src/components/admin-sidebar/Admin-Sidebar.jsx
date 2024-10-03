@@ -1,8 +1,8 @@
 
 import './admin-sidebar.scss';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '/public/images/logo.png';
-import userImage from '/public/images/member/1.webp';
+import logo from '/images/logo.png';
+import userImage from '/images/member/1.webp';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/adminAuthSlice';
 
@@ -14,6 +14,7 @@ const AdminSidebar = () => {
         const sidebar = document.querySelector('body');
         sidebar.classList.add('close-sidebar');
     }
+
 
 
     const handleLogout = () => {

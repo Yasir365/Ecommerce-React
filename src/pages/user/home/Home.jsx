@@ -4,7 +4,7 @@ import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
 import OurTeam from '../../../components/out-team/Our-Team';
 import apiService from '../../../services/api-service';
-import defaultImage from '/public/images/default_no_image.webp';
+import defaultImage from '/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Home = () => {

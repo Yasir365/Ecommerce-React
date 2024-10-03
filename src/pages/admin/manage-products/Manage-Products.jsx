@@ -2,7 +2,7 @@ import '../admin-pages.scss';
 import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../../components/loader/Loader';
-import defaultImage from '/public/images/default_no_image.webp';
+import defaultImage from '/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import apiService from '../../../services/api-service';
 import swalToastr from '../../../services/toastr-service';
