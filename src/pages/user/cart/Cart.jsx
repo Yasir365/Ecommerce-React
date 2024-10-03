@@ -37,7 +37,7 @@ const Cart = () => {
                                 <div className='right'>
                                     <p className='price'>${item.price}</p>
                                     <button onClick={() => handleRemoveItem(item._id)}>
-                                        <i class="fa-solid fa-xmark"></i>
+                                        <i className="fa-solid fa-xmark"></i>
                                     </button>
 
                                 </div>
@@ -46,7 +46,7 @@ const Cart = () => {
                     </ul>
                     <div className='total-container'>
                         <p className='total'>Total: ${totalPrice.toFixed(2)}</p>
-                        <button onClick={handleClearCart} className='clear-cart'><i class="fa-solid fa-trash"></i></button>
+                        <button onClick={handleClearCart} className='clear-cart'><i className="fa-solid fa-trash"></i></button>
                     </div>
                 </>
             )}
