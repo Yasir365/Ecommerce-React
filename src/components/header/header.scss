@@ -6,6 +6,7 @@
 
 .user-header {
     padding: 12px;
+
     @include max(768px) {
         position: absolute;
         top: 0;
@@ -25,7 +26,6 @@
 
         .nav-item {
             margin-right: 8px;
-            position: relative;
 
             @include max(768px) {
                 border-bottom: 1px solid var(--text);
@@ -34,26 +34,25 @@
             a {
                 font-weight: 600;
                 color: var(--text);
+                position: relative;
 
                 &.active,
                 &:hover {
                     color: var(--primary);
-                    transition: 0.3s ease;
+                    transition: 0.3s all ease-in-out;
 
                     &::after {
                         content: '';
                         display: block;
-                        border-bottom: 3px solid var(--primary);
-                        ;
-                        width: 100%;
-                        margin: auto;
-                        transition: 0.3s ease;
+                        position: absolute;
+                        left: 8px;
+                        bottom: 6px;
+                        width: 0;
+                        height: 3px;
+                        background-color: var(--primary);
 
-                        @include max(768px) {
-                            display: none;
-                        }
+                        animation: draw-border 0.3s forwards;
                     }
-
                 }
             }
 
