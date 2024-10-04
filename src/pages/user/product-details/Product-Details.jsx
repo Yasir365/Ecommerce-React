@@ -8,10 +8,13 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../store/cartSlice';
 import Loader from '../../../components/loader/Loader'
+import ImageGallery from 'react-image-gallery';
+
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
@@ -27,8 +30,22 @@ const ProductDetails = () => {
     const fetchProduct = async (productId) => {
         try {
             const response = await apiService.getProducts({ productId });
+
             if (response.data.success) {
-                setProduct(response.data.data[0]);
+                const productData = response.data.data[0];
+                setProduct(productData);
+
+                const thumbnailImage = {
+                    original: productData.thumbnail.path,
+                    thumbnail: productData.thumbnail.path,
+                };
+
+                const otherImages = productData.images.map((image) => ({
+                    original: image.path,
+                    thumbnail: image.path,
+                }));
+
+                setImages([thumbnailImage, ...otherImages]);
             } else {
                 setError('Failed to fetch product details');
             }
@@ -52,7 +69,17 @@ const ProductDetails = () => {
         <div className="product-detail-page container">
             <div className="product-main">
                 <div className="product-images">
-                    <div className="thumbnail">
+                    <ImageGallery
+                        items={images}
+                        slideInterval={2000}
+                        showBullets={true}
+                        autoPlay={true}
+                        pauseOnHover={false}
+                        showPlayButton={false}
+                        showNavs={true}
+                        infinite={true}
+                    />
+                    {/* <div className="thumbnail">
                         <LazyLoadImage
                             alt="Product Image"
                             height={200}
@@ -76,7 +103,7 @@ const ProductDetails = () => {
                         ) : (
                             <p>No additional images available</p>
                         )}
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="product-info">

@@ -5,32 +5,38 @@
     .product-main {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 30px;
+        justify-content: center;
+        gap: 20px;
 
         .product-images {
             flex: 1 1 45%;
             margin-bottom: 20px;
 
-            .thumbnail img {
-                width: 100%;
-                min-height: 400px;
-                border-radius: 10px;
-                object-fit: cover;
+            .image-gallery-icon {
+                display: none !important;
             }
 
-            .additional-images{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                margin-top: 16px;
+            .image-gallery-bullets-container {
+                .image-gallery-bullet {
+                    background: var(--secondary);
+                }
 
-                img{
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 10px;
-                    object-fit: cover;
+                .active {
+                    background: var(--primary);
+                }
+            }
+
+            .image-gallery-thumbnails-container {
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    &:hover{
+                        border-color: var(--secondary);
+                    }
+                    &.active {
+                        border-color: var(--primary);
+                    }
                 }
             }
         }
