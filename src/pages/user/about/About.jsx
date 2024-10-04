@@ -1,21 +1,45 @@
+import './about.scss';
+import FeaturedProduct from '../../../components/featured-product/Featured-Product';
 import OurTeam from '../../../components/out-team/Our-Team';
-import './about.scss'; // Create this CSS file
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import apiService from '../../../services/api-service';
+import Advatisement from '../../../components/advatisement/Advatisement';
 
 
 const About = () => {
+    const [dealsProducts, setDealsProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts(1, 12);
+    }, []);
+
+    const fetchProducts = async (page, itemsPerPage) => {
+        const payload = {};
+
+        if (page !== undefined && itemsPerPage !== undefined) {
+            payload.currentPage = page;
+            payload.itemsPerPage = itemsPerPage;
+        }
+
+        try {
+            const response = await apiService.getProducts(payload);
+            if (response.data.success) {
+                const products = response.data.data;
+
+                const deals = products.slice(0, 4);
+                setDealsProducts(deals);
+            }
+        } catch (error) {
+            console.error(`Error fetching products:`, error);
+        }
+    };
+
     return (
         <>
-            <section className="banner">
-                <div className="overlay"></div>
-                <div className="content">
-                    <h1>About Us</h1>
-                    <h3 className='mb-4'>Get to know more about our journey, mission, and vision.</h3>
-                    <Link to='/products'>Shop Now</Link>
-                </div>
-            </section>
 
             <div className="container about">
+                <Advatisement />
                 <div className="company-overview">
                     <h2 className="heading">Our Mission</h2>
                     <p> We are dedicated to providing the best service to our customers with innovation, integrity, and a focus on sustainability. Our goal is to positively impact the lives of millions through our products. </p>
@@ -44,8 +68,8 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-
                 <OurTeam />
+                <FeaturedProduct title="Special Deals" products={dealsProducts} />
             </div>
         </>
     );

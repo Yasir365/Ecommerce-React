@@ -1,24 +1,21 @@
 import './home.scss';
 import { Link } from 'react-router-dom';
-import Product from '../../../components/product/Product';
 import { useEffect, useState } from 'react';
 import OurTeam from '../../../components/out-team/Our-Team';
 import apiService from '../../../services/api-service';
-import defaultImage from '/images/default_no_image.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import FeaturedProduct from '../../../components/featured-product/Featured-Product';
+import Advatisement from '../../../components/advatisement/Advatisement';
 
 const Home = () => {
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [dealsProducts, setDealsProducts] = useState([]);
-    const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-        fetchProducts(1, 4, '', '', setFeaturedProducts);
-        fetchProducts(2, 4, '', '', setDealsProducts);
-        fetchProducts(1, 1, '', '', setBlogData);
+        fetchProducts(1, 12);
     }, []);
 
-    const fetchProducts = async (page, itemsPerPage, search = '', productId = '', setState) => {
+    const fetchProducts = async (page, itemsPerPage) => {
         const payload = {};
 
         if (page !== undefined && itemsPerPage !== undefined) {
@@ -26,21 +23,22 @@ const Home = () => {
             payload.itemsPerPage = itemsPerPage;
         }
 
-        if (search) {
-            payload.search = search;
-        } else if (productId) {
-            payload.productId = productId;
-        }
-
         try {
             const response = await apiService.getProducts(payload);
             if (response.data.success) {
-                setState(response.data.data);
+                const products = response.data.data;
+
+                const featured = products.slice(3, 7);
+                setFeaturedProducts(featured);
+
+                const deals = products.slice(7, 11);
+                setDealsProducts(deals);
             }
         } catch (error) {
             console.error(`Error fetching products:`, error);
         }
     };
+
 
 
 
@@ -61,115 +59,40 @@ const Home = () => {
                 </div>
             </div>
 
-            <ProductsSection
-                title="Featured Products"
-                products={featuredProducts}
-            />
-
-            <section className='offers container'>
-                <div id="carouselExampleIndicators" className="carousel " data-bs-ride="carousel" data-bs-interval="2500">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={0} className="active" aria-current="true" aria-label="Slide 1" />
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={1} aria-label="Slide 2" />
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={2} aria-label="Slide 3" />
-                    </div>
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <div className="content">
-                                <h1>Exclusive Savings</h1>
-                                <h4>Style for Every Season, Deals for Every Budget</h4>
-                                <p>Upgrade your wardrobe with our must-have collections at unbeatable prices. <br /> From family favorites to seasonal trends, find everything you need without breaking the bank!.</p>
-                                <Link to='/products'>
-                                    <button>Shop Now</button>
-                                </Link>
-                            </div>
-                            <img src="/images/carousel/4.png" className="d-block w-100" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <div className="content">
-                                <h1>Exclusive Savings</h1>
-                                <h4>Style for Every Season, Deals for Every Budget</h4>
-                                <p>Upgrade your wardrobe with our must-have collections at unbeatable prices. <br /> From family favorites to seasonal trends, find everything you need without breaking the bank!.</p>
-                                <Link to='/products'>
-                                    <button>Shop Now</button>
-                                </Link>
-                            </div>
-                            <img src="/images/carousel/2.png" className="d-block w-100" alt="..." />
-                        </div>
-                        <div className="carousel-item">
-                            <div className="content">
-                                <h1>Exclusive Savings</h1>
-                                <h4>Style for Every Season, Deals for Every Budget</h4>
-                                <p>Upgrade your wardrobe with our must-have collections at unbeatable prices. <br /> From family favorites to seasonal trends, find everything you need without breaking the bank!.</p>
-                                <Link to='/products'>
-                                    <button>Shop Now</button>
-                                </Link>
-                            </div>
-                            <img src="/images/carousel/3.png" className="d-block w-100" alt="..." />
-                        </div>
-                    </div>
-                </div>
-
-                {/* <div className="overlay"></div> */}
-                {/* <div className="offers-content">
-                    <h1>Super Deals</h1>
-                    <h3 className='mb-4'>Best Deals On Best Price</h3>
-                    <Link to='/products'>Shop Now</Link>
-                </div> */}
-            </section>
+            <FeaturedProduct title="Featured Products" products={featuredProducts} />
+            <Advatisement />
 
             <section className='container blogs'>
                 <h1 className="heading">Blog</h1>
-                {blogData && blogData.length > 0 ? (
-                    <div className="row">
-                        <div className="col-md-6 blog-content">
-                            <h3 className="title">{blogData[0].title || 'No Title'}</h3>
-                            <p className="description">{blogData[0].description || 'No Description'}</p>
-                            <p className="description">{blogData[0].description || 'No Description'}</p>
-                            <p className="description">{blogData[0].description || 'No Description'}</p>
-                            <p className="description">{blogData[0].description || 'No Description'}</p>
-                        </div>
-                        <div className="col-md-6 image-wrapper">
-                            <LazyLoadImage
-                                alt="Blog Image"
-                                height={200}
-                                src={blogData[0].thumbnail ? `${blogData[0].thumbnail.path}` : defaultImage}
-                                width={200}
-                            />
-                        </div>
+
+                <div className="row">
+                    <div className="col-md-6 blog-content">
+                        <h3 className="title">Unraveling the Mystique of Fashion</h3>
+                        <p className="description">As consumers, we're becoming increasingly aware of the environmental and social impact of our purchasing decisions. Sustainable fashion has emerged as a vital movement, challenging traditional practices and promoting eco-friendly, responsible clothing production.</p>
+                        <h5>What is Sustainable Fashion?</h5>
+                        <ul>
+                            <li><strong>Eco-friendly materials:</strong> Organic cotton, recycled materials, and plant-based textiles.</li>
+                            <li><strong>Fair labor practices:</strong> Ensuring workers receive fair wages and safe working conditions.</li>
+                            {/* <li><strong>Waste reduction:</strong> Minimizing textile waste through upcycling and repurposing.</li> */}
+                        </ul>
+                        <h5>Benefits of Sustainable Fashion:</h5>
+                        <ul>
+                            <li><strong>Environmental benefits: </strong> Reduced carbon footprint, water conservation, and minimized waste.</li>
+                            <li><strong>Social benefits: </strong> Improved working conditions, fair wages, and empowered communities.</li>
+                            <li><strong>Economic benefits: </strong>  Increased value, durability, and longevity of clothing.</li>
+                        </ul>
                     </div>
-                ) : (
-                    <p>No blog data available</p>
-                )}
+                    <div className="col-md-6 image-wrapper">
+                        <LazyLoadImage alt="Blog Image" height={200} src='/images/blog/img.jpg' width={200} />
+                    </div>
+                </div>
+
             </section>
 
-            <ProductsSection
-                title="Special Deals"
-                products={dealsProducts}
-            />
-
+            <FeaturedProduct title="Special Deals" products={dealsProducts} />
             <OurTeam />
         </>
     );
 };
-
-// Products Section Component
-const ProductsSection = ({ title, products }) => (
-    <section className='features container'>
-        <h1 className="heading">{title}</h1>
-        <div className='products'>
-            {products.length === 0 ? (
-                <p>No products available</p>
-            ) : (
-                products.map((item) => (
-                    <div className="product" key={item._id}>
-                        <Product {...item} />
-                    </div>
-                ))
-            )}
-        </div>
-    </section>
-);
-
 
 export default Home;

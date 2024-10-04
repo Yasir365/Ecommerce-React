@@ -13,21 +13,41 @@ export default function OurTeam() {
                     <img src={member1} alt="Team Member" />
                     <h3>John Doe</h3>
                     <p>CEO</p>
+                    <div className="social">
+                        <i className="fa-solid fa-x"></i>
+                        <i className="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                    </div>
                 </div>
                 <div className="team-member">
                     <img src={member2} alt="Team Member" />
-                    <h3>Jane Smith</h3>
+                    <h3>Jane </h3>
                     <p>CTO</p>
+                    <div className="social">
+                        <i className="fa-solid fa-x"></i>
+                        <i className="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                    </div>
                 </div>
                 <div className="team-member">
                     <img src={member3} alt="Team Member" />
-                    <h3>Michael Johnson</h3>
+                    <h3>Michael </h3>
                     <p>COO</p>
+                    <div className="social">
+                        <i className="fa-solid fa-x"></i>
+                        <i className="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                    </div>
                 </div>
                 <div className="team-member">
                     <img src={member4} alt="Team Member" />
-                    <h3>Emily Davis</h3>
-                    <p>Head of Marketing</p>
+                    <h3>Emily </h3>
+                    <p>HOD</p>
+                    <div className="social">
+                        <i className="fa-solid fa-x"></i>
+                        <i className="fa-brands fa-instagram"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                    </div>
                 </div>
             </div>
         </div>

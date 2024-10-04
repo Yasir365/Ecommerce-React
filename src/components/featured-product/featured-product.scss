@@ -1,0 +1,23 @@
+.features {
+    padding: 5rem 0;
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+
+        .product {
+            width: 23%;
+            border-radius: 16px 16px 0 0;
+
+            @include max(998px) {
+                width: 47%;
+            }
+
+            @include max(576px) {
+                width: 100%;
+            }
+        }
+    }
+}
