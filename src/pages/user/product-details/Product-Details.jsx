@@ -74,36 +74,10 @@ const ProductDetails = () => {
                         slideInterval={2000}
                         showBullets={true}
                         autoPlay={true}
-                        pauseOnHover={false}
                         showPlayButton={false}
                         showNavs={true}
                         infinite={true}
                     />
-                    {/* <div className="thumbnail">
-                        <LazyLoadImage
-                            alt="Product Image"
-                            height={200}
-                            src={product.thumbnail ? `${product.thumbnail.path}` : defaultImage}
-                            width={200}
-                        />
-                    </div>
-
-                    <div className="additional-images">
-                        {product.images && product.images.length > 0 ? (
-                            product.images.map((image, index) => (
-                                <div key={index} className="additional-image">
-                                    <LazyLoadImage
-                                        alt={`Image ${index + 1}`}
-                                        height={80}
-                                        src={image.path}
-                                        width={80}
-                                    />
-                                </div>
-                            ))
-                        ) : (
-                            <p>No additional images available</p>
-                        )}
-                    </div> */}
                 </div>
 
                 <div className="product-info">

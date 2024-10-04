@@ -5,16 +5,21 @@
     .product-main {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
+        gap: 30px;
 
         .product-images {
             flex: 1 1 45%;
             margin-bottom: 20px;
+            
 
             .image-gallery-icon {
-                display: none !important;
+                display: none;
+
+                &.image-gallery-fullscreen-button {
+                    display: block;
+                }
             }
+
 
             .image-gallery-bullets-container {
                 .image-gallery-bullet {
@@ -28,12 +33,14 @@
 
             .image-gallery-thumbnails-container {
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
+                gap: 10px;
 
                 button {
-                    &:hover{
+                    &:hover {
                         border-color: var(--secondary);
                     }
+
                     &.active {
                         border-color: var(--primary);
                     }
