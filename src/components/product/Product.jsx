@@ -9,7 +9,7 @@ const Product = (props) => {
         <>
             <div className="product-card">
                 <div className="img-wrapper">
-                    <LazyLoadImage alt='' height={200} src={props.thumbnail ? `${props.thumbnail.path}` : defaultImage} width={200} />
+                    <LazyLoadImage alt='' src={props.thumbnail ? `${props.thumbnail.path}` : defaultImage} width={200} height={200} />
                 </div>
                 <div className="card-body">
                     <div className='d-flex justify-content-between aligns-items-center mb-2'>

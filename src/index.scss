@@ -182,3 +182,13 @@ textarea.form-control:focus {
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+@keyframes draw-border {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 60%;
+  }
+}

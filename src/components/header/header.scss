@@ -27,6 +27,7 @@
         .nav-item {
             margin-right: 8px;
             position: relative;
+
             @include max(768px) {
                 border-bottom: 1px solid var(--text);
             }
