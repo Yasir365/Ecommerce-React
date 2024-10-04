@@ -3,13 +3,16 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating'
 import apiService from '../../../services/api-service';
-import defaultImage from '/images/default_no_image.webp';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../store/cartSlice';
 import Loader from '../../../components/loader/Loader'
 import ImageGallery from 'react-image-gallery';
+import Breadcrumbs from '../../../components/breadcrumbs/Breadcrumbs';
 
+const breadcrumbs = [
+    { name: 'Products', path: '/products', },
+    { name: 'Product Details', path: '#', },
+];
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -17,10 +20,14 @@ const ProductDetails = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedSize, setSelectedSize] = useState('M');
+    const [selectedColor, setSelectedColor] = useState('#000');
+    const [selectedQty, setSelectedQty] = useState(1);
     const dispatch = useDispatch();
 
     const handleAddItem = () => {
-        dispatch(addItem(product));
+        const order = { ...product, size: selectedSize, color: selectedColor, quantity: selectedQty };
+        dispatch(addItem(order));
     };
 
     useEffect(() => {
@@ -57,6 +64,15 @@ const ProductDetails = () => {
         }
     };
 
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
+    };
+
+    const handleColorChange = (event) => {
+        setSelectedColor(event.target.value);
+    };
+
+
     if (loading) {
         return <div className="loading"><Loader /> </div>;
     }
@@ -67,6 +83,7 @@ const ProductDetails = () => {
 
     return (
         <div className="product-detail-page container">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className="product-main">
                 <div className="product-images">
                     <ImageGallery
@@ -89,6 +106,27 @@ const ProductDetails = () => {
                         <div className="rating-score">
                             <Rating initialValue={product.rating} readonly={true} size={20} />
                         </div>
+                    </div>
+
+                    <h5 className='sub-heading'>Quantity</h5>
+                    <div className="qty">
+                        <button className="qty-dec" onClick={() => setSelectedQty(selectedQty > 1 ? selectedQty - 1 : 1)}>-</button>
+                        <input className="qty-input" type="number" value={selectedQty} disabled />
+                        <button className="qty-inc" onClick={() => setSelectedQty(selectedQty + 1)}>+</button>
+                    </div>
+
+                    <h5 className='sub-heading'>Size</h5>
+                    <div className="size-options">
+                        <button className={`${selectedSize === 'XS' ? 'active' : ''}`} value="XS" onClick={handleSizeChange} > XS </button>
+                        <button className={`${selectedSize === 'S' ? 'active' : ''}`} value="S" onClick={handleSizeChange} > S </button>
+                        <button className={`${selectedSize === 'M' ? 'active' : ''}`} value="M" onClick={handleSizeChange} > M </button>
+                        <button className={`${selectedSize === 'L' ? 'active' : ''}`} value="L" onClick={handleSizeChange} > L </button>
+                        <button className={`${selectedSize === 'XL' ? 'active' : ''}`} value="XL" onClick={handleSizeChange} > XL </button>
+                    </div>
+
+                    <h5 className='sub-heading'>Color</h5>
+                    <div className="color-options">
+                        <input type="color" value={selectedColor} onChange={handleColorChange} />
                     </div>
 
                     <button className="add-to-cart" onClick={handleAddItem}>

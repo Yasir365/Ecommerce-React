@@ -10,7 +10,7 @@
         .product-images {
             flex: 1 1 45%;
             margin-bottom: 20px;
-            
+
 
             .image-gallery-icon {
                 display: none;
@@ -46,6 +46,10 @@
                     }
                 }
             }
+
+            .image-gallery-content .image-gallery-slide .image-gallery-image {
+                max-height: 100%;
+            }
         }
 
         .product-info {
@@ -66,7 +70,6 @@
             .product-price {
                 font-size: 1.5rem;
                 font-weight: bold;
-                margin-bottom: 20px;
             }
 
             .overall-rating {
@@ -83,6 +86,64 @@
                 }
             }
 
+            .sub-heading {
+                color: var(--primary);
+                font-weight: bold;
+                margin-top: 12px;
+            }
+
+            .qty {
+                button {
+                    width: 50px;
+                    height: 45px;
+                    border: 1px solid var(--primary);
+                    
+                    &.qty-dec{
+                        border-radius: 8px 0 0 8px;
+                    }
+
+                    &.qty-inc{
+                        border-radius: 0 8px 8px 0;
+                    }
+                }
+
+                .qty-input {
+                    border: 1px solid var(--primary);
+                    text-align: center;
+                    width: 70px;
+                    height: 45.2px;
+                    font-weight: 600;
+                }
+            }
+
+            .size-options {
+                display: flex;
+                gap: 10px;
+
+                button {
+                    height: 45px;
+                    width: 50px;
+                    border-radius: 8px;
+                    border: 1px solid var(--primary);
+                    background-color: transparent;
+                    font-weight: 600;
+
+                    &.active {
+                        background-color: var(--primary);
+                        color: var(--text2);
+                    }
+                }
+            }
+
+            .color-options {
+                input {
+                    border-radius: 12px;
+                    width: 50px;
+                    height: 45px;
+                    border: none;
+                }
+            }
+
             .add-to-cart {
                 display: inline-block;
                 padding: 10px 15px;
@@ -94,6 +155,7 @@
                 cursor: pointer;
                 transition: 0.3s ease;
                 text-align: center;
+                margin-top: 25px;
 
                 &:hover {
                     transform: scale(1.1);

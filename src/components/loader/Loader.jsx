@@ -13,7 +13,7 @@ export default function Loader() {
                 animationDuration="0.75"
                 ariaLabel="rotating-lines-loading"
                 wrapperStyle={{}}
-                wrapperClass=""
+                wrapperclassName=""
             />
         </div>
     )
