@@ -38,10 +38,6 @@ const router = createBrowserRouter([
                 element: <Products />,
             },
             {
-                path: 'products/:id',
-                element: <ProductDetails />,
-            },
-            {
                 path: 'cart',
                 element: <Cart />,
             },
@@ -70,6 +66,10 @@ const router = createBrowserRouter([
     {
         path: '/reset-password',
         element: <ResetPassword />,
+    },
+    {
+        path: 'products/:id',
+        element: <ProductDetails />,
     },
     {
         path: '/admin',
