@@ -18,6 +18,7 @@ import ManageProducts from './pages/admin/manage-products/Manage-Products';
 import ManageQueries from './pages/admin/manage-queries/Manage-Queries';
 import ManageOrders from './pages/admin/manage-orders/Manage-Orders';
 import AdminGuard from './components/admin-gaurd/Admin-Gaurd';
+import Carousel  from './pages/user/test/Carousel';
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart />,
+            },
+            {
+                path: 'test',
+                element: <Carousel  />,
             },
             {
                 path: '*',
