@@ -43,7 +43,7 @@ const OurTeam = () => {
                     effect={"coverflow"}
                     grabCursor={true}
                     centeredSlides={true}
-                    initialSlide={0}
+                    initialSlide={2}
                     slidesPerView={5}
                     spaceBetween={30}
                     autoplay={{
