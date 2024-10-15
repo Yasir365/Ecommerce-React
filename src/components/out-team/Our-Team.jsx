@@ -56,13 +56,13 @@ const OurTeam = () => {
             <div style={{ overflow: "hidden", width: "100%", padding: "0 15px" }}>
                 <Swiper
                     loop={true}
-                    speed={500}
+                    speed={1500}
                     autoplay={{
-                        delay: 2000,
+                        delay: 500,
                         disableOnInteraction: false,
                     }}
                     effect='coverflow'
-                    grabCursor={true}
+                    grabCursor={false}
                     centeredSlides={true}
                     slidesPerView='auto'
                     coverflowEffect={{
