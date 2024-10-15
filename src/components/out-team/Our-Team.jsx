@@ -58,11 +58,6 @@ const OurTeam = () => {
                     grabCursor={true}
                     centeredSlides={true}
                     slidesPerView='auto'
-                    breakpoints={{
-                        320: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
                     coverflowEffect={{
                         rotate: 0,
                         stretch: 30,
