@@ -4,7 +4,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
+import "swiper/css/autoplay";
+import { EffectCoverflow, Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const OurTeam = () => {
     const teamData = [
@@ -20,7 +21,7 @@ const OurTeam = () => {
         },
         {
             image: "/images/member/2.png",
-            name: "Jane ",
+            name: "Jane",
             designation: "CTO",
         },
         {
@@ -40,10 +41,11 @@ const OurTeam = () => {
         },
         {
             image: "/images/member/4.png",
-            name: "Emily ",
+            name: "Emily",
             designation: "HOD",
         },
-    ]
+    ];
+
     return (
         <div className="container team-carousel-section mx-auto">
             <div style={{ overflow: "hidden", width: "100%", padding: "0 15px" }}>
@@ -51,7 +53,7 @@ const OurTeam = () => {
                     loop={true}
                     speed={500}
                     autoplay={{
-                        delay: 500,
+                        delay: 2000, // Adjust delay as per requirement
                         disableOnInteraction: false,
                     }}
                     effect='coverflow'
@@ -67,7 +69,7 @@ const OurTeam = () => {
                     }}
                     pagination={true}
                     navigation={true}
-                    modules={[EffectCoverflow, Pagination, Navigation]}
+                    modules={[EffectCoverflow, Pagination, Navigation, Autoplay]} // Add Autoplay module
                     className="mySwiper"
                 >
                     {teamData?.map((item, index) => (
@@ -90,7 +92,8 @@ const OurTeam = () => {
                     ))}
                 </Swiper>
             </div>
-        </div >
+        </div>
     );
-}
+};
+
 export default OurTeam;
