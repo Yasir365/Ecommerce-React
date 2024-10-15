@@ -44,6 +44,11 @@ const OurTeam = () => {
             name: "Emily",
             designation: "HOD",
         },
+        {
+            image: "/images/file.png",
+            name: "Emily",
+            designation: "HOD",
+        },
     ];
 
     return (
@@ -53,7 +58,7 @@ const OurTeam = () => {
                     loop={true}
                     speed={500}
                     autoplay={{
-                        delay: 2000, // Adjust delay as per requirement
+                        delay: 2000,
                         disableOnInteraction: false,
                     }}
                     effect='coverflow'
