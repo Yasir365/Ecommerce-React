@@ -1,6 +1,5 @@
 import './our-Team.scss';
 import { Swiper, SwiperSlide } from "swiper/react";
-import next from "/images/next.svg";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -10,46 +9,55 @@ import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 const OurTeam = () => {
     const teamData = [
         {
-            image: "/images/member/1.webp",
+            image: "/images/member/1.png",
             name: "John Doe",
             designation: "CEO",
         },
         {
-            image: "/images/member/2.webp",
+            image: "/images/carousel/2.png",
+            name: "John Doe",
+            designation: "CEO",
+        },
+        {
+            image: "/images/member/2.png",
             name: "Jane ",
             designation: "CTO",
         },
         {
-            image: "/images/member/3.webp",
+            image: "/images/carousel/3.png",
+            name: "John Doe",
+            designation: "CEO",
+        },
+        {
+            image: "/images/member/3.png",
             name: "Michael",
             designation: "COO",
         },
         {
-            image: "/images/member/4.webp",
+            image: "/images/carousel/4.png",
+            name: "John Doe",
+            designation: "CEO",
+        },
+        {
+            image: "/images/member/4.png",
             name: "Emily ",
             designation: "HOD",
         },
-        {
-            image: "/images/member/1.webp",
-            name: "John Doe",
-            designation: "CEO",
-        }
     ]
-    const middle = Math.floor(teamData.length / 2);
     return (
         <div className="container team-carousel-section mx-auto">
             <div style={{ overflow: "hidden", width: "100%", padding: "0 15px" }}>
                 <Swiper
-                    effect={"coverflow"}
-                    grabCursor={true}
-                    centeredSlides={true}
-                    initialSlide={2}
-                    slidesPerView={5}
-                    spaceBetween={30}
+                    loop={true}
+                    speed={500}
                     autoplay={{
                         delay: 500,
                         disableOnInteraction: false,
                     }}
+                    effect='coverflow'
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView='auto'
                     breakpoints={{
                         320: { slidesPerView: 1 },
                         768: { slidesPerView: 2 },
@@ -57,9 +65,9 @@ const OurTeam = () => {
                     }}
                     coverflowEffect={{
                         rotate: 0,
-                        stretch: 0,
-                        depth: 120,
-                        modifier: 6,
+                        stretch: 30,
+                        depth: 200,
+                        modifier: 2,
                         slideShadows: false,
                     }}
                     pagination={true}
@@ -87,7 +95,7 @@ const OurTeam = () => {
                     ))}
                 </Swiper>
             </div>
-        </div>
+        </div >
     );
 }
 export default OurTeam;

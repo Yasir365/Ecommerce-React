@@ -1,7 +1,6 @@
 import './about.scss';
 import FeaturedProduct from '../../../components/featured-product/Featured-Product';
 import OurTeam from '../../../components/out-team/Our-Team';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import apiService from '../../../services/api-service';
 import Advatisement from '../../../components/advatisement/Advatisement';
