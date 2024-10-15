@@ -44,11 +44,6 @@ const OurTeam = () => {
             name: "Emily",
             designation: "HOD",
         },
-        {
-            image: "/images/file.png",
-            name: "Emily",
-            designation: "HOD",
-        },
     ];
 
     return (
@@ -65,11 +60,12 @@ const OurTeam = () => {
                     grabCursor={false}
                     centeredSlides={true}
                     slidesPerView='auto'
+                    slidesPerGroup={1}
                     coverflowEffect={{
                         rotate: 0,
-                        stretch: 30,
+                        stretch: 10,
                         depth: 200,
-                        modifier: 2,
+                        modifier: 2.5,
                         slideShadows: false,
                     }}
                     pagination={true}
