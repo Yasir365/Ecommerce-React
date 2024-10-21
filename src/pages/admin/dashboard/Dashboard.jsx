@@ -1,6 +1,6 @@
 
 import './dashboard.scss';
-import userImage from '/images/member/1.webp';
+import userImage from '/images/member/1.png';
 import { Bar, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
 import { useEffect, useState } from 'react';
